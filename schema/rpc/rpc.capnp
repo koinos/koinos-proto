@@ -3,7 +3,7 @@
 $import "/capnp/c++.capnp".namespace("koinos::rpc");
 
 using Go = import "/go.capnp";
-$Go.package("koinos");
+$Go.package("rpc");
 $Go.import("koinos/rpc");
 
 struct ErrorResponse {

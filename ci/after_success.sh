@@ -38,6 +38,7 @@ if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
+      go mod tidy
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git
    fi

@@ -10,7 +10,7 @@ using Go = import "/go.capnp";
 $Go.package("transaction_store");
 $Go.import("koinos/rpc/transaction_store");
 
-struct TransactionRecord {
+struct TransactionItem {
    transaction      @0 :Protocol.Transaction;
    containingBlocks @1 :List(Data) $Json.hex;
 }

@@ -32,8 +32,8 @@ struct SystemCallTarget {
 
 struct Opaque(Type) {
    union {
-      native @0 :Type;
-      bytes  @1 :Data $Json.base64;
+      bytes  @0 :Data $Json.base64;
+      native @1 :Type;
    }
 }
 

@@ -71,7 +71,7 @@ struct PassiveBlockData {
 
 struct BlockHeader {
    previous  @0 :Common.Hash $Json.hex;
-   height    @1 :UInt32;
+   height    @1 :Common.BlockHeightType;
    timestamp @2 :Common.Timestamp;
 }
 

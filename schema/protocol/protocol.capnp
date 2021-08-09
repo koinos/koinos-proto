@@ -95,6 +95,7 @@ struct Block {
    activeData    @2 :Common.Opaque(ActiveBlockData);
    passiveData   @3 :Common.Opaque(PassiveBlockData);
    signatureData @4 :Data;
+   transactions  @5 :List(Transaction);
 }
 
 struct BlockReceipt {

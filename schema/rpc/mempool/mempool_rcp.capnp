@@ -9,7 +9,7 @@ $import "/capnp/c++.capnp".namespace("koinos::rpc::mempool");
 
 using Go = import "/go.capnp";
 $Go.package("mempool");
-$Go.import("koinos/rpc/mempool");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/rpc/mempool");
 
 struct MempoolReservedRequest {}
 

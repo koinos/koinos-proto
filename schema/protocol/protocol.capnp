@@ -7,7 +7,7 @@ $import "/capnp/c++.capnp".namespace("koinos::protocol");
 
 using Go = import "/go.capnp";
 $Go.package("protocol");
-$Go.import("koinos/protocol");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/protocol");
 
 struct UploadContractOperation {
    contractID @0 :Common.Hash $Json.hex;

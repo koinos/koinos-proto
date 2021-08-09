@@ -4,7 +4,7 @@ $import "/capnp/c++.capnp".namespace("koinos");
 
 using Go = import "/go.capnp";
 $Go.package("koinos");
-$Go.import("koinos");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos");
 
 using Json = import "/capnp/compat/json.capnp";
 

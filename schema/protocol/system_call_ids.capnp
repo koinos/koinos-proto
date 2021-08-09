@@ -4,7 +4,7 @@ $import "/capnp/c++.capnp".namespace("koinos::chain");
 
 using Go = import "/go.capnp";
 $Go.package("protocol");
-$Go.import("koinos/protocol");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/protocol");
 
 enum SystemCallID {
    prints                        @0;

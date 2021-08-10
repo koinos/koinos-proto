@@ -4,7 +4,7 @@ $import "/capnp/c++.capnp".namespace("koinos::rpc");
 
 using Go = import "/go.capnp";
 $Go.package("rpc");
-$Go.import("koinos/rpc");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/rpc");
 
 struct ErrorResponse {
    errorText @0 :Text;

@@ -8,7 +8,7 @@ $import "/capnp/c++.capnp".namespace("koinos::block_store");
 
 using Go = import "/go.capnp";
 $Go.package("block_store");
-$Go.import("koinos/block_store");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/block_store");
 
 struct BlockItem {
    blockID     @0 :Common.Hash $Json.hex;

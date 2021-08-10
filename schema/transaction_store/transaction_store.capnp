@@ -8,7 +8,7 @@ $import "/capnp/c++.capnp".namespace("koinos::transaction_store");
 
 using Go = import "/go.capnp";
 $Go.package("transaction_store");
-$Go.import("koinos/rpc/transaction_store");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/rpc/transaction_store");
 
 struct TransactionItem {
    transaction      @0 :Protocol.Transaction;

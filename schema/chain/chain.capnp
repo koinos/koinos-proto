@@ -8,7 +8,7 @@ $import "/capnp/c++.capnp".namespace("koinos::chain");
 
 using Go = import "/go.capnp";
 $Go.package("chain");
-$Go.import("koinos/chain");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/chain");
 
 enum Privilege {
    kernelMode @0;

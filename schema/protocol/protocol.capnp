@@ -7,7 +7,7 @@ $import "/capnp/c++.capnp".namespace("koinos::protocol");
 
 using Go = import "/go.capnp";
 $Go.package("protocol");
-$Go.import("koinos/protocol");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/protocol");
 
 struct UploadContractOperation {
    contractID @0 :Common.Hash $Json.hex;
@@ -71,7 +71,7 @@ struct PassiveBlockData {
 
 struct BlockHeader {
    previous  @0 :Common.Hash $Json.hex;
-   height    @1 :UInt32;
+   height    @1 :Common.BlockHeightType;
    timestamp @2 :Common.Timestamp;
 }
 
@@ -95,6 +95,7 @@ struct Block {
    activeData    @2 :Common.Opaque(ActiveBlockData);
    passiveData   @3 :Common.Opaque(PassiveBlockData);
    signatureData @4 :Data;
+   transactions  @5 :List(Transaction);
 }
 
 struct BlockReceipt {

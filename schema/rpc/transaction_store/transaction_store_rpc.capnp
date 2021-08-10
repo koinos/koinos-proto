@@ -2,7 +2,7 @@
 
 using Common = import "../../common.capnp";
 using Chain = import "../../chain/chain.capnp";
-using Protocol = import "../../protocol/protocol.capnp";
+using TransactionStore = import "../../transaction_store/transaction_store.capnp";
 using RPC = import "../rpc.capnp";
 using Json = Common.Json;
 
@@ -10,7 +10,7 @@ $import "/capnp/c++.capnp".namespace("koinos::rpc::chain");
 
 using Go = import "/go.capnp";
 $Go.package("transaction_store");
-$Go.import("koinos/rpc/transaction_store");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/rpc/transaction_store");
 
 struct TransactionStoreReservedRequest {}
 
@@ -21,7 +21,7 @@ struct GetTransactionsByIDRequest {
 }
 
 struct GetTransactionsByIDResponse {
-   transactions @0 :List(Common.Optional(Protocol.Transaction));
+   transactions @0 :List(Common.Optional(TransactionStore.TransactionItem));
 }
 
 using TransactionStoreErrorResponse = RPC.ErrorResponse;

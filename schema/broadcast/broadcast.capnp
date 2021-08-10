@@ -8,7 +8,7 @@ $import "/capnp/c++.capnp".namespace("koinos::broadcast");
 
 using Go = import "/go.capnp";
 $Go.package("broadcast");
-$Go.import("koinos/broadcast");
+$Go.import("github.com/koinos/koinos-proto-golang/koinos/broadcast");
 
 struct TransactionAccepted {
    transaction       @0 :Protocol.Transaction;

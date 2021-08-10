@@ -2,7 +2,7 @@
 
 using Common = import "../../common.capnp";
 using Chain = import "../../chain/chain.capnp";
-using Protocol = import "../../protocol/protocol.capnp";
+using TransactionStore = import "../../transaction_store/transaction_store.capnp";
 using RPC = import "../rpc.capnp";
 using Json = Common.Json;
 
@@ -21,7 +21,7 @@ struct GetTransactionsByIDRequest {
 }
 
 struct GetTransactionsByIDResponse {
-   transactions @0 :List(Common.Optional(Protocol.Transaction));
+   transactions @0 :List(Common.Optional(TransactionStore.TransactionItem));
 }
 
 using TransactionStoreErrorResponse = RPC.ErrorResponse;

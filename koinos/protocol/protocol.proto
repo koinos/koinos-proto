@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "koinos/common.proto";
+
+package koinos.protocol;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
+
+message upload_contract_operation {
+   bytes contract_id = 1;
+   bytes bytecode = 2;
+}
+
+message call_contract_opteration {
+   bytes contract_id = 1;
+   uint32 entrypoint = 2;
+   bytes args = 3;
+}
+
+message set_system_call_operation {
+   uint32 call_id = 1;
+   koinos.system_call_target target = 2;
+}

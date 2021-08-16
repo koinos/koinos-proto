@@ -19,7 +19,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    fi
 
    mkdir -p libraries/proto/generated
-   rsync -rvm --include "*.capnp.c++" --include "*.capnp.h" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
+   rsync -rvm --include "*.pb.h" --include "*.pb.cc" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
 
    git add .
 
@@ -40,8 +40,10 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git checkout -b $TRAVIS_BRANCH
    fi
 
+   find $TRAVIS_BUILD_DIR/build/go/
+
    mkdir -p koinos
-   rsync -rvm --include "*.capnp.go" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/go/ ./koinos/
+   rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/go/github.com/koinos/koinos-proto-golang/ ./
 
    git add .
 

@@ -11,5 +11,5 @@ set -x
 mkdir -p build/cpp build/go
 
 for proto in $(find koinos -name '*.proto'); do
-   protobuf/bin/protoc --cpp_out=build/cpp/ --go_out=build/go/ $proto
+   protobuf/bin/protoc --experimental_allow_proto3_optional --cpp_out=build/cpp/ --go_out=build/go/ $proto
 done

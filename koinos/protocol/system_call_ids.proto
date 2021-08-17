@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package koinos.protocol;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
+
+enum system_call_id {
+   reserved = 0;
+   prints = 1;
+   verify_block_header = 2;
+   apply_block = 3;
+   apply_transaction = 4;
+   apply_upload_contract_operation = 5;
+   apply_execute_contract_operation = 6;
+   apply_set_system_call_operation = 7;
+   db_put_object = 8;
+   db_get_object = 9;
+   db_get_next_object = 10;
+   db_get_prev_object = 11;
+   execute_contract = 12;
+   get_entry_point = 13;
+   get_contract_args_size = 14;
+   get_contract_args = 15;
+   set_contract_return = 16;
+   exit_contract = 17;
+   get_head_info = 18;
+   hash = 19;
+   recover_public_key = 20;
+   verify_block_signature = 21;
+   verify_merkle_root = 22;
+   get_transaction_payer = 23;
+   get_max_account_resources = 24;
+   get_transaction_resource_limit = 25;
+   get_last_irreversible_block = 26;
+   get_caller = 27;
+   require_authority = 28;
+   get_transaction_signature = 29;
+   get_contract_id = 30;
+   get_head_block_time = 31;
+   get_account_nonce = 32;
+}

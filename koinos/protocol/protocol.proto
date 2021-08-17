@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-
 package koinos.protocol;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
+
+import "google/protobuf/timestamp.proto";
 
 message contract_call_bundle {
    bytes contract_id = 1;

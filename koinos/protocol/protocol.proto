@@ -94,8 +94,8 @@ message block {
       bytes active_blob = 4;
    }
    oneof passive_block_data {
-      passive_block_data active_native = 5;
-      bytes active_blob = 6;
+      passive_block_data passive_native = 5;
+      bytes passive_blob = 6;
    }
    bytes signature_data = 7;
    repeated transaction transactions = 8;

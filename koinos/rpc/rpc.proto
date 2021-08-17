@@ -3,7 +3,7 @@ syntax = "proto3";
 package koinos.rpc;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc";
 
-message ErrorResponse {
-   string errorText = 0;
-   string errorData = 1;
+message error_response {
+   string errorText = 1;
+   string errorData = 2;
 }

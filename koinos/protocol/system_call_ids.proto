@@ -4,7 +4,7 @@ package koinos.protocol;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 enum system_call_id {
-   reserved = 0;
+   reserved_id = 0;
    prints = 1;
    verify_block_header = 2;
    apply_block = 3;

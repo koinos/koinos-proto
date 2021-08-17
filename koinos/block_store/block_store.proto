@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package koinos.rpc.block_store;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/block_store";
+
+import "koinos/protocol/protocol.proto";
+
+message block_item {
+   bytes block_id = 1;
+   uint64 block_height = 2;
+   optional protocol.block block = 3;
+   optional protocol.block_receipt receipt = 4;
+}
+
+message block_record {
+   bytes block_id = 1;
+   uint64 block_height = 2;
+   protocol.block block = 3;
+   optional protocol.block_receipt receipt = 4;
+   repeated bytes previous_block_ids = 5;
+}

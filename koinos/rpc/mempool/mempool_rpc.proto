@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package koinos.rpc.mempool;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/mempool";
+
+import "koinos/protocol/protocol.proto";
+import "koinos/rpc/rpc.proto";
+
+message check_pending_account_resources_request {
+   bytes payer = 1;
+   uint64 max_payer_resources = 2;
+   uint64 trx_resource_limit = 3;
+}
+
+message check_pending_account_resources_response {
+   bool success = 1;
+}
+
+message get_pending_transactions_request {
+   uint64 limit = 1;
+}
+
+message get_pending_transactions_response {
+   repeated protocol.transaction transactions = 1;
+}
+
+message mempool_rpc_request {
+   oneof request {
+      check_pending_account_resources_request check_pending_account_resources = 1;
+      get_pending_transactions_request get_pending_transactions = 2;
+   }
+}
+
+message mempool_rpc_response {
+   oneof response {
+      rpc.error_response mempool_error = 1;
+      check_pending_account_resources_response check_pending_account_resources = 2;
+      get_pending_transactions_request get_pending_transactions = 3;
+   }
+}

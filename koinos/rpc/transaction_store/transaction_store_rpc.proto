@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package koinos.transaction_store;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/transaction_store";
+
+import "koinos/rpc/rpc.proto";
+import "koinos/transaction_store/transaction_store.proto";
+
+message get_transactions_by_id_request {
+   repeated bytes transaction_ids = 1;
+}
+
+message get_transactions_by_id_response {
+   repeated transaction_store.transaction_item transactions = 1;
+}
+
+message transaction_store_request {
+   oneof request {
+      get_transactions_by_id_request get_transactions_by_id = 1;
+   }
+}
+
+message transaction_store_response {
+   oneof response {
+      rpc.error_response transaction_store_error = 1;
+      get_transactions_by_id_response get_transactions_by_id = 2;
+   }
+}

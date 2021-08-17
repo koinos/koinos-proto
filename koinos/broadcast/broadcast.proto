@@ -24,5 +24,5 @@ message block_irreversible {
 
 message fork_heads {
    block_topology last_irreversible_block = 1;
-   repeated block_topology fork_heads = 2;
+   repeated block_topology heads = 2;
 }

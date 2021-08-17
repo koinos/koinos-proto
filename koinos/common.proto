@@ -8,13 +8,3 @@ message block_topology {
    uint64 height = 2;
    bytes previous = 3;
 }
-
-message contract_call_bundle {
-   bytes contract_id = 1;
-   uint32 entrypoint = 2;
-}
-
-message system_call_target {
-   uint32 thunk_id = 1;
-   contract_call_bundle system_call_bundle = 2;
-}

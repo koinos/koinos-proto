@@ -47,17 +47,25 @@ message active_transaction_data {
 
 message passive_transaction_data {}
 
+message transaction_active_data {
+   oneof data {
+      active_transaction_data native = 1;
+      bytes blob = 2;
+   }
+}
+
+message transaction_passive_data {
+   oneof data {
+      passive_transaction_data native = 1;
+      bytes blob = 2;
+   }
+}
+
 message transaction {
    bytes id = 1;
-   oneof active_data {
-      active_transaction_data active_native = 2;
-      bytes active_blob = 3;
-   }
-   oneof passive_data {
-      passive_transaction_data passive_native = 4;
-      bytes passive_blob = 5;
-   }
-   bytes signature_data = 6;
+   transaction_active_data active = 2;
+   transaction_passive_data passive = 3;
+   bytes signature_data = 4;
 }
 
 message active_block_data {

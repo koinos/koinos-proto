@@ -4,6 +4,6 @@ package koinos.rpc;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc";
 
 message error_response {
-   string errorText = 1;
-   string errorData = 2;
+   string message = 1;
+   string data = 2;
 }

@@ -47,17 +47,25 @@ message active_transaction_data {
 
 message passive_transaction_data {}
 
+message transaction_active_data {
+   oneof data {
+      active_transaction_data native = 1;
+      bytes blob = 2;
+   }
+}
+
+message transaction_passive_data {
+   oneof data {
+      passive_transaction_data native = 1;
+      bytes blob = 2;
+   }
+}
+
 message transaction {
    bytes id = 1;
-   oneof active_data {
-      active_transaction_data active_native = 2;
-      bytes active_blob = 3;
-   }
-   oneof passive_data {
-      passive_transaction_data passive_native = 4;
-      bytes passive_blob = 5;
-   }
-   bytes signature_data = 6;
+   transaction_active_data active = 2;
+   transaction_passive_data passive = 3;
+   bytes signature_data = 4;
 }
 
 message active_block_data {
@@ -72,6 +80,20 @@ message block_header {
    bytes previous = 1;
    uint64 height = 2;
    google.protobuf.Timestamp timestamp = 3;
+}
+
+message block_active_data {
+   oneof data {
+      active_block_data native = 1;
+      bytes blob = 2;
+   }
+}
+
+message block_passive_data {
+   oneof data {
+      passive_block_data native = 1;
+      bytes blob = 2;
+   }
 }
 
 // Topological constraints:  Constraints for a new block b that builds on a given block a
@@ -89,16 +111,10 @@ message block_header {
 message block {
    bytes id = 1;
    block_header header = 2;
-   oneof active_data {
-      active_block_data active_native = 3;
-      bytes active_blob = 4;
-   }
-   oneof passive_block_data {
-      passive_block_data passive_native = 5;
-      bytes passive_blob = 6;
-   }
-   bytes signature_data = 7;
-   repeated transaction transactions = 8;
+   block_active_data active = 3;
+   block_passive_data passive = 4;
+   bytes signature_data = 5;
+   repeated transaction transactions = 6;
 }
 
 message block_receipt {}

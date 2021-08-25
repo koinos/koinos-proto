@@ -9,7 +9,7 @@ import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 
 message get_blocks_by_id_request {
-   bytes block_id = 1;
+   repeated bytes block_id = 1;
    bool return_block = 2;
    bool return_receipt = 3;
 }

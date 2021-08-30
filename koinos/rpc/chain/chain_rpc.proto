@@ -65,25 +65,27 @@ message get_account_nonce_response {
 
 message chain_rpc_request {
    oneof request {
-      submit_block_request submit_block = 1;
-      submit_transaction_request submit_transaction = 2;
-      get_head_info_request get_head_info = 3;
-      get_chain_id_request get_chain_id = 4;
-      get_fork_heads_request get_fork_heads = 5;
-      read_contract_request read_contract = 6;
-      get_account_nonce_request get_account_nonce = 7;
+      rpc.reserved_rpc reserved = 1;
+      submit_block_request submit_block = 2;
+      submit_transaction_request submit_transaction = 3;
+      get_head_info_request get_head_info = 4;
+      get_chain_id_request get_chain_id = 5;
+      get_fork_heads_request get_fork_heads = 6;
+      read_contract_request read_contract = 7;
+      get_account_nonce_request get_account_nonce = 8;
    }
 }
 
 message chain_rpc_response {
    oneof response {
-      rpc.error_response chain_error = 1;
-      submit_block_response submit_block = 2;
-      submit_transaction_response submit_transaction = 3;
-      get_head_info_response get_head_info = 4;
-      get_chain_id_response get_chain_id = 5;
-      get_fork_heads_response get_fork_heads = 6;
-      read_contract_response read_contract = 7;
-      get_account_nonce_response get_account_nonce = 8;
+      rpc.reserved_rpc reserved = 1;
+      rpc.error_response chain_error = 2;
+      submit_block_response submit_block = 3;
+      submit_transaction_response submit_transaction = 4;
+      get_head_info_response get_head_info = 5;
+      get_chain_id_response get_chain_id = 6;
+      get_fork_heads_response get_fork_heads = 7;
+      read_contract_response read_contract = 8;
+      get_account_nonce_response get_account_nonce = 9;
    }
 }

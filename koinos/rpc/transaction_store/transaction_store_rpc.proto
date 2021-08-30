@@ -16,13 +16,15 @@ message get_transactions_by_id_response {
 
 message transaction_store_request {
    oneof request {
-      get_transactions_by_id_request get_transactions_by_id = 1;
+      rpc.reserved_rpc reserved = 1;
+      get_transactions_by_id_request get_transactions_by_id = 2;
    }
 }
 
 message transaction_store_response {
    oneof response {
-      rpc.error_response transaction_store_error = 1;
-      get_transactions_by_id_response get_transactions_by_id = 2;
+      rpc.reserved_rpc reserved = 1;
+      rpc.error_response transaction_store_error = 2;
+      get_transactions_by_id_response get_transactions_by_id = 3;
    }
 }

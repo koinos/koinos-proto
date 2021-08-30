@@ -26,15 +26,17 @@ message get_pending_transactions_response {
 
 message mempool_rpc_request {
    oneof request {
-      check_pending_account_resources_request check_pending_account_resources = 1;
-      get_pending_transactions_request get_pending_transactions = 2;
+      rpc.reserved_rpc reserved = 1;
+      check_pending_account_resources_request check_pending_account_resources = 2;
+      get_pending_transactions_request get_pending_transactions = 3;
    }
 }
 
 message mempool_rpc_response {
    oneof response {
-      rpc.error_response mempool_error = 1;
-      check_pending_account_resources_response check_pending_account_resources = 2;
-      get_pending_transactions_response get_pending_transactions = 3;
+      rpc.reserved_rpc reserved = 1;
+      rpc.error_response mempool_error = 2;
+      check_pending_account_resources_response check_pending_account_resources = 3;
+      get_pending_transactions_response get_pending_transactions = 4;
    }
 }

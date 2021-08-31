@@ -44,19 +44,21 @@ message get_highest_block_response {
 
 message block_store_request {
    oneof request {
-      get_blocks_by_id_request get_blocks_by_id = 1;
-      get_blocks_by_height_request get_blocks_by_height = 2;
-      add_block_request add_block = 3;
-      get_highest_block_request get_highest_block = 4;
+      rpc.reserved_rpc reserved = 1;
+      get_blocks_by_id_request get_blocks_by_id = 2;
+      get_blocks_by_height_request get_blocks_by_height = 3;
+      add_block_request add_block = 4;
+      get_highest_block_request get_highest_block = 5;
    }
 }
 
 message block_store_response {
    oneof response {
-      rpc.error_response error = 1;
-      get_blocks_by_id_response get_blocks_by_id = 2;
-      get_blocks_by_height_response get_blocks_by_height = 3;
-      add_block_response add_block = 4;
-      get_highest_block_response get_highest_block = 5;
+      rpc.reserved_rpc reserved = 1;
+      rpc.error_response error = 2;
+      get_blocks_by_id_response get_blocks_by_id = 3;
+      get_blocks_by_height_response get_blocks_by_height = 4;
+      add_block_response add_block = 5;
+      get_highest_block_response get_highest_block = 6;
    }
 }

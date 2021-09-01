@@ -54,4 +54,33 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    fi
 
    popd
+
+
+   #js
+   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git
+
+   pushd koinos-proto-js
+
+   if [ "$TRAVIS_BRANCH" != "master" ]; then
+      git checkout -b $TRAVIS_BRANCH
+   fi
+
+   mkdir -p koinos
+
+   rsync -rvm --include "*.js" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/js/ ./
+
+   git add .
+
+   if [ "$TRAVIS_BRANCH" == "master" ]; then
+      npm version patch -git-tag-version false
+   fi
+
+   if ! git diff --cached --quiet --exit-code; then
+      git commit -m "Update for koinos-proto commit $COMMIT_HASH"
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git $TRAVIS_BRANCH
+   fi
+
+   #TODO: Publish
+
+   popd
 fi

@@ -76,6 +76,8 @@ message apply_set_system_call_operation_args {
    protocol.set_system_call_operation op = 1;
 }
 
+message apply_set_system_call_operation_return {}
+
 message db_put_object_args {
    bytes space = 1;
    bytes key = 2;

@@ -13,7 +13,8 @@ enum privilege {
 
 message head_info {
    block_topology head_topology = 1;
-   uint64 last_irreversible_block = 2;
+   uint64 head_block_time = 2;
+   uint64 last_irreversible_block = 3;
 }
 
 message prints_args {

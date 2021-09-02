@@ -35,7 +35,7 @@ message mempool_rpc_request {
 message mempool_rpc_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
-      rpc.error_response mempool_error = 2;
+      rpc.error_response error = 2;
       check_pending_account_resources_response check_pending_account_resources = 3;
       get_pending_transactions_response get_pending_transactions = 4;
    }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package koinos.rpc.block_store;
+package koinos.block_store;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/block_store";
 
 import "koinos/protocol/protocol.proto";

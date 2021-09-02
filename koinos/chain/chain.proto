@@ -235,6 +235,6 @@ message get_account_nonce_args {
    bytes account = 1;
 }
 
-message get_account_nonce_result {
+message get_account_nonce_return {
    uint64 nonce = 1;
 }

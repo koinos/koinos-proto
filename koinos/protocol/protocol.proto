@@ -9,8 +9,10 @@ message contract_call_bundle {
 }
 
 message system_call_target {
-   uint32 thunk_id = 1;
-   contract_call_bundle system_call_bundle = 2;
+   oneof target {
+      uint32 thunk_id = 1;
+      contract_call_bundle system_call_bundle = 2;
+   }
 }
 
 message upload_contract_operation {

@@ -28,7 +28,7 @@ message get_head_info_request {}
 
 message get_head_info_response {
    block_topology head_topology = 1;
-   uint64 get_last_irreversible_block = 2;
+   uint64 last_irreversible_block = 2;
 }
 
 message get_chain_id_request {}
@@ -46,7 +46,7 @@ message get_fork_heads_response {
 
 message read_contract_request {
    bytes contract_id = 1;
-   uint32 entrypoint = 2;
+   uint32 entry_point = 2;
    bytes args = 3;
 }
 
@@ -79,7 +79,7 @@ message chain_rpc_request {
 message chain_rpc_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
-      rpc.error_response chain_error = 2;
+      rpc.error_response error = 2;
       submit_block_response submit_block = 3;
       submit_transaction_response submit_transaction = 4;
       get_head_info_response get_head_info = 5;

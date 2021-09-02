@@ -5,7 +5,7 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 message contract_call_bundle {
    bytes contract_id = 1;
-   uint32 entrypoint = 2;
+   uint32 entry_point = 2;
 }
 
 message system_call_target {
@@ -22,7 +22,7 @@ message upload_contract_operation {
 
 message call_contract_operation {
    bytes contract_id = 1;
-   uint32 entrypoint = 2;
+   uint32 entry_point = 2;
    bytes args = 3;
 }
 

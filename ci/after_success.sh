@@ -19,7 +19,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    fi
 
    mkdir -p libraries/proto/generated
-   rsync -rvm --include "*.capnp.c++" --include "*.capnp.h" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
+   rsync -rvm --include "*.pb.h" --include "*.pb.cc" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
 
    git add .
 
@@ -40,8 +40,10 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git checkout -b $TRAVIS_BRANCH
    fi
 
+   find $TRAVIS_BUILD_DIR/build/go/
+
    mkdir -p koinos
-   rsync -rvm --include "*.capnp.go" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/go/ ./koinos/
+   rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/go/github.com/koinos/koinos-proto-golang/ ./
 
    git add .
 
@@ -50,6 +52,35 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git $TRAVIS_BRANCH
    fi
+
+   popd
+
+
+   #js
+   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git
+
+   pushd koinos-proto-js
+
+   if [ "$TRAVIS_BRANCH" != "master" ]; then
+      git checkout -b $TRAVIS_BRANCH
+   fi
+
+   mkdir -p koinos
+
+   rsync -rvm --include "*.js" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/js/ ./
+
+   git add .
+
+   if [ "$TRAVIS_BRANCH" == "master" ]; then
+      npm version patch -git-tag-version false
+   fi
+
+   if ! git diff --cached --quiet --exit-code; then
+      git commit -m "Update for koinos-proto commit $COMMIT_HASH"
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git $TRAVIS_BRANCH
+   fi
+
+   #TODO: Publish
 
    popd
 fi

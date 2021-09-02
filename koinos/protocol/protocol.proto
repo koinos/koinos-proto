@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package koinos.protocol;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
+
+message contract_call_bundle {
+   bytes contract_id = 1;
+   uint32 entrypoint = 2;
+}
+
+message system_call_target {
+   oneof target {
+      uint32 thunk_id = 1;
+      contract_call_bundle system_call_bundle = 2;
+   }
+}
+
+message upload_contract_operation {
+   bytes contract_id = 1;
+   bytes bytecode = 2;
+}
+
+message call_contract_operation {
+   bytes contract_id = 1;
+   uint32 entrypoint = 2;
+   bytes args = 3;
+}
+
+message set_system_call_operation {
+   uint32 call_id = 1;
+   system_call_target target = 2;
+}
+
+message operation {
+   oneof op {
+      upload_contract_operation upload_contract = 1;
+      call_contract_operation call_contract = 2;
+      set_system_call_operation set_system_call = 3;
+   }
+}
+
+message active_transaction_data {
+   uint64 resource_limit = 1;
+   uint64 nonce = 2;
+   repeated operation operations = 3;
+}
+
+message passive_transaction_data {}
+
+message transaction_active_data {
+   oneof data {
+      active_transaction_data native = 1;
+      bytes blob = 2;
+   }
+}
+
+message transaction_passive_data {
+   oneof data {
+      passive_transaction_data native = 1;
+      bytes blob = 2;
+   }
+}
+
+message transaction {
+   bytes id = 1;
+   transaction_active_data active = 2;
+   transaction_passive_data passive = 3;
+   bytes signature_data = 4;
+}
+
+message active_block_data {
+   bytes transaction_merkle_root = 1;
+   bytes passive_data_merkle_root = 2;
+   bytes signer = 3;
+}
+
+message passive_block_data {}
+
+message block_header {
+   bytes previous = 1;
+   uint64 height = 2;
+   uint64 timestamp = 3;
+}
+
+message block_active_data {
+   oneof data {
+      active_block_data native = 1;
+      bytes blob = 2;
+   }
+}
+
+message block_passive_data {
+   oneof data {
+      passive_block_data native = 1;
+      bytes blob = 2;
+   }
+}
+
+// Topological constraints:  Constraints for a new block b that builds on a given block a
+//
+// b.header.previous_block == a.block_id
+// b.header.height         == a.header.height+1
+// b.header.timestamp      >  a.header.timestamp
+//
+// Cryptographic constraints:  Internal constraints for block b.
+//
+// b.block_id                             == H(b.header, b.active_data)
+// b.active_data.transaction_merkle_root  == Hm(b.transactions)
+// b.active_data.passive_data_merkle_root == Hm(b.passive_data)
+// b.active_data.signer_address           == H(recover(b.signature_data, b.block_id))
+message block {
+   bytes id = 1;
+   block_header header = 2;
+   block_active_data active = 3;
+   block_passive_data passive = 4;
+   bytes signature_data = 5;
+   repeated transaction transactions = 6;
+}
+
+message block_receipt {}

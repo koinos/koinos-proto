@@ -21,3 +21,9 @@ jobs:
           pushd koinos-proto-golang
           git push https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-golang.git --delete ${{ github.event.ref }}
           popd
+
+          git clone https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-js.git
+
+          pushd koinos-proto-js
+          git push https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-js.git --delete ${{ github.event.ref }}
+          popd

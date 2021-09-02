@@ -1,0 +1,241 @@
+syntax = "proto3";
+
+package koinos.chain;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
+
+import "koinos/common.proto";
+import "koinos/protocol/protocol.proto";
+
+enum privilege {
+   kernel_mode = 0;
+   user_mode = 1;
+}
+
+message head_info {
+   block_topology head_topology = 1;
+   uint64 head_block_time = 2;
+   uint64 last_irreversible_block = 3;
+}
+
+message prints_args {
+   string message = 1;
+}
+
+message prints_return {}
+
+message verify_block_signature_args {
+   bytes digest = 1;
+   oneof active_data {
+      protocol.active_block_data active_native = 2;
+      bytes active_blob = 3;
+   }
+   bytes signature_data = 4;
+}
+
+message verify_block_signature_return {
+   bool result = 1;
+}
+
+message verify_merkle_root_args {
+   bytes root = 1;
+   repeated bytes hashes = 2;
+}
+
+message apply_block_args {
+   protocol.block block = 1;
+   bool check_passive_data = 2;
+   bool check_block_signature = 3;
+   bool check_transaction_signature = 4;
+}
+
+message apply_block_return {}
+
+message apply_transaction_args {
+   protocol.transaction transaction = 1;
+}
+
+message apply_transaction_return {}
+
+message apply_upload_contract_operation_args {
+   protocol.upload_contract_operation op = 1;
+}
+
+message apply_upload_contract_operation_return {}
+
+message apply_call_contract_operation_args {
+   protocol.call_contract_operation op = 1;
+}
+
+message apply_call_contract_operation_return {}
+
+message apply_set_system_call_operation_args {
+   protocol.set_system_call_operation op = 1;
+}
+
+message db_put_object_args {
+   bytes space = 1;
+   bytes key = 2;
+   bytes obj = 3;
+}
+
+message db_put_object_return {
+   bool result = 1;
+}
+
+message db_get_object_args {
+   bytes space = 1;
+   bytes key = 2;
+   optional uint32 object_size_hint = 3;
+}
+
+message db_get_object_return {
+   bytes result = 3;
+}
+
+message db_get_next_object_args {
+   bytes space = 1;
+   bytes key = 2;
+   optional uint32 object_size_hint = 3;
+}
+
+message db_get_next_object_return {
+   bytes result = 3;
+}
+
+message db_get_prev_object_args {
+   bytes space = 1;
+   bytes key = 2;
+   optional uint32 object_size_hint = 3;
+}
+
+message db_get_prev_object_return {
+   bytes result = 3;
+}
+
+message execute_contract_args {
+   bytes contract_id = 1;
+   uint32 entrypoint = 2;
+   bytes args = 3;
+}
+
+message execute_contract_return {
+   bytes result = 1;
+}
+
+message get_entry_point_args {}
+
+message get_entry_point_return {
+   uint32 entrypoint = 1;
+}
+
+message get_contract_args_size_args {}
+
+message get_contract_args_size_return {
+   uint32 value = 1;
+}
+
+message get_contract_args_args {}
+
+message get_contract_args_return {
+   bytes value = 1;
+}
+
+message set_contract_return_args {
+   bytes value = 1;
+}
+
+message set_contract_return_return {}
+
+message exit_contract_args {
+   uint32 exit_code = 1;
+}
+
+message exit_contract_return {}
+
+message get_head_info_args {}
+
+message get_head_info_return {
+   head_info value = 1;
+}
+
+message hash_args {
+   uint64 code = 1;
+   bytes obj = 2;
+   uint64 size = 3;
+}
+
+message hash_return {
+   bytes value = 1;
+}
+
+message recover_public_key_args {
+   bytes signature_data = 1;
+   bytes digest = 2;
+}
+
+message recover_public_key_return {
+   bytes value = 1;
+}
+
+message get_transaction_payer_args {
+   protocol.transaction transaction = 1;
+}
+
+message get_transaction_payer_return {
+   bytes value = 1;
+}
+
+message get_max_account_resources_args {
+   bytes account = 1;
+}
+
+message get_max_account_resources_return {
+   uint64 value = 1;
+}
+
+message get_transaction_resource_limit_args {
+   protocol.transaction transction = 1;
+}
+
+message get_transaction_resource_limit_return {
+   uint64 value = 1;
+}
+
+message get_last_irreversible_block_args {}
+
+message get_last_irreversible_block_return {
+   block_topology value = 1;
+}
+
+message get_caller_args {}
+
+message get_caller_return {
+   bytes caller = 1;
+   privilege caller_privilege = 2;
+}
+
+message require_authority_args {
+   bytes account = 1;
+}
+
+message require_authority_return {}
+
+message get_transaction_signature_args {}
+
+message get_transaction_signature_return {
+   bytes value = 1;
+}
+
+message get_contract_id_args {}
+
+message get_contract_id_return {
+   bytes value = 1;
+}
+
+message get_account_nonce_args {
+   bytes account = 1;
+}
+
+message get_account_nonce_return {
+   uint64 nonce = 1;
+}

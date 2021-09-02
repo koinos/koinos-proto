@@ -5,6 +5,7 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/block_stor
 
 import "koinos/block_store/block_store.proto";
 import "koinos/common.proto";
+import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 
 message get_blocks_by_id_request {

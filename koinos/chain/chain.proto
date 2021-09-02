@@ -116,13 +116,13 @@ message db_get_prev_object_return {
    bytes result = 3;
 }
 
-message execute_contract_args {
+message call_contract_args {
    bytes contract_id = 1;
    uint32 entry_point = 2;
    bytes args = 3;
 }
 
-message execute_contract_return {
+message call_contract_return {
    bytes result = 1;
 }
 

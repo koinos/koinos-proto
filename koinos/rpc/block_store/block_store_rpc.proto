@@ -30,7 +30,7 @@ message get_blocks_by_height_response {
 }
 
 message add_block_request {
-   .koinos.block_store.block_item block_to_add = 1;
+   protocol.block block_to_add = 1;
 }
 
 message add_block_response {}

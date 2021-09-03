@@ -33,7 +33,7 @@ message verify_block_signature_args {
 }
 
 message verify_block_signature_return {
-   bool result = 1;
+   bool value = 1;
 }
 
 message verify_merkle_root_args {
@@ -42,7 +42,7 @@ message verify_merkle_root_args {
 }
 
 message verify_merkle_root_return {
-   bool result = 1;
+   bool value = 1;
 }
 
 message apply_block_args {
@@ -85,7 +85,7 @@ message db_put_object_args {
 }
 
 message db_put_object_return {
-   bool result = 1;
+   bool value = 1;
 }
 
 message db_get_object_args {
@@ -95,7 +95,7 @@ message db_get_object_args {
 }
 
 message db_get_object_return {
-   bytes result = 3;
+   bytes value = 3;
 }
 
 message db_get_next_object_args {
@@ -105,7 +105,7 @@ message db_get_next_object_args {
 }
 
 message db_get_next_object_return {
-   bytes result = 3;
+   bytes value = 3;
 }
 
 message db_get_prev_object_args {
@@ -115,7 +115,7 @@ message db_get_prev_object_args {
 }
 
 message db_get_prev_object_return {
-   bytes result = 3;
+   bytes value = 3;
 }
 
 message call_contract_args {
@@ -125,13 +125,13 @@ message call_contract_args {
 }
 
 message call_contract_return {
-   bytes result = 1;
+   bytes value = 1;
 }
 
 message get_entry_point_args {}
 
 message get_entry_point_return {
-   uint32 entry_point = 1;
+   uint32 value = 1;
 }
 
 message get_contract_args_size_args {}
@@ -243,5 +243,5 @@ message get_account_nonce_args {
 }
 
 message get_account_nonce_return {
-   uint64 nonce = 1;
+   uint64 value = 1;
 }

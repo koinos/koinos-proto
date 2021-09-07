@@ -1,6 +1,6 @@
 # Koinos Proto
 
-Koinos Proto contains Koinos Cap'n Proto schema definitions.
+Koinos Proto contains Koinos Protocol Buffers schema definitions.
 
 Changes to the schema are automatically propagated to language repos.
 

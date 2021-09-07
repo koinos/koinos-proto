@@ -63,7 +63,7 @@ message get_account_nonce_response {
    uint64 nonce = 1;
 }
 
-message chain_rpc_request {
+message chain_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
       submit_block_request submit_block = 2;
@@ -76,7 +76,7 @@ message chain_rpc_request {
    }
 }
 
-message chain_rpc_response {
+message chain_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
       rpc.error_response error = 2;

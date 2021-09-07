@@ -210,7 +210,7 @@ message get_transaction_resource_limit_return {
 message get_last_irreversible_block_args {}
 
 message get_last_irreversible_block_return {
-   block_topology value = 1;
+   uint64 value = 1;
 }
 
 message get_caller_args {}

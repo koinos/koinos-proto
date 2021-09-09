@@ -1,6 +1,8 @@
 language: c++
 
 cache:
+  packages:
+    - python3
   ccache: true
 
 jobs:
@@ -10,6 +12,7 @@ jobs:
     env:
       - PROTOBUF_VERSION="3.14.0"
       - GO_VERSION="1.16.6"
+      - PB_EMBEDDED_CPP_VERSION="2.2.1"
 
 install:
   - source ci/install.sh

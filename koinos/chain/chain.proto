@@ -91,7 +91,7 @@ message db_put_object_return {
 message db_get_object_args {
    bytes space = 1;
    bytes key = 2;
-   optional uint32 object_size_hint = 3;
+   uint32 object_size_hint = 3; // optional
 }
 
 message db_get_object_return {
@@ -101,7 +101,7 @@ message db_get_object_return {
 message db_get_next_object_args {
    bytes space = 1;
    bytes key = 2;
-   optional uint32 object_size_hint = 3;
+   uint32 object_size_hint = 3; // optional
 }
 
 message db_get_next_object_return {
@@ -111,7 +111,7 @@ message db_get_next_object_return {
 message db_get_prev_object_args {
    bytes space = 1;
    bytes key = 2;
-   optional uint32 object_size_hint = 3;
+   uint32 object_size_hint = 3; // optional
 }
 
 message db_get_prev_object_return {

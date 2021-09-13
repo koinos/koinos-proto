@@ -12,10 +12,10 @@ enum system_call_id {
    apply_upload_contract_operation = 5;
    apply_execute_contract_operation = 6;
    apply_set_system_call_operation = 7;
-   db_put_object = 8;
-   db_get_object = 9;
-   db_get_next_object = 10;
-   db_get_prev_object = 11;
+   put_object = 8;
+   get_object = 9;
+   get_next_object = 10;
+   get_prev_object = 11;
    execute_contract = 12;
    get_entry_point = 13;
    get_contract_args_size = 14;

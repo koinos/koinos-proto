@@ -71,43 +71,43 @@ message apply_set_system_call_operation_args {
    protocol.set_system_call_operation op = 1;
 }
 
-message db_put_object_args {
+message put_object_args {
    bytes space = 1;
    bytes key = 2;
    bytes obj = 3;
 }
 
-message db_put_object_return {
+message put_object_return {
    bool result = 1;
 }
 
-message db_get_object_args {
+message get_object_args {
    bytes space = 1;
    bytes key = 2;
    optional uint32 object_size_hint = 3;
 }
 
-message db_get_object_return {
+message get_object_return {
    bytes result = 3;
 }
 
-message db_get_next_object_args {
+message get_next_object_args {
    bytes space = 1;
    bytes key = 2;
    optional uint32 object_size_hint = 3;
 }
 
-message db_get_next_object_return {
+message get_next_object_return {
    bytes result = 3;
 }
 
-message db_get_prev_object_args {
+message get_prev_object_args {
    bytes space = 1;
    bytes key = 2;
    optional uint32 object_size_hint = 3;
 }
 
-message db_get_prev_object_return {
+message get_prev_object_return {
    bytes result = 3;
 }
 

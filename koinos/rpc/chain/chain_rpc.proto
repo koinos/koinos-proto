@@ -28,7 +28,7 @@ message get_head_info_request {}
 
 message get_head_info_response {
    block_topology head_topology = 1;
-   uint64 get_last_irreversible_block = 2;
+   uint64 get_last_irreversible_block = 2; [jstype = JS_STRING]
 }
 
 message get_chain_id_request {}
@@ -60,7 +60,7 @@ message get_account_nonce_request {
 }
 
 message get_account_nonce_response {
-   uint64 nonce = 1;
+   uint64 nonce = 1; [jstype = JS_STRING]
 }
 
 message chain_rpc_request {

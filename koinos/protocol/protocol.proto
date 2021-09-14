@@ -38,8 +38,8 @@ message operation {
 }
 
 message active_transaction_data {
-   uint64 resource_limit = 1;
-   uint64 nonce = 2;
+   uint64 resource_limit = 1; [jstype = JS_STRING]
+   uint64 nonce = 2; [jstype = JS_STRING]
    repeated operation operations = 3;
 }
 
@@ -76,8 +76,8 @@ message passive_block_data {}
 
 message block_header {
    bytes previous = 1;
-   uint64 height = 2;
-   uint64 timestamp = 3;
+   uint64 height = 2; [jstype = JS_STRING]
+   uint64 timestamp = 3; [jstype = JS_STRING]
 }
 
 message block_active_data {

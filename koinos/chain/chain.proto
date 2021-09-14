@@ -13,7 +13,7 @@ enum privilege {
 
 message head_info {
    block_topology head_topology = 1;
-   uint64 last_irreversible_block = 2;
+   uint64 last_irreversible_block = 2; [jstype = JS_STRING]
 }
 
 message prints_args {
@@ -158,9 +158,9 @@ message get_head_info_return {
 }
 
 message hash_args {
-   uint64 code = 1;
+   uint64 code = 1; [jstype = JS_STRING]
    bytes obj = 2;
-   uint64 size = 3;
+   uint64 size = 3; [jstype = JS_STRING]
 }
 
 message hash_return {
@@ -189,7 +189,7 @@ message get_max_account_resources_args {
 }
 
 message get_max_account_resources_return {
-   uint64 value = 1;
+   uint64 value = 1; [jstype = JS_STRING]
 }
 
 message get_transaction_resource_limit_args {
@@ -197,7 +197,7 @@ message get_transaction_resource_limit_args {
 }
 
 message get_transaction_resource_limit_return {
-   uint64 value = 1;
+   uint64 value = 1; [jstype = JS_STRING]
 }
 
 message get_last_irreversible_block_args {}
@@ -236,5 +236,5 @@ message get_account_nonce_args {
 }
 
 message get_account_nonce_result {
-   uint64 nonce = 1;
+   uint64 nonce = 1; [jstype = JS_STRING]
 }

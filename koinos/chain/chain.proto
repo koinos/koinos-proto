@@ -13,8 +13,8 @@ enum privilege {
 
 message head_info {
    block_topology head_topology = 1;
-   uint64 head_block_time = 2;
-   uint64 last_irreversible_block = 3;
+   uint64 head_block_time = 2 [jstype = JS_STRING];
+   uint64 last_irreversible_block = 3 [jstype = JS_STRING];
 }
 
 message prints_args {
@@ -78,43 +78,43 @@ message apply_set_system_call_operation_args {
 
 message apply_set_system_call_operation_return {}
 
-message db_put_object_args {
+message put_object_args {
    bytes space = 1;
    bytes key = 2;
    bytes obj = 3;
 }
 
-message db_put_object_return {
+message put_object_return {
    bool value = 1;
 }
 
-message db_get_object_args {
+message get_object_args {
    bytes space = 1;
    bytes key = 2;
    uint32 object_size_hint = 3; // optional
 }
 
-message db_get_object_return {
+message get_object_return {
    bytes value = 3;
 }
 
-message db_get_next_object_args {
+message get_next_object_args {
    bytes space = 1;
    bytes key = 2;
    uint32 object_size_hint = 3; // optional
 }
 
-message db_get_next_object_return {
+message get_next_object_return {
    bytes value = 3;
 }
 
-message db_get_prev_object_args {
+message get_prev_object_args {
    bytes space = 1;
    bytes key = 2;
    uint32 object_size_hint = 3; // optional
 }
 
-message db_get_prev_object_return {
+message get_prev_object_return {
    bytes value = 3;
 }
 
@@ -165,9 +165,9 @@ message get_head_info_return {
 }
 
 message hash_args {
-   uint64 code = 1;
+   uint64 code = 1 [jstype = JS_STRING];
    bytes obj = 2;
-   uint64 size = 3;
+   uint64 size = 3 [jstype = JS_STRING];
 }
 
 message hash_return {
@@ -196,7 +196,7 @@ message get_max_account_resources_args {
 }
 
 message get_max_account_resources_return {
-   uint64 value = 1;
+   uint64 value = 1 [jstype = JS_STRING];
 }
 
 message get_transaction_resource_limit_args {
@@ -204,13 +204,13 @@ message get_transaction_resource_limit_args {
 }
 
 message get_transaction_resource_limit_return {
-   uint64 value = 1;
+   uint64 value = 1 [jstype = JS_STRING];
 }
 
 message get_last_irreversible_block_args {}
 
 message get_last_irreversible_block_return {
-   uint64 value = 1;
+   uint64 value = 1 [jstype = JS_STRING];
 }
 
 message get_caller_args {}
@@ -243,5 +243,5 @@ message get_account_nonce_args {
 }
 
 message get_account_nonce_return {
-   uint64 value = 1;
+   uint64 value = 1 [jstype = JS_STRING];
 }

@@ -3,13 +3,20 @@
 set -e
 set -x
 
-#source ~/.gimme/envs/go$GO_VERSION.env
-#
-#GOPATH=`go env GOPATH`
-#PATH=$PATH:$GOPATH
+mkdir -p build/cpp build/go build/js build/eams
 
-mkdir -p build/cpp build/go
+protobuf/bin/protoc --experimental_allow_proto3_optional \
+   --cpp_out=build/cpp/ \
+   --go_out=build/go/ \
+   --js_out=library=koinos_proto,one_output_file_per_input_file,binary:build/js \
+   `find koinos -name '*.proto'`
 
-for proto in $(find koinos -name '*.proto'); do
-   protobuf/bin/protoc --experimental_allow_proto3_optional --cpp_out=build/cpp/ --go_out=build/go/ $proto
-done
+pushd EmbeddedProto
+
+../protobuf/bin/protoc --experimental_allow_proto3_optional \
+   --plugin=protoc-gen-eams \
+   --eams_out=../build/eams \
+   -I.. \
+   `find ../koinos -name '*.proto'`
+
+popd

@@ -15,7 +15,7 @@ message get_blocks_by_id_request {
 }
 
 message get_blocks_by_id_response {
-   repeated block_item block_items = 1;
+   repeated .koinos.block_store.block_item block_items = 1;
 }
 
 message get_blocks_by_height_request {
@@ -27,11 +27,11 @@ message get_blocks_by_height_request {
 }
 
 message get_blocks_by_height_response {
-   repeated block_item block_items = 1;
+   repeated .koinos.block_store.block_item block_items = 1;
 }
 
 message add_block_request {
-   block_item block_to_add = 1;
+   protocol.block block_to_add = 1;
 }
 
 message add_block_response {}

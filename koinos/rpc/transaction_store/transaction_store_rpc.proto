@@ -24,7 +24,7 @@ message transaction_store_request {
 message transaction_store_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
-      rpc.error_response transaction_store_error = 2;
+      rpc.error_response error = 2;
       get_transactions_by_id_response get_transactions_by_id = 3;
    }
 }

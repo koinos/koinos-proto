@@ -13,7 +13,8 @@ enum privilege {
 
 message head_info {
    block_topology head_topology = 1;
-   uint64 last_irreversible_block = 2 [jstype = JS_STRING];
+   uint64 head_block_time = 2 [jstype = JS_STRING];
+   uint64 last_irreversible_block = 3 [jstype = JS_STRING];
 }
 
 message prints_args {
@@ -32,12 +33,16 @@ message verify_block_signature_args {
 }
 
 message verify_block_signature_return {
-   bool result = 1;
+   bool value = 1;
 }
 
 message verify_merkle_root_args {
    bytes root = 1;
    repeated bytes hashes = 2;
+}
+
+message verify_merkle_root_return {
+   bool value = 1;
 }
 
 message apply_block_args {
@@ -71,6 +76,8 @@ message apply_set_system_call_operation_args {
    protocol.set_system_call_operation op = 1;
 }
 
+message apply_set_system_call_operation_return {}
+
 message put_object_args {
    bytes space = 1;
    bytes key = 2;
@@ -78,53 +85,53 @@ message put_object_args {
 }
 
 message put_object_return {
-   bool result = 1;
+   bool value = 1;
 }
 
 message get_object_args {
    bytes space = 1;
    bytes key = 2;
-   optional uint32 object_size_hint = 3;
+   uint32 object_size_hint = 3; // optional
 }
 
 message get_object_return {
-   bytes result = 3;
+   bytes value = 3;
 }
 
 message get_next_object_args {
    bytes space = 1;
    bytes key = 2;
-   optional uint32 object_size_hint = 3;
+   uint32 object_size_hint = 3; // optional
 }
 
 message get_next_object_return {
-   bytes result = 3;
+   bytes value = 3;
 }
 
 message get_prev_object_args {
    bytes space = 1;
    bytes key = 2;
-   optional uint32 object_size_hint = 3;
+   uint32 object_size_hint = 3; // optional
 }
 
 message get_prev_object_return {
-   bytes result = 3;
+   bytes value = 3;
 }
 
-message execute_contract_args {
+message call_contract_args {
    bytes contract_id = 1;
-   uint32 entrypoint = 2;
+   uint32 entry_point = 2;
    bytes args = 3;
 }
 
-message execute_contract_return {
-   bytes result = 1;
+message call_contract_return {
+   bytes value = 1;
 }
 
 message get_entry_point_args {}
 
 message get_entry_point_return {
-   uint32 entrypoint = 1;
+   uint32 value = 1;
 }
 
 message get_contract_args_size_args {}
@@ -203,7 +210,7 @@ message get_transaction_resource_limit_return {
 message get_last_irreversible_block_args {}
 
 message get_last_irreversible_block_return {
-   block_topology value = 1;
+   uint64 value = 1 [jstype = JS_STRING];
 }
 
 message get_caller_args {}
@@ -235,6 +242,6 @@ message get_account_nonce_args {
    bytes account = 1;
 }
 
-message get_account_nonce_result {
-   uint64 nonce = 1 [jstype = JS_STRING];
+message get_account_nonce_return {
+   uint64 value = 1 [jstype = JS_STRING];
 }

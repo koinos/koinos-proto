@@ -5,12 +5,14 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 message contract_call_bundle {
    bytes contract_id = 1;
-   uint32 entrypoint = 2;
+   uint32 entry_point = 2;
 }
 
 message system_call_target {
-   uint32 thunk_id = 1;
-   contract_call_bundle system_call_bundle = 2;
+   oneof target {
+      uint32 thunk_id = 1;
+      contract_call_bundle system_call_bundle = 2;
+   }
 }
 
 message upload_contract_operation {
@@ -20,7 +22,7 @@ message upload_contract_operation {
 
 message call_contract_operation {
    bytes contract_id = 1;
-   uint32 entrypoint = 2;
+   uint32 entry_point = 2;
    bytes args = 3;
 }
 
@@ -45,24 +47,10 @@ message active_transaction_data {
 
 message passive_transaction_data {}
 
-message transaction_active_data {
-   oneof data {
-      active_transaction_data native = 1;
-      bytes blob = 2;
-   }
-}
-
-message transaction_passive_data {
-   oneof data {
-      passive_transaction_data native = 1;
-      bytes blob = 2;
-   }
-}
-
 message transaction {
    bytes id = 1;
-   transaction_active_data active = 2;
-   transaction_passive_data passive = 3;
+   bytes active = 2;
+   bytes passive = 3;
    bytes signature_data = 4;
 }
 
@@ -80,20 +68,6 @@ message block_header {
    uint64 timestamp = 3 [jstype = JS_STRING];
 }
 
-message block_active_data {
-   oneof data {
-      active_block_data native = 1;
-      bytes blob = 2;
-   }
-}
-
-message block_passive_data {
-   oneof data {
-      passive_block_data native = 1;
-      bytes blob = 2;
-   }
-}
-
 // Topological constraints:  Constraints for a new block b that builds on a given block a
 //
 // b.header.previous_block == a.block_id
@@ -109,8 +83,8 @@ message block_passive_data {
 message block {
    bytes id = 1;
    block_header header = 2;
-   block_active_data active = 3;
-   block_passive_data passive = 4;
+   bytes active = 3;
+   bytes passive = 4;
    bytes signature_data = 5;
    repeated transaction transactions = 6;
 }

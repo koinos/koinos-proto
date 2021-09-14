@@ -24,7 +24,7 @@ message get_pending_transactions_response {
    repeated protocol.transaction transactions = 1;
 }
 
-message mempool_rpc_request {
+message mempool_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
       check_pending_account_resources_request check_pending_account_resources = 2;
@@ -32,7 +32,7 @@ message mempool_rpc_request {
    }
 }
 
-message mempool_rpc_response {
+message mempool_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
       rpc.error_response error = 2;

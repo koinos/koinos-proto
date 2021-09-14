@@ -10,20 +10,12 @@ jobs:
       KOINOS_CI_TOKEN: ${{ secrets.KOINOS_CI_TOKEN }}
     steps:
       - run: |
-          git clone https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-cpp.git
+          for lang in cpp golang js embedded-cpp
+          do
+            repo=koinos-proto-$lang
+            git clone https://$KOINOS_CI_TOKEN@github.com/koinos/`echo $repo`.git
 
-          pushd koinos-proto-cpp
-          git push https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-cpp.git --delete ${{ github.event.ref }}
-          popd
-
-          git clone https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-golang.git
-
-          pushd koinos-proto-golang
-          git push https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-golang.git --delete ${{ github.event.ref }}
-          popd
-
-          git clone https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-js.git
-
-          pushd koinos-proto-js
-          git push https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-proto-js.git --delete ${{ github.event.ref }}
-          popd
+            pushd $repo
+            git push https://$KOINOS_CI_TOKEN@github.com/koinos/`echo $repo`.git --delete ${{ github.event.ref }}
+            popd
+          done

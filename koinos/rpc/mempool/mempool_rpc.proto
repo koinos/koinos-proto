@@ -8,8 +8,8 @@ import "koinos/rpc/rpc.proto";
 
 message check_pending_account_resources_request {
    bytes payer = 1;
-   uint64 max_payer_resources = 2; [jstype = JS_STRING]
-   uint64 trx_resource_limit = 3; [jstype = JS_STRING]
+   uint64 max_payer_resources = 2 [jstype = JS_STRING];
+   uint64 trx_resource_limit = 3 [jstype = JS_STRING];
 }
 
 message check_pending_account_resources_response {
@@ -17,7 +17,7 @@ message check_pending_account_resources_response {
 }
 
 message get_pending_transactions_request {
-   uint64 limit = 1; [jstype = JS_STRING]
+   uint64 limit = 1 [jstype = JS_STRING];
 }
 
 message get_pending_transactions_response {

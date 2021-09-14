@@ -7,9 +7,9 @@ import "koinos/common.proto";
 
 message difficulty_metadata {
    bytes target = 1;
-   uint64 last_block_time = 2; [jstype = JS_STRING]
+   uint64 last_block_time = 2 [jstype = JS_STRING];
    bytes difficulty = 3;
-   uint64 target_block_interval = 4; [jstype = JS_STRING]
+   uint64 target_block_interval = 4 [jstype = JS_STRING];
 }
 
 message pow_signature_data {

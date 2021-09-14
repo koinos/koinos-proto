@@ -97,8 +97,8 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    mkdir -p libraries/koinos/generated
    mkdir -p libraries/koinos/src
 
-   rsync -rvm --include "*.h" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/eams/ ./libraries/koinos/generated/
-   rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/EmbeddedProto/src/ ./libraries/koinos/src/
+   rsync -rvm --include "*.h" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/eams/ ./libraries/proto_embedded/generated/
+   rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/EmbeddedProto/src/ ./libraries/proto_embedded/src/
 
    git add .
 

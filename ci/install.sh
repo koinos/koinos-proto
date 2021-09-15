@@ -11,7 +11,7 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 # For some reason, this needs to be installed manually...
 sudo apt install python3.8-venv
 
-git clone --recursive https://github.com/Embedded-AMS/EmbeddedProto
+git clone --recursive https://github.com/koinos/EmbeddedProto
 pushd EmbeddedProto
 
 git checkout $PB_EMBEDDED_CPP_VERSION

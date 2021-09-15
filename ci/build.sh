@@ -9,6 +9,7 @@ protobuf/bin/protoc --experimental_allow_proto3_optional \
    --cpp_out=build/cpp/ \
    --go_out=build/go/ \
    --js_out=library=koinos_proto,one_output_file_per_input_file,binary:build/js \
+   --descriptor_set_out=build/koinos_descriptors.pb \
    `find koinos -name '*.proto'`
 
 pushd EmbeddedProto

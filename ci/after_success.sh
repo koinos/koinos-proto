@@ -106,4 +106,22 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git $TRAVIS_BRANCH
    fi
+
+   #descriptors
+   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git
+
+   pushd koinos-proto-descriptors
+
+   if [ "$TRAVIS_BRANCH" != "master" ]; then
+      git checkout -b $TRAVIS_BRANCH
+   fi
+
+   cp $TRAVIS_BUILD_DIR/build/koinos_descriptors.pb ./koinos_descriptors.pb
+
+   git add .
+
+   if ! git diff --cached --quiet --exit-code; then
+      git commit -m "Update for koinos-proto commit $COMMIT_HASH"
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git $TRAVIS_BRANCH
+   fi
 fi

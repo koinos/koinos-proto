@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package koinos.contracts.token;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/token";
+
+message name_args {}
+
+message name_return {
+   string value = 1;
+}
+
+message symbol_args {}
+
+message symbol_return {
+   string value = 1;
+}
+
+message decimals_args {}
+
+message decimals_return {
+   uint32 value = 1;
+}
+
+message total_supply_args {}
+
+message total_supply_return {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message balance_of_args {
+   bytes owner = 1;
+}
+
+message balance_of_return {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message transfer_args {
+   bytes from = 1;
+   bytes to = 2;
+   uint64 value = 3 [jstype = JS_STRING];
+}
+
+message transafer_return {
+   bool value = 1;
+}
+
+message mint_args {
+   bytes to = 1;
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+message mint_return {
+   bool value = 1;
+}

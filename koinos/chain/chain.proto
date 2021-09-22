@@ -200,7 +200,7 @@ message get_max_account_resources_return {
 }
 
 message get_transaction_resource_limit_args {
-   protocol.transaction transction = 1;
+   protocol.transaction transaction = 1;
 }
 
 message get_transaction_resource_limit_return {

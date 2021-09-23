@@ -41,7 +41,7 @@ message transfer_args {
    uint64 value = 3 [jstype = JS_STRING];
 }
 
-message transafer_return {
+message transfer_return {
    bool value = 1;
 }
 

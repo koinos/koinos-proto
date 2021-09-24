@@ -25,11 +25,8 @@ message prints_return {}
 
 message verify_block_signature_args {
    bytes digest = 1;
-   oneof active_data {
-      protocol.active_block_data active_native = 2;
-      bytes active_blob = 3;
-   }
-   bytes signature_data = 4;
+   bytes active = 2;
+   bytes signature_data = 3;
 }
 
 message verify_block_signature_return {

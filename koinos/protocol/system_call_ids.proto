@@ -35,7 +35,7 @@ enum system_call_id {
    get_transaction_signature = 28;
    get_contract_id = 29;
    get_account_nonce = 30;
-   get_account_rc = 21;
+   get_account_rc = 31;
    consume_account_rc = 32;
    get_resource_limits = 33;
    consume_block_resources = 34;

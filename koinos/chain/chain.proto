@@ -213,7 +213,7 @@ message get_resource_limits_return {
    uint64 network_bandwidth_limit = 3 [jstype = JS_STRING];
    uint64 network_bandwidth_cost = 4 [jstype = JS_STRING];
    uint64 compute_bandwidth_limit = 5 [jstype = JS_STRING];
-   uint64 compute_bandwidth_limit = 6 [jstype = JS_STRING];
+   uint64 compute_bandwidth_cost = 6 [jstype = JS_STRING];
 }
 
 message consume_block_resources_args {

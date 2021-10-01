@@ -28,15 +28,15 @@ enum system_call_id {
    verify_block_signature = 21;
    verify_merkle_root = 22;
    get_transaction_payer = 23;
-   get_transaction_resource_limit = 24;
-   get_last_irreversible_block = 25;
-   get_caller = 26;
-   require_authority = 27;
-   get_transaction_signature = 28;
-   get_contract_id = 29;
-   get_account_nonce = 30;
-   get_account_rc = 31;
-   consume_account_rc = 32;
-   get_resource_limits = 33;
-   consume_block_resources = 34;
+   get_transaction_resource_limit = 25;
+   get_last_irreversible_block = 26;
+   get_caller = 27;
+   require_authority = 28;
+   get_transaction_signature = 29;
+   get_contract_id = 30;
+   get_account_nonce = 31;
+   get_account_rc = 32;
+   consume_account_rc = 33;
+   get_resource_limits = 34;
+   consume_block_resources = 35;
 }

@@ -188,12 +188,42 @@ message get_transaction_payer_return {
    bytes value = 1;
 }
 
-message get_max_account_resources_args {
+message get_account_rc_args {
    bytes account = 1;
 }
 
-message get_max_account_resources_return {
+message get_account_rc_return {
    uint64 value = 1 [jstype = JS_STRING];
+}
+
+message consume_account_rc_args {
+   bytes account = 1;
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+message consume_account_rc_return {
+   bool value = 1;
+}
+
+message get_resource_limits_args {}
+
+message get_resource_limits_return {
+   uint64_t disk_storage_limit = 1 [jstype = JS_STRING];
+   uint64_t disk_storage_cost = 2 [jstype = JS_STRING];
+   uint64_t network_bandwidth_limit = 3 [jstype = JS_STRING];
+   uint64_t network_bandwidth_cost = 4 [jstype = JS_STRING];
+   uint64_t compute_bandwidth_limit = 5 [jstype = JS_STRING];
+   uint64_t compute_bandwidth_limit = 6 [jstype = JS_STRING];
+}
+
+message consume_block_resources_args {
+   uint64_t disk_storage_consumed = 1 [jstype = JS_STRING];
+   uint64_t network_bandwidth_consumed = 2 [jstype = JS_STRING];
+   uint64_t compute_bandwidth_consumed = 3 [jstype = JS_STRING];
+}
+
+message consume_block_resources_return {
+   bool value = 1;
 }
 
 message get_transaction_resource_limit_args {

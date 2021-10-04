@@ -18,9 +18,9 @@ enum system_call_id {
    get_prev_object = 11;
    call_contract = 12;
    get_entry_point = 13;
-   get_contract_args_size = 14;
-   get_contract_args = 15;
-   set_contract_return = 16;
+   get_contract_arguments_size = 14;
+   get_contract_arguments = 15;
+   set_contract_result = 16;
    exit_contract = 17;
    get_head_info = 18;
    hash = 19;

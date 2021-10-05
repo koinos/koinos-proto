@@ -85,6 +85,35 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    popd
 
 
+   #python
+   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-python.git
+
+   pushd koinos-proto-python
+
+   if [ "$TRAVIS_BRANCH" != "master" ]; then
+      git checkout -b $TRAVIS_BRANCH
+   fi
+
+   mkdir -p koinos
+
+   rsync -rvm --include "*_pb2.py" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/python/ ./
+
+   git add .
+
+   if [ "$TRAVIS_BRANCH" == "master" ]; then
+      npm version patch -git-tag-version false
+   fi
+
+   if ! git diff --cached --quiet --exit-code; then
+      git commit -m "Update for koinos-proto commit $COMMIT_HASH"
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-python.git $TRAVIS_BRANCH
+   fi
+
+   #TODO: Publish
+
+   popd
+
+
    #embedded-cpp
    git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git
 
@@ -107,6 +136,9 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git $TRAVIS_BRANCH
    fi
 
+   popd
+
+
    #descriptors
    git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git
 
@@ -124,4 +156,6 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git $TRAVIS_BRANCH
    fi
+
+   popd
 fi

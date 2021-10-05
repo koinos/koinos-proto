@@ -15,3 +15,9 @@ message resource_markets {
    market network_bandwidth = 2;
    market compute_bandwidth = 3;
 }
+
+message get_resource_markets_arguments {}
+
+message get_resource_markets_result {
+   resource_markets value = 1;
+}

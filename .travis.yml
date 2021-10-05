@@ -1,9 +1,7 @@
-language: c++
+language: python
 
-cache:
-  packages:
-    - python3
-  ccache: true
+python:
+  - 3.8
 
 jobs:
   include:

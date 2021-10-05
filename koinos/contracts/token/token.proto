@@ -57,3 +57,9 @@ message mint_result {
 message balance_object {
    uint64 value = 1 [jstype = JS_STRING];
 }
+
+message mana_balance_object {
+   uint64 balance = 1 [jstype = JS_STRING];
+   uint64 mana = 2 [jstype = JS_STRING];
+   uint64 last_mana_update = 3 [jstype = JS_STRING];
+}

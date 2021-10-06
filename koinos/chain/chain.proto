@@ -230,11 +230,11 @@ message consume_block_resources_result {
    bool value = 1;
 }
 
-message get_transaction_resource_limit_arguments {
+message get_transaction_rc_limit_arguments {
    protocol.transaction transaction = 1;
 }
 
-message get_transaction_resource_limit_result {
+message get_transaction_rc_limit_result {
    uint64 value = 1 [jstype = JS_STRING];
 }
 

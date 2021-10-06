@@ -10,6 +10,10 @@ message difficulty_metadata {
    uint64 target_block_interval = 4 [jstype = JS_STRING];
 }
 
+message difficulty_metadata_result {
+   difficulty_metadata value = 1;
+}
+
 message pow_signature_data {
    bytes nonce = 1;
    bytes recoverable_signature = 2;

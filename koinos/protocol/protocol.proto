@@ -40,7 +40,7 @@ message operation {
 }
 
 message active_transaction_data {
-   uint64 resource_limit = 1 [jstype = JS_STRING];
+   uint64 rc_limit = 1 [jstype = JS_STRING];
    uint64 nonce = 2 [jstype = JS_STRING];
    repeated operation operations = 3;
 }

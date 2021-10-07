@@ -76,7 +76,7 @@ message get_account_rc_response {
 message get_resource_limits_request {}
 
 message get_resource_limits_response {
-   chain.resource_limit_data limit_data = 1;
+   .chain.resource_limit_data limit_data = 1;
 }
 
 message chain_request {

@@ -76,7 +76,7 @@ message get_account_rc_response {
 message get_resource_limits_request {}
 
 message get_resource_limits_response {
-   koinos.chain.resource_limit_data limit_data = 1;
+   koinos.chain.resource_limit_data resource_limit_data = 1;
 }
 
 message chain_request {

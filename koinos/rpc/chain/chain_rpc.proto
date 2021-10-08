@@ -4,6 +4,8 @@ package koinos.rpc.chain;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/chain";
 
 import "koinos/common.proto";
+
+import "koinos/chain/chain.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 
@@ -63,6 +65,20 @@ message get_account_nonce_response {
    uint64 nonce = 1 [jstype = JS_STRING];
 }
 
+message get_account_rc_request {
+   bytes account = 1;
+}
+
+message get_account_rc_response {
+   uint64 rc = 1 [jstype = JS_STRING];
+}
+
+message get_resource_limits_request {}
+
+message get_resource_limits_response {
+   koinos.chain.resource_limit_data resource_limit_data = 1;
+}
+
 message chain_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
@@ -73,6 +89,8 @@ message chain_request {
       get_fork_heads_request get_fork_heads = 6;
       read_contract_request read_contract = 7;
       get_account_nonce_request get_account_nonce = 8;
+      get_account_rc_request get_account_rc = 9;
+      get_resource_limits_request get_resource_limits = 10;
    }
 }
 
@@ -87,5 +105,7 @@ message chain_response {
       get_fork_heads_response get_fork_heads = 7;
       read_contract_response read_contract = 8;
       get_account_nonce_response get_account_nonce = 9;
+      get_account_rc_response get_account_rc = 10;
+      get_resource_limits_response get_resource_limits = 11;
    }
 }

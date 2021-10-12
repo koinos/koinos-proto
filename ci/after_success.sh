@@ -148,7 +148,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git checkout -b $TRAVIS_BRANCH
    fi
 
-   rsync --include "*.md" $TRAVIS_BUILD_DIR/build/docs ./
+   rsync -rvm --include "*.md" $TRAVIS_BUILD_DIR/build/docs ./
 
    git add .
 

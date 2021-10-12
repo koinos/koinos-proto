@@ -139,6 +139,27 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    popd
 
 
+   #docs
+   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-documentation.git
+
+   pushd koinos-proto-documentation
+
+   if [ "$TRAVIS_BRANCH" != "master" ]; then
+      git checkout -b $TRAVIS_BRANCH
+   fi
+
+   rsync --include "*.md" $TRAVIS_BUILD_DIR/build/docs ./
+
+   git add .
+
+   if ! git diff --cached --quiet --exit-code; then
+      git commit -m "Update for koinos-proto commit $COMMIT_HASH"
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-documentation.git $TRAVIS_BRANCH
+   fi
+
+   popd
+
+
    #descriptors
    git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git
 

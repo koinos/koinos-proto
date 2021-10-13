@@ -17,7 +17,7 @@ extend google.protobuf.FieldOptions {
 }
 
 message block_topology {
-   bytes id = 1 [koinos_bytes_type = BLOCK_ID];
+   bytes id = 1 [(koinos_bytes_type) = BLOCK_ID];
    uint64 height = 2 [jstype = JS_STRING];
-   bytes previous = 3 [koinos_bytes_type = BLOCK_ID];
+   bytes previous = 3 [(koinos_bytes_type) = BLOCK_ID];
 }

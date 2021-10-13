@@ -1,10 +1,23 @@
 syntax = "proto3";
 
+import "google/protobuf/descriptor.proto";
+
 package koinos;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos";
 
+enum bytes_type {
+   BLOCK_ID = 0;
+   TRANSACTION_ID = 1;
+   CONTRACT_ID = 2;
+   ADDRESS = 3;
+}
+
+extend google.protobuf.FieldOptions {
+   optional bytes_type koinos_bytes_type = 50000;
+}
+
 message block_topology {
-   bytes id = 1;
+   bytes id = 1 [koinos_bytes_type = BLOCK_ID];
    uint64 height = 2 [jstype = JS_STRING];
-   bytes previous = 3;
+   bytes previous = 3 [koinos_bytes_type = BLOCK_ID];
 }

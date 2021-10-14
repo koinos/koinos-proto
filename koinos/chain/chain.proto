@@ -125,7 +125,7 @@ message get_prev_object_result {
 }
 
 message call_contract_arguments {
-   bytes contract_id = 1;
+   bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
    uint32 entry_point = 2;
    bytes args = 3;
 }
@@ -186,7 +186,7 @@ message recover_public_key_arguments {
 }
 
 message recover_public_key_result {
-   bytes value = 1;
+   bytes value = 1 [(koinos_bytes_type) = ADDRESS];
 }
 
 message get_transaction_payer_arguments {
@@ -194,11 +194,11 @@ message get_transaction_payer_arguments {
 }
 
 message get_transaction_payer_result {
-   bytes value = 1;
+   bytes value = 1 [(koinos_bytes_type) = ADDRESS];
 }
 
 message get_account_rc_arguments {
-   bytes account = 1;
+   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
 }
 
 message get_account_rc_result {
@@ -206,7 +206,7 @@ message get_account_rc_result {
 }
 
 message consume_account_rc_arguments {
-   bytes account = 1;
+   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
    uint64 value = 2 [jstype = JS_STRING];
 }
 
@@ -247,12 +247,12 @@ message get_last_irreversible_block_result {
 message get_caller_arguments {}
 
 message get_caller_result {
-   bytes caller = 1;
+   bytes caller = 1 [(koinos_bytes_type) = ADDRESS];
    privilege caller_privilege = 2;
 }
 
 message require_authority_arguments {
-   bytes account = 1;
+   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
 }
 
 message require_authority_result {}
@@ -266,11 +266,11 @@ message get_transaction_signature_result {
 message get_contract_id_arguments {}
 
 message get_contract_id_result {
-   bytes value = 1;
+   bytes value = 1 [(koinos_bytes_type) = CONTRACT_ID];
 }
 
 message get_account_nonce_arguments {
-   bytes account = 1;
+   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
 }
 
 message get_account_nonce_result {

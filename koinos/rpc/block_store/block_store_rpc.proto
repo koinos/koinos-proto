@@ -9,7 +9,7 @@ import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 
 message get_blocks_by_id_request {
-   repeated bytes block_id = 1;
+   repeated bytes block_id = 1 [(koinos_bytes_type) = BLOCK_ID];
    bool return_block = 2;
    bool return_receipt = 3;
 }
@@ -19,7 +19,7 @@ message get_blocks_by_id_response {
 }
 
 message get_blocks_by_height_request {
-   bytes head_block_id = 1;
+   bytes head_block_id = 1 [(koinos_bytes_type) = BLOCK_ID];
    uint64 ancestor_start_height = 2 [jstype = JS_STRING];
    uint32 num_blocks = 3;
    bool return_block = 4;

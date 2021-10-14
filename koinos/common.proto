@@ -6,10 +6,13 @@ package koinos;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos";
 
 enum bytes_type {
-   BLOCK_ID = 0;
-   TRANSACTION_ID = 1;
-   CONTRACT_ID = 2;
-   ADDRESS = 3;
+   BASE64 = 0;
+   BASE58 = 1;
+   HEX = 2;
+   BLOCK_ID = 3;
+   TRANSACTION_ID = 4;
+   CONTRACT_ID = 5;
+   ADDRESS = 6;
 }
 
 extend google.protobuf.FieldOptions {

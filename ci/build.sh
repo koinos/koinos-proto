@@ -13,12 +13,12 @@ protobuf/bin/protoc --experimental_allow_proto3_optional \
    --descriptor_set_out=build/koinos_descriptors.pb \
    `find koinos -name '*.proto'`
 
-#pushd EmbeddedProto
-#
-#../protobuf/bin/protoc --experimental_allow_proto3_optional \
-#   --plugin=protoc-gen-eams \
-#   --eams_out=../build/eams \
-#   -I.. \
-#   `find ../koinos -name '*.proto'`
-#
-#popd
+pushd EmbeddedProto
+
+../protobuf/bin/protoc --experimental_allow_proto3_optional \
+   --plugin=protoc-gen-eams \
+   --eams_out=../build/eams \
+   -I.. \
+   `find ../koinos -name '*.proto'`
+
+popd

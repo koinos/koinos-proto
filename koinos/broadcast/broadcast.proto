@@ -4,6 +4,7 @@ package koinos.broadcast;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/broadcast";
 
 import "koinos/common.proto";
+import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 
 message transaction_accepted {

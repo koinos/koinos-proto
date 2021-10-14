@@ -4,7 +4,7 @@ package koinos.rpc.chain;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/chain";
 
 import "koinos/common.proto";
-
+import "koinos/options.proto";
 import "koinos/chain/chain.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";

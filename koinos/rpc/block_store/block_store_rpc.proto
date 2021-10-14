@@ -4,6 +4,7 @@ package koinos.rpc.block_store;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/block_store";
 
 import "koinos/block_store/block_store.proto";
+import "koinos/options.proto";
 import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";

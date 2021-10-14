@@ -3,6 +3,7 @@ syntax = "proto3";
 package koinos.rpc.mempool;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/mempool";
 
+import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 

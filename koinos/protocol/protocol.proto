@@ -3,6 +3,8 @@ syntax = "proto3";
 package koinos.protocol;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
+import "koinos/options.proto";
+
 message contract_call_bundle {
    bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
    uint32 entry_point = 2;

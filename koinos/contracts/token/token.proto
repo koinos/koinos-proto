@@ -3,7 +3,7 @@ syntax = "proto3";
 package koinos.contracts.token;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/token";
 
-import "koinos/common.proto";
+import "koinos/options.proto";
 
 message name_arguments {}
 

@@ -7,8 +7,8 @@ import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
 
 message object_space {
-   bool system_contract = 1;
-   bytes account = 2;
+   bool user = 1;
+   bytes zone = 2;
    uint32 id = 3;
 }
 

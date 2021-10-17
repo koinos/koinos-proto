@@ -23,6 +23,11 @@ message head_info {
    uint64 last_irreversible_block = 3 [jstype = JS_STRING];
 }
 
+message caller_data {
+   bytes caller = 1;
+   privilege caller_privilege = 2;
+}
+
 message resource_limit_data {
    uint64 disk_storage_limit = 1 [jstype = JS_STRING];
    uint64 disk_storage_cost = 2 [jstype = JS_STRING];
@@ -253,8 +258,7 @@ message get_last_irreversible_block_result {
 message get_caller_arguments {}
 
 message get_caller_result {
-   bytes caller = 1;
-   privilege caller_privilege = 2;
+   caller_data value = 1;
 }
 
 message require_authority_arguments {

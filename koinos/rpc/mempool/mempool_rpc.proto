@@ -6,6 +6,13 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/mempool";
 import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 
+message pending_transaction {
+   protocol.transaction transaction = 1;
+   uint64 disk_storage_used = 2 [jstype = JS_STRING];
+   uint64 network_bandwidth_used = 3 [jstype = JS_STRING];
+   uint64 compute_bandwidth_used = 4 [jstype = JS_STRING];
+}
+
 message check_pending_account_resources_request {
    bytes payer = 1;
    uint64 max_payer_rc = 2 [jstype = JS_STRING];
@@ -21,7 +28,7 @@ message get_pending_transactions_request {
 }
 
 message get_pending_transactions_response {
-   repeated protocol.transaction transactions = 1;
+   repeated pending_transaction pending_transactions = 1;
 }
 
 message mempool_request {

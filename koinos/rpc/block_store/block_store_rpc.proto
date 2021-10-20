@@ -4,12 +4,13 @@ package koinos.rpc.block_store;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/block_store";
 
 import "koinos/block_store/block_store.proto";
+import "koinos/options.proto";
 import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 
 message get_blocks_by_id_request {
-   repeated bytes block_id = 1;
+   repeated bytes block_id = 1 [(koinos_bytes_type) = BLOCK_ID];
    bool return_block = 2;
    bool return_receipt = 3;
 }
@@ -19,7 +20,7 @@ message get_blocks_by_id_response {
 }
 
 message get_blocks_by_height_request {
-   bytes head_block_id = 1;
+   bytes head_block_id = 1 [(koinos_bytes_type) = BLOCK_ID];
    uint64 ancestor_start_height = 2 [jstype = JS_STRING];
    uint32 num_blocks = 3;
    bool return_block = 4;

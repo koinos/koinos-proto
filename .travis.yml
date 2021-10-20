@@ -10,7 +10,7 @@ jobs:
     env:
       - PROTOBUF_VERSION="3.17.3"
       - GO_VERSION="1.16.6"
-      - PB_EMBEDDED_CPP_VERSION="rc-3.0.0"
+      - PB_EMBEDDED_CPP_VERSION="field-options-hack"
 
 install:
   - source ci/install.sh

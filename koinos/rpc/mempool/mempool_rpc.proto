@@ -3,6 +3,7 @@ syntax = "proto3";
 package koinos.rpc.mempool;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/mempool";
 
+import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 
@@ -14,7 +15,7 @@ message pending_transaction {
 }
 
 message check_pending_account_resources_request {
-   bytes payer = 1;
+   bytes payer = 1 [(koinos_bytes_type) = ADDRESS];
    uint64 max_payer_rc = 2 [jstype = JS_STRING];
    uint64 rc_limit = 3 [jstype = JS_STRING];
 }

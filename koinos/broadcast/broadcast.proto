@@ -4,11 +4,12 @@ package koinos.broadcast;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/broadcast";
 
 import "koinos/common.proto";
+import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 
 message transaction_accepted {
    protocol.transaction transaction = 1;
-   bytes payer = 2;
+   bytes payer = 2 [(koinos_bytes_type) = ADDRESS];
    uint64 max_payer_rc = 3 [jstype = JS_STRING];
    uint64 rc_limit = 4 [jstype = JS_STRING];
    uint64 height = 5 [jstype = JS_STRING];

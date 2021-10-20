@@ -3,8 +3,10 @@ syntax = "proto3";
 package koinos.protocol;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
+import "koinos/options.proto";
+
 message contract_call_bundle {
-   bytes contract_id = 1;
+   bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
    uint32 entry_point = 2;
 }
 
@@ -16,12 +18,12 @@ message system_call_target {
 }
 
 message upload_contract_operation {
-   bytes contract_id = 1;
+   bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
    bytes bytecode = 2;
 }
 
 message call_contract_operation {
-   bytes contract_id = 1;
+   bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
    uint32 entry_point = 2;
    bytes args = 3;
 }
@@ -48,7 +50,7 @@ message active_transaction_data {
 message passive_transaction_data {}
 
 message transaction {
-   bytes id = 1;
+   bytes id = 1 [(koinos_bytes_type) = TRANSACTION_ID];
    bytes active = 2;
    bytes passive = 3;
    bytes signature_data = 4;
@@ -63,7 +65,7 @@ message active_block_data {
 message passive_block_data {}
 
 message block_header {
-   bytes previous = 1;
+   bytes previous = 1 [(koinos_bytes_type) = BLOCK_ID];
    uint64 height = 2 [jstype = JS_STRING];
    uint64 timestamp = 3 [jstype = JS_STRING];
 }
@@ -81,7 +83,7 @@ message block_header {
 // b.active_data.passive_data_merkle_root == Hm(b.passive_data)
 // b.active_data.signer_address           == H(recover(b.signature_data, b.block_id))
 message block {
-   bytes id = 1;
+   bytes id = 1 [(koinos_bytes_type) = BLOCK_ID];
    block_header header = 2;
    bytes active = 3;
    bytes passive = 4;

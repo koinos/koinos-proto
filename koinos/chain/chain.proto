@@ -7,6 +7,12 @@ import "koinos/options.proto";
 import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
 
+message object_space {
+   bool system = 1;
+   bytes zone = 2;
+   uint32 id = 3;
+}
+
 enum privilege {
    kernel_mode = 0;
    user_mode = 1;
@@ -16,6 +22,11 @@ message head_info {
    block_topology head_topology = 1;
    uint64 head_block_time = 2 [jstype = JS_STRING];
    uint64 last_irreversible_block = 3 [jstype = JS_STRING];
+}
+
+message caller_data {
+   bytes caller = 1 [(koinos_bytes_type) = ADDRESS];
+   privilege caller_privilege = 2;
 }
 
 message resource_limit_data {
@@ -86,7 +97,7 @@ message apply_set_system_call_operation_arguments {
 message apply_set_system_call_operation_result {}
 
 message put_object_arguments {
-   bytes space = 1;
+   object_space space = 1;
    bytes key = 2;
    bytes obj = 3;
 }
@@ -96,7 +107,7 @@ message put_object_result {
 }
 
 message get_object_arguments {
-   bytes space = 1;
+   object_space space = 1;
    bytes key = 2;
    uint32 object_size_hint = 3; // optional
 }
@@ -106,7 +117,7 @@ message get_object_result {
 }
 
 message get_next_object_arguments {
-   bytes space = 1;
+   object_space space = 1;
    bytes key = 2;
    uint32 object_size_hint = 3; // optional
 }
@@ -116,7 +127,7 @@ message get_next_object_result {
 }
 
 message get_prev_object_arguments {
-   bytes space = 1;
+   object_space space = 1;
    bytes key = 2;
    uint32 object_size_hint = 3; // optional
 }
@@ -248,8 +259,7 @@ message get_last_irreversible_block_result {
 message get_caller_arguments {}
 
 message get_caller_result {
-   bytes caller = 1 [(koinos_bytes_type) = ADDRESS];
-   privilege caller_privilege = 2;
+   caller_data value = 1;
 }
 
 message require_authority_arguments {

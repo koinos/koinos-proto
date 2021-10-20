@@ -3,7 +3,7 @@
 set -e
 set -x
 
-mkdir -p build/cpp build/go build/js build/python build/eams
+mkdir -p build/cpp build/go build/js build/python build/eams build/docs
 
 protobuf/bin/protoc --experimental_allow_proto3_optional \
    --cpp_out=build/cpp/ \
@@ -12,6 +12,8 @@ protobuf/bin/protoc --experimental_allow_proto3_optional \
    --python_out=build/python \
    --descriptor_set_out=build/koinos_descriptors.pb \
    `find koinos -name '*.proto'`
+
+protobuf/bin/protoc --experimental_allow_proto3_optional --doc_out=build/docs --doc_opt=markdown,api.md `find koinos -name '*rpc*.proto'`
 
 pushd EmbeddedProto
 

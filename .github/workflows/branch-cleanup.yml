@@ -16,7 +16,7 @@ jobs:
             git clone https://$KOINOS_CI_TOKEN@github.com/koinos/`echo $repo`.git
 
             pushd $repo
-            exists_in_remote=$(git ls-remote --heads origin ${repo})
+            exists_in_remote=$(git ls-remote --heads origin ${{ github.event.ref }})
             if [[ ${exists_in_remote} ]];  then
               git push https://$KOINOS_CI_TOKEN@github.com/koinos/`echo $repo`.git --delete ${{ github.event.ref }}
             fi

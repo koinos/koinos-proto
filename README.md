@@ -1,4 +1,5 @@
 # Koinos Proto
+[![Build Status](https://app.travis-ci.com/koinos/koinos-proto.svg?branch=master)](https://app.travis-ci.com/koinos/koinos-proto)
 
 Koinos Proto contains Koinos Protocol Buffers schema definitions.
 

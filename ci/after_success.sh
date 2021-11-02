@@ -14,23 +14,23 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    pushd koinos-proto-cpp
 
-   if [ "$TRAVIS_BRANCH" != "master" ]; then
-      git checkout -b $TRAVIS_BRANCH
-   fi
-
    mkdir -p libraries/proto/generated
    rsync -rvm --include "*.pb.h" --include "*.pb.cc" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
 
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git $TRAVIS_BRANCH
    fi
 
    if ! [ -z "$TRAVIS_TAG" ]; then
-      git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git ${TRAVIS_TAG}
    fi
 
    popd
@@ -41,10 +41,6 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    pushd koinos-proto-golang
 
-   if [ "$TRAVIS_BRANCH" != "master" ]; then
-      git checkout -b $TRAVIS_BRANCH
-   fi
-
    find $TRAVIS_BUILD_DIR/build/go/
 
    mkdir -p koinos
@@ -53,14 +49,18 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
       go mod tidy
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git $TRAVIS_BRANCH
    fi
 
    if ! [ -z "$TRAVIS_TAG" ]; then
-      git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git ${TRAVIS_TAG}
    fi
 
    popd
@@ -70,10 +70,6 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git
 
    pushd koinos-proto-js
-
-   if [ "$TRAVIS_BRANCH" != "master" ]; then
-      git checkout -b $TRAVIS_BRANCH
-   fi
 
    mkdir -p koinos
 
@@ -86,13 +82,17 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    fi
 
    if ! git diff --cached --quiet --exit-code; then
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git $TRAVIS_BRANCH
    fi
 
    if ! [ -z "$TRAVIS_TAG" ]; then
-      git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_TAG}
    fi
 
    #TODO: Publish
@@ -105,10 +105,6 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    pushd koinos-proto-python
 
-   if [ "$TRAVIS_BRANCH" != "master" ]; then
-      git checkout -b $TRAVIS_BRANCH
-   fi
-
    mkdir -p koinos
 
    rsync -rvm --include "*_pb2.py" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/python/ ./
@@ -120,13 +116,17 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    fi
 
    if ! git diff --cached --quiet --exit-code; then
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-python.git $TRAVIS_BRANCH
    fi
 
    if ! [ -z "$TRAVIS_TAG" ]; then
-      git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-python.git ${TRAVIS_TAG}
    fi
 
    #TODO: Publish
@@ -139,10 +139,6 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    pushd koinos-proto-embedded-cpp
 
-   if [ "$TRAVIS_BRANCH" != "master" ]; then
-      git checkout -b $TRAVIS_BRANCH
-   fi
-
    mkdir -p libraries/koinos/generated
    mkdir -p libraries/koinos/src
 
@@ -152,13 +148,17 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git $TRAVIS_BRANCH
    fi
 
    if ! [ -z "$TRAVIS_TAG" ]; then
-      git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git ${TRAVIS_TAG}
    fi
 
    popd
@@ -169,22 +169,22 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    pushd koinos-proto-documentation
 
-   if [ "$TRAVIS_BRANCH" != "master" ]; then
-      git checkout -b $TRAVIS_BRANCH
-   fi
-
    rsync -rvm --include "*.md" $TRAVIS_BUILD_DIR/build/docs ./
 
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-documentation.git $TRAVIS_BRANCH
    fi
 
    if ! [ -z "$TRAVIS_TAG" ]; then
-      git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-documentation.git ${TRAVIS_TAG}
    fi
 
    popd
@@ -195,22 +195,22 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    pushd koinos-proto-descriptors
 
-   if [ "$TRAVIS_BRANCH" != "master" ]; then
-      git checkout -b $TRAVIS_BRANCH
-   fi
-
    cp $TRAVIS_BUILD_DIR/build/koinos_descriptors.pb ./koinos_descriptors.pb
 
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git $TRAVIS_BRANCH
    fi
 
    if ! [ -z "$TRAVIS_TAG" ]; then
-      git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git ${TRAVIS_TAG}
    fi
 
    popd

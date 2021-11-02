@@ -29,6 +29,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    fi
 
    if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag
       git tag -a ${TRAVIS_TAG} -m "Proto tag ${TRAVIS_TAG}"
       git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git ${TRAVIS_TAG}
    fi

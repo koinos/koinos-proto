@@ -60,7 +60,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    if ! [ -z "$TRAVIS_TAG" ]; then
       git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git ${TRAVIS_TAG}
    fi
 
    popd
@@ -92,7 +92,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    if ! [ -z "$TRAVIS_TAG" ]; then
       git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_TAG}
    fi
 
    #TODO: Publish
@@ -126,7 +126,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    if ! [ -z "$TRAVIS_TAG" ]; then
       git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-python.git ${TRAVIS_TAG}
    fi
 
    #TODO: Publish
@@ -158,7 +158,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    if ! [ -z "$TRAVIS_TAG" ]; then
       git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git ${TRAVIS_TAG}
    fi
 
    popd
@@ -184,7 +184,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    if ! [ -z "$TRAVIS_TAG" ]; then
       git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-documentation.git ${TRAVIS_TAG}
    fi
 
    popd
@@ -210,7 +210,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    if ! [ -z "$TRAVIS_TAG" ]; then
       git tag ${TRAVIS_TAG}
-      git push origin ${TRAVIS_TAG}
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git ${TRAVIS_TAG}
    fi
 
    popd

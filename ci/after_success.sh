@@ -28,6 +28,11 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git $TRAVIS_BRANCH
    fi
 
+   if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag ${TRAVIS_TAG}
+      git push origin ${TRAVIS_TAG}
+   fi
+
    popd
 
 
@@ -51,6 +56,11 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       go mod tidy
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git $TRAVIS_BRANCH
+   fi
+
+   if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag ${TRAVIS_TAG}
+      git push origin ${TRAVIS_TAG}
    fi
 
    popd
@@ -78,6 +88,11 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    if ! git diff --cached --quiet --exit-code; then
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git $TRAVIS_BRANCH
+   fi
+
+   if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag ${TRAVIS_TAG}
+      git push origin ${TRAVIS_TAG}
    fi
 
    #TODO: Publish
@@ -109,6 +124,11 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-python.git $TRAVIS_BRANCH
    fi
 
+   if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag ${TRAVIS_TAG}
+      git push origin ${TRAVIS_TAG}
+   fi
+
    #TODO: Publish
 
    popd
@@ -136,6 +156,11 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git $TRAVIS_BRANCH
    fi
 
+   if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag ${TRAVIS_TAG}
+      git push origin ${TRAVIS_TAG}
+   fi
+
    popd
 
 
@@ -157,6 +182,11 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-documentation.git $TRAVIS_BRANCH
    fi
 
+   if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag ${TRAVIS_TAG}
+      git push origin ${TRAVIS_TAG}
+   fi
+
    popd
 
 
@@ -176,6 +206,11 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    if ! git diff --cached --quiet --exit-code; then
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git $TRAVIS_BRANCH
+   fi
+
+   if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag ${TRAVIS_TAG}
+      git push origin ${TRAVIS_TAG}
    fi
 
    popd

@@ -5,6 +5,12 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "koinos/options.proto";
 
+message event_data {
+   bytes source = 1;
+   string name = 2;
+   bytes data = 3;
+}
+
 message contract_call_bundle {
    bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
    uint32 entry_point = 2;
@@ -54,6 +60,7 @@ message transaction {
    bytes active = 2;
    bytes passive = 3;
    bytes signature_data = 4;
+   repeated event_data events = 5;
 }
 
 message active_block_data {
@@ -89,6 +96,7 @@ message block {
    bytes passive = 4;
    bytes signature_data = 5;
    repeated transaction transactions = 6;
+   repeated event_data events = 7;
 }
 
 message block_receipt {}

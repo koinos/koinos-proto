@@ -38,6 +38,13 @@ message resource_limit_data {
    uint64 compute_bandwidth_cost = 6 [jstype = JS_STRING];
 }
 
+message event_arguments {
+   string name = 1;
+   bytes data = 2;
+}
+
+message event_result {}
+
 message prints_arguments {
    string message = 1;
 }

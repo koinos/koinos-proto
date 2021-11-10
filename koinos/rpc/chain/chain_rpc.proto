@@ -16,7 +16,9 @@ message submit_block_request {
    bool verify_transaction_signature = 4;
 }
 
-message submit_block_response {}
+message submit_block_response {
+   protocol.block_receipt receipt = 1;
+}
 
 message submit_transaction_request {
    protocol.transaction transaction = 1;
@@ -24,7 +26,9 @@ message submit_transaction_request {
    bool verify_transaction_signature = 3;
 }
 
-message submit_transaction_response {}
+message submit_transaction_response {
+   protocol.transaction_receipt receipt = 1;
+}
 
 message get_head_info_request {}
 

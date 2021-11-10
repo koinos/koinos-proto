@@ -15,14 +15,14 @@ message get_contract_meta_response {
    koinos.contract_meta_store.contract_meta_item meta = 1;
 }
 
-message transaction_store_request {
+message contract_meta_store_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
       get_contract_meta_request get_contract_meta = 2;
    }
 }
 
-message transaction_store_response {
+message contract_meta_store_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
       rpc.error_response error = 2;

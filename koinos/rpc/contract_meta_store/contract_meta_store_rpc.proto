@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package koinos.rpc.contract_meta_store;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/meta_store";
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/contract_meta_store";
 
 import "koinos/options.proto";
 import "koinos/rpc/rpc.proto";

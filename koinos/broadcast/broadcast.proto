@@ -8,11 +8,14 @@ import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 
 message transaction_accepted {
-   protocol.transaction_receipt receipt = 1;
+   protocol.transaction transaction = 1;
+   protocol.transaction_receipt receipt = 2;
+   uint64 height = 3 [jstype = JS_STRING];
 }
 
 message block_accepted {
-   protocol.block_receipt receipt = 1;
+   protocol.block block = 1;
+   protocol.block_receipt receipt = 2;
 }
 
 message block_irreversible {

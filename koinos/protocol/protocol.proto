@@ -64,6 +64,7 @@ message transaction {
 }
 
 message transaction_receipt {
+   bytes id = 1 [(koinos_bytes_type) = TRANSACTION_ID];
    bytes payer = 1 [(koinos_bytes_type) = ADDRESS];
    uint64 max_payer_rc = 2 [jstype = JS_STRING];
    uint64 rc_limit = 3 [jstype = JS_STRING];
@@ -109,6 +110,7 @@ message block {
 }
 
 message block_receipt {
+   bytes id = 1 [(koinos_bytes_type) = BLOCK_ID];
    uint64 disk_storage_used = 1 [jstype = JS_STRING];
    uint64 network_bandwidth_used = 2 [jstype = JS_STRING];
    uint64 compute_bandwidth_used = 3 [jstype = JS_STRING];

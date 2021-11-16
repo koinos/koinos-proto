@@ -41,6 +41,7 @@ message resource_limit_data {
 message event_arguments {
    string name = 1;
    bytes data = 2;
+   repeated bytes impacted = 3 [(koinos_bytes_type) = ADDRESS];
 }
 
 message event_result {}

@@ -10,6 +10,7 @@ message event_data {
    bytes source = 2;
    string name = 3;
    bytes data = 4;
+   repeated bytes impacted = 5 [(koinos_bytes_type) = ADDRESS];
 }
 
 message contract_call_bundle {
@@ -68,10 +69,12 @@ message transaction_receipt {
    bytes payer = 2 [(koinos_bytes_type) = ADDRESS];
    uint64 max_payer_rc = 3 [jstype = JS_STRING];
    uint64 rc_limit = 4 [jstype = JS_STRING];
-   uint64 disk_storage_used = 5 [jstype = JS_STRING];
-   uint64 network_bandwidth_used = 6 [jstype = JS_STRING];
-   uint64 compute_bandwidth_used = 7 [jstype = JS_STRING];
-   repeated event_data events = 8;
+   uint64 rc_used = 5 [jstype = JS_STRING];
+   uint64 disk_storage_used = 6 [jstype = JS_STRING];
+   uint64 network_bandwidth_used = 7 [jstype = JS_STRING];
+   uint64 compute_bandwidth_used = 8 [jstype = JS_STRING];
+   bool reverted = 9;
+   repeated event_data events = 10;
 }
 
 message active_block_data {

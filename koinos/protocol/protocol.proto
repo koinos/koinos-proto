@@ -7,7 +7,7 @@ import "koinos/options.proto";
 
 message event_data {
    uint32 sequence = 1;
-   bytes source = 2;
+   bytes source = 2 [(koinos_bytes_type) = CONTRACT_ID];
    string name = 3;
    bytes data = 4;
    repeated bytes impacted = 5 [(koinos_bytes_type) = ADDRESS];

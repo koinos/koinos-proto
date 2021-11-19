@@ -56,7 +56,6 @@ message transaction {
 
 message active_block_data {
    bytes transaction_merkle_root = 1;
-   bytes passive_data_merkle_root = 2;
    bytes signer = 3;
 }
 
@@ -76,7 +75,6 @@ message block_header {
 //
 // b.block_id                             == H(b.header, b.active_data)
 // b.active_data.transaction_merkle_root  == Hm(b.transactions)
-// b.active_data.passive_data_merkle_root == Hm(b.passive_data)
 // b.active_data.signer_address           == H(recover(b.signature_data, b.block_id))
 message block {
    bytes id = 1 [(koinos_bytes_type) = BLOCK_ID];

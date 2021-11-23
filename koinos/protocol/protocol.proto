@@ -20,6 +20,7 @@ message system_call_target {
 message upload_contract_operation {
    bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
    bytes bytecode = 2;
+   string abi = 3;
 }
 
 message call_contract_operation {
@@ -47,22 +48,16 @@ message active_transaction_data {
    repeated operation operations = 3;
 }
 
-message passive_transaction_data {}
-
 message transaction {
    bytes id = 1 [(koinos_bytes_type) = TRANSACTION_ID];
    bytes active = 2;
-   bytes passive = 3;
    bytes signature_data = 4;
 }
 
 message active_block_data {
    bytes transaction_merkle_root = 1;
-   bytes passive_data_merkle_root = 2;
    bytes signer = 3;
 }
-
-message passive_block_data {}
 
 message block_header {
    bytes previous = 1 [(koinos_bytes_type) = BLOCK_ID];
@@ -80,13 +75,11 @@ message block_header {
 //
 // b.block_id                             == H(b.header, b.active_data)
 // b.active_data.transaction_merkle_root  == Hm(b.transactions)
-// b.active_data.passive_data_merkle_root == Hm(b.passive_data)
 // b.active_data.signer_address           == H(recover(b.signature_data, b.block_id))
 message block {
    bytes id = 1 [(koinos_bytes_type) = BLOCK_ID];
    block_header header = 2;
    bytes active = 3;
-   bytes passive = 4;
    bytes signature_data = 5;
    repeated transaction transactions = 6;
 }

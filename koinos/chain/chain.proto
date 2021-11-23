@@ -57,13 +57,13 @@ message prints_arguments {
 
 message prints_result {}
 
-message verify_block_signature_arguments {
+message process_block_signature_arguments {
    bytes digest = 1;
    bytes active = 2;
    bytes signature_data = 3;
 }
 
-message verify_block_signature_result {
+message process_block_signature_result {
    bool value = 1;
 }
 

@@ -65,3 +65,14 @@ message mana_balance_object {
    uint64 mana = 2 [jstype = JS_STRING];
    uint64 last_mana_update = 3 [jstype = JS_STRING];
 }
+
+message mint_event {
+   bytes to = 1 [(koinos_bytes_type) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}
+
+message transfer_event {
+   bytes from = 1 [(koinos_bytes_type) = ADDRESS];
+   bytes to = 2 [(koinos_bytes_type) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}

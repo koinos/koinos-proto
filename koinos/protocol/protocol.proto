@@ -5,6 +5,14 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "koinos/options.proto";
 
+message event_data {
+   uint32 sequence = 1;
+   bytes source = 2 [(koinos_bytes_type) = CONTRACT_ID];
+   string name = 3;
+   bytes data = 4;
+   repeated bytes impacted = 5 [(koinos_bytes_type) = ADDRESS];
+}
+
 message contract_call_bundle {
    bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
    uint32 entry_point = 2;
@@ -54,6 +62,19 @@ message transaction {
    bytes signature_data = 4;
 }
 
+message transaction_receipt {
+   bytes id = 1 [(koinos_bytes_type) = TRANSACTION_ID];
+   bytes payer = 2 [(koinos_bytes_type) = ADDRESS];
+   uint64 max_payer_rc = 3 [jstype = JS_STRING];
+   uint64 rc_limit = 4 [jstype = JS_STRING];
+   uint64 rc_used = 5 [jstype = JS_STRING];
+   uint64 disk_storage_used = 6 [jstype = JS_STRING];
+   uint64 network_bandwidth_used = 7 [jstype = JS_STRING];
+   uint64 compute_bandwidth_used = 8 [jstype = JS_STRING];
+   bool reverted = 9;
+   repeated event_data events = 10;
+}
+
 message active_block_data {
    bytes transaction_merkle_root = 1;
    bytes signer = 3;
@@ -84,4 +105,12 @@ message block {
    repeated transaction transactions = 6;
 }
 
-message block_receipt {}
+message block_receipt {
+   bytes id = 1 [(koinos_bytes_type) = BLOCK_ID];
+   uint64 height = 2 [jstype = JS_STRING];
+   uint64 disk_storage_used = 3 [jstype = JS_STRING];
+   uint64 network_bandwidth_used = 4 [jstype = JS_STRING];
+   uint64 compute_bandwidth_used = 5 [jstype = JS_STRING];
+   repeated event_data events = 6;
+   repeated transaction_receipt transaction_receipts = 7;
+}

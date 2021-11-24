@@ -11,9 +11,6 @@ import "koinos/rpc/rpc.proto";
 
 message submit_block_request {
    protocol.block block = 1;
-   bool verify_passive_data = 2;
-   bool verify_block_signature = 3;
-   bool verify_transaction_signature = 4;
 }
 
 message submit_block_response {
@@ -22,8 +19,6 @@ message submit_block_response {
 
 message submit_transaction_request {
    protocol.transaction transaction = 1;
-   bool verify_passive_data = 2;
-   bool verify_transaction_signature = 3;
 }
 
 message submit_transaction_response {

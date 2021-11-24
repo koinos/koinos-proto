@@ -57,13 +57,13 @@ message prints_arguments {
 
 message prints_result {}
 
-message verify_block_signature_arguments {
+message process_block_signature_arguments {
    bytes digest = 1;
    bytes active = 2;
    bytes signature_data = 3;
 }
 
-message verify_block_signature_result {
+message process_block_signature_result {
    bool value = 1;
 }
 
@@ -78,9 +78,6 @@ message verify_merkle_root_result {
 
 message apply_block_arguments {
    protocol.block block = 1;
-   bool check_passive_data = 2;
-   bool check_block_signature = 3;
-   bool check_transaction_signature = 4;
 }
 
 message apply_block_result {}

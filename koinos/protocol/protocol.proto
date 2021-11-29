@@ -78,6 +78,7 @@ message transaction_receipt {
 message active_block_data {
    bytes transaction_merkle_root = 1;
    bytes signer = 3;
+   bytes state_merkle_root = 4;
 }
 
 message block_header {

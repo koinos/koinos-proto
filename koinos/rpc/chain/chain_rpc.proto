@@ -30,6 +30,7 @@ message get_head_info_request {}
 message get_head_info_response {
    block_topology head_topology = 1;
    uint64 last_irreversible_block = 2 [jstype = JS_STRING];
+   bytes head_state_merkle_root = 3;
 }
 
 message get_chain_id_request {}

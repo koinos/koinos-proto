@@ -27,6 +27,7 @@ message head_info {
    block_topology head_topology = 1;
    uint64 head_block_time = 2 [jstype = JS_STRING];
    uint64 last_irreversible_block = 3 [jstype = JS_STRING];
+   bytes head_state_merkle_root = 4;
 }
 
 message caller_data {

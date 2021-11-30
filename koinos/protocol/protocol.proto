@@ -78,13 +78,13 @@ message transaction_receipt {
 message active_block_data {
    bytes transaction_merkle_root = 1;
    bytes signer = 3;
-   bytes previous_state_merkle_root = 4;
 }
 
 message block_header {
    bytes previous = 1 [(koinos_bytes_type) = BLOCK_ID];
    uint64 height = 2 [jstype = JS_STRING];
    uint64 timestamp = 3 [jstype = JS_STRING];
+   bytes previous_state_merkle_root = 4;
 }
 
 // Topological constraints:  Constraints for a new block b that builds on a given block a

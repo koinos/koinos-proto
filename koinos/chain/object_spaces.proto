@@ -3,7 +3,7 @@ syntax = "proto3";
 package koinos.chain;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
-enum object_space {
+enum system_space_id {
    reserved_id = 0;
    metadata = 1;
    system_call_dispatch = 3;

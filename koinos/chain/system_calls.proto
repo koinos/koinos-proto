@@ -1,0 +1,264 @@
+syntax = "proto3";
+
+package koinos.chain;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
+
+import "koinos/options.proto";
+import "koinos/common.proto";
+import "koinos/protocol/protocol.proto";
+import "koinos/chain/chain.proto";
+
+message event_arguments {
+   string name = 1;
+   bytes data = 2;
+   repeated bytes impacted = 3 [(koinos_bytes_type) = ADDRESS];
+}
+
+message event_result {}
+
+message prints_arguments {
+   string message = 1;
+}
+
+message prints_result {}
+
+message process_block_signature_arguments {
+   bytes digest = 1;
+   bytes active = 2;
+   bytes signature_data = 3;
+}
+
+message process_block_signature_result {
+   bool value = 1;
+}
+
+message verify_merkle_root_arguments {
+   bytes root = 1;
+   repeated bytes hashes = 2;
+}
+
+message verify_merkle_root_result {
+   bool value = 1;
+}
+
+message apply_block_arguments {
+   protocol.block block = 1;
+}
+
+message apply_block_result {}
+
+message apply_transaction_arguments {
+   protocol.transaction transaction = 1;
+}
+
+message apply_transaction_result {}
+
+message apply_upload_contract_operation_arguments {
+   protocol.upload_contract_operation op = 1;
+}
+
+message apply_upload_contract_operation_result {}
+
+message apply_call_contract_operation_arguments {
+   protocol.call_contract_operation op = 1;
+}
+
+message apply_call_contract_operation_result {}
+
+message apply_set_system_call_operation_arguments {
+   protocol.set_system_call_operation op = 1;
+}
+
+message apply_set_system_call_operation_result {}
+
+message put_object_arguments {
+   object_space space = 1;
+   bytes key = 2;
+   bytes obj = 3;
+}
+
+message put_object_result {
+   bool value = 1;
+}
+
+message get_object_arguments {
+   object_space space = 1;
+   bytes key = 2;
+   uint32 object_size_hint = 3; // optional
+}
+
+message get_object_result {
+   bytes value = 3;
+}
+
+message get_next_object_arguments {
+   object_space space = 1;
+   bytes key = 2;
+   uint32 object_size_hint = 3; // optional
+}
+
+message get_next_object_result {
+   bytes value = 3;
+}
+
+message get_prev_object_arguments {
+   object_space space = 1;
+   bytes key = 2;
+   uint32 object_size_hint = 3; // optional
+}
+
+message get_prev_object_result {
+   bytes value = 3;
+}
+
+message call_contract_arguments {
+   bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
+   uint32 entry_point = 2;
+   bytes args = 3;
+}
+
+message call_contract_result {
+   bytes value = 1;
+}
+
+message get_entry_point_arguments {}
+
+message get_entry_point_result {
+   uint32 value = 1;
+}
+
+message get_contract_arguments_size_arguments {}
+
+message get_contract_arguments_size_result {
+   uint32 value = 1;
+}
+
+message get_contract_arguments_arguments {}
+
+message get_contract_arguments_result {
+   bytes value = 1;
+}
+
+message set_contract_result_arguments {
+   bytes value = 1;
+}
+
+message set_contract_result_result {}
+
+message exit_contract_arguments {
+   uint32 exit_code = 1;
+}
+
+message exit_contract_result {}
+
+message get_head_info_arguments {}
+
+message get_head_info_result {
+   head_info value = 1;
+}
+
+message hash_arguments {
+   uint64 code = 1 [jstype = JS_STRING];
+   bytes obj = 2;
+   uint64 size = 3 [jstype = JS_STRING];
+}
+
+message hash_result {
+   bytes value = 1;
+}
+
+message recover_public_key_arguments {
+   bytes signature_data = 1;
+   bytes digest = 2;
+}
+
+message recover_public_key_result {
+   bytes value = 1 [(koinos_bytes_type) = ADDRESS];
+}
+
+message get_transaction_payer_arguments {
+   protocol.transaction transaction = 1;
+}
+
+message get_transaction_payer_result {
+   bytes value = 1 [(koinos_bytes_type) = ADDRESS];
+}
+
+message get_account_rc_arguments {
+   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
+}
+
+message get_account_rc_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message consume_account_rc_arguments {
+   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+message consume_account_rc_result {
+   bool value = 1;
+}
+
+message get_resource_limits_arguments {}
+
+message get_resource_limits_result {
+   resource_limit_data value = 1;
+}
+
+message consume_block_resources_arguments {
+   uint64 disk_storage_consumed = 1 [jstype = JS_STRING];
+   uint64 network_bandwidth_consumed = 2 [jstype = JS_STRING];
+   uint64 compute_bandwidth_consumed = 3 [jstype = JS_STRING];
+}
+
+message consume_block_resources_result {
+   bool value = 1;
+}
+
+message get_transaction_rc_limit_arguments {
+   protocol.transaction transaction = 1;
+}
+
+message get_transaction_rc_limit_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message get_last_irreversible_block_arguments {}
+
+message get_last_irreversible_block_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message get_caller_arguments {}
+
+message get_caller_result {
+   caller_data value = 1;
+}
+
+message require_authority_arguments {
+   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
+}
+
+message require_authority_result {}
+
+message get_transaction_signature_arguments {}
+
+message get_transaction_signature_result {
+   bytes value = 1;
+}
+
+message get_contract_id_arguments {}
+
+message get_contract_id_result {
+   bytes value = 1 [(koinos_bytes_type) = CONTRACT_ID];
+}
+
+message get_account_nonce_arguments {
+   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
+}
+
+message get_account_nonce_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}

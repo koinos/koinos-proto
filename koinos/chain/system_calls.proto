@@ -71,6 +71,12 @@ message apply_set_system_call_operation_arguments {
 
 message apply_set_system_call_operation_result {}
 
+message apply_set_system_contract_operation_arguments {
+   protocol.set_system_contract_operation op = 1;
+}
+
+message apply_set_system_contract_operation_result {}
+
 message put_object_arguments {
    object_space space = 1;
    bytes key = 2;

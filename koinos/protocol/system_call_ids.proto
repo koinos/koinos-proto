@@ -39,4 +39,5 @@ enum system_call_id {
    get_resource_limits = 34;
    consume_block_resources = 35;
    event = 36;
+   apply_set_system_contract_operation = 37;
 }

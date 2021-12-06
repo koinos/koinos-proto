@@ -43,7 +43,7 @@ message resource_limit_data {
    uint64 compute_bandwidth_cost = 6 [jstype = JS_STRING];
 }
 
-message contract_metadata {
+message contract_metadata_object {
    bytes hash = 1;
    bool  system = 2;
 }

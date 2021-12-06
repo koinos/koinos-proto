@@ -42,11 +42,17 @@ message set_system_call_operation {
    system_call_target target = 2;
 }
 
+message set_system_contract_operation {
+   bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
+   bool system_contract = 2;
+}
+
 message operation {
    oneof op {
       upload_contract_operation upload_contract = 1;
       call_contract_operation call_contract = 2;
       set_system_call_operation set_system_call = 3;
+      set_system_contract_operation set_system_contract = 4;
    }
 }
 

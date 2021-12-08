@@ -8,7 +8,7 @@ import "koinos/rpc/rpc.proto";
 import "koinos/contract_meta_store/contract_meta_store.proto";
 
 message get_contract_meta_request {
-   bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
+   bytes contract_id = 1 [bintype = CONTRACT_ID];
 }
 
 message get_contract_meta_response {

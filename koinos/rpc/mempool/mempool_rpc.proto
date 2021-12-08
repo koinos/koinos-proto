@@ -15,7 +15,7 @@ message pending_transaction {
 }
 
 message check_pending_account_resources_request {
-   bytes payer = 1 [(koinos_bytes_type) = ADDRESS];
+   bytes payer = 1 [bintype = ADDRESS];
    uint64 max_payer_rc = 2 [jstype = JS_STRING];
    uint64 rc_limit = 3 [jstype = JS_STRING];
 }

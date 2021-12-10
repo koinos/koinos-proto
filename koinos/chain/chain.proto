@@ -30,7 +30,7 @@ message head_info {
 }
 
 message caller_data {
-   bytes caller = 1 [(koinos_bytes_type) = ADDRESS];
+   bytes caller = 1 [(btype) = ADDRESS];
    privilege caller_privilege = 2;
 }
 

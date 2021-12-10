@@ -47,7 +47,7 @@ message get_fork_heads_response {
 }
 
 message read_contract_request {
-   bytes contract_id = 1 [(koinos_bytes_type) = CONTRACT_ID];
+   bytes contract_id = 1 [(btype) = CONTRACT_ID];
    uint32 entry_point = 2;
    bytes args = 3;
 }
@@ -58,7 +58,7 @@ message read_contract_response {
 }
 
 message get_account_nonce_request {
-   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
+   bytes account = 1 [(btype) = ADDRESS];
 }
 
 message get_account_nonce_response {
@@ -66,7 +66,7 @@ message get_account_nonce_response {
 }
 
 message get_account_rc_request {
-   bytes account = 1 [(koinos_bytes_type) = ADDRESS];
+   bytes account = 1 [(btype) = ADDRESS];
 }
 
 message get_account_rc_response {

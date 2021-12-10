@@ -16,5 +16,5 @@ enum bytes_type {
 }
 
 extend google.protobuf.FieldOptions {
-   optional bytes_type koinos_bytes_type = 50000;
+   optional bytes_type btype = 50000;
 }

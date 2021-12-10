@@ -7,14 +7,14 @@ import "koinos/options.proto";
 
 message event_data {
    uint32 sequence = 1;
-   bytes source = 2 [(bintype) = CONTRACT_ID];
+   bytes source = 2 [(btype) = CONTRACT_ID];
    string name = 3;
    bytes data = 4;
-   repeated bytes impacted = 5 [(bintype) = ADDRESS];
+   repeated bytes impacted = 5 [(btype) = ADDRESS];
 }
 
 message contract_call_bundle {
-   bytes contract_id = 1 [(bintype) = CONTRACT_ID];
+   bytes contract_id = 1 [(btype) = CONTRACT_ID];
    uint32 entry_point = 2;
 }
 
@@ -26,13 +26,13 @@ message system_call_target {
 }
 
 message upload_contract_operation {
-   bytes contract_id = 1 [(bintype) = CONTRACT_ID];
+   bytes contract_id = 1 [(btype) = CONTRACT_ID];
    bytes bytecode = 2;
    string abi = 3;
 }
 
 message call_contract_operation {
-   bytes contract_id = 1 [(bintype) = CONTRACT_ID];
+   bytes contract_id = 1 [(btype) = CONTRACT_ID];
    uint32 entry_point = 2;
    bytes args = 3;
 }
@@ -43,7 +43,7 @@ message set_system_call_operation {
 }
 
 message set_system_contract_operation {
-   bytes contract_id = 1 [(bintype) = CONTRACT_ID];
+   bytes contract_id = 1 [(btype) = CONTRACT_ID];
    bool system_contract = 2;
 }
 
@@ -63,15 +63,15 @@ message transaction_header {
 }
 
 message transaction {
-   bytes id = 1 [(bintype) = TRANSACTION_ID];
+   bytes id = 1 [(btype) = TRANSACTION_ID];
    transaction_header header = 2;
    repeated operation operations = 3;
    bytes signature = 4;
 }
 
 message transaction_receipt {
-   bytes id = 1 [(bintype) = TRANSACTION_ID];
-   bytes payer = 2 [(bintype) = ADDRESS];
+   bytes id = 1 [(btype) = TRANSACTION_ID];
+   bytes payer = 2 [(btype) = ADDRESS];
    uint64 max_payer_rc = 3 [jstype = JS_STRING];
    uint64 rc_limit = 4 [jstype = JS_STRING];
    uint64 rc_used = 5 [jstype = JS_STRING];
@@ -83,7 +83,7 @@ message transaction_receipt {
 }
 
 message block_header {
-   bytes previous = 1 [(bintype) = BLOCK_ID];
+   bytes previous = 1 [(btype) = BLOCK_ID];
    uint64 height = 2 [jstype = JS_STRING];
    uint64 timestamp = 3 [jstype = JS_STRING];
    bytes previous_state_merkle_root = 4;
@@ -92,14 +92,14 @@ message block_header {
 }
 
 message block {
-   bytes id = 1 [(bintype) = BLOCK_ID];
+   bytes id = 1 [(btype) = BLOCK_ID];
    block_header header = 2;
    repeated transaction transactions = 3;
    bytes signature = 4;
 }
 
 message block_receipt {
-   bytes id = 1 [(bintype) = BLOCK_ID];
+   bytes id = 1 [(btype) = BLOCK_ID];
    uint64 height = 2 [jstype = JS_STRING];
    uint64 disk_storage_used = 3 [jstype = JS_STRING];
    uint64 network_bandwidth_used = 4 [jstype = JS_STRING];

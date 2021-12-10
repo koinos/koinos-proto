@@ -24,8 +24,8 @@ message prints_result {}
 
 message process_block_signature_arguments {
    bytes digest = 1;
-   bytes active = 2;
-   bytes signature_data = 3;
+   block_header header = 2;
+   bytes signature = 3;
 }
 
 message process_block_signature_result {

@@ -56,16 +56,17 @@ message operation {
    }
 }
 
-message active_transaction_data {
+message transaction_header {
    uint64 rc_limit = 1 [jstype = JS_STRING];
    uint64 nonce = 2 [jstype = JS_STRING];
-   repeated operation operations = 3;
+   bytes operation_merkle_root = 3;
 }
 
 message transaction {
    bytes id = 1 [(bintype) = TRANSACTION_ID];
-   bytes active = 2;
-   bytes signature_data = 4;
+   transaction_header header = 2;
+   repeated operation operations = 3;
+   bytes signature = 4;
 }
 
 message transaction_receipt {
@@ -81,35 +82,20 @@ message transaction_receipt {
    repeated event_data events = 10;
 }
 
-message active_block_data {
-   bytes transaction_merkle_root = 1;
-   bytes signer = 3;
-}
-
 message block_header {
    bytes previous = 1 [(bintype) = BLOCK_ID];
    uint64 height = 2 [jstype = JS_STRING];
    uint64 timestamp = 3 [jstype = JS_STRING];
    bytes previous_state_merkle_root = 4;
+   bytes transaction_merkle_root = 5;
+   bytes signer = 6;
 }
 
-// Topological constraints:  Constraints for a new block b that builds on a given block a
-//
-// b.header.previous_block == a.block_id
-// b.header.height         == a.header.height+1
-// b.header.timestamp      >  a.header.timestamp
-//
-// Cryptographic constraints:  Internal constraints for block b.
-//
-// b.block_id                             == H(b.header, b.active_data)
-// b.active_data.transaction_merkle_root  == Hm(b.transactions)
-// b.active_data.signer_address           == H(recover(b.signature_data, b.block_id))
 message block {
    bytes id = 1 [(bintype) = BLOCK_ID];
    block_header header = 2;
-   bytes active = 3;
-   bytes signature_data = 5;
-   repeated transaction transactions = 6;
+   repeated transaction transactions = 3;
+   bytes signature = 4;
 }
 
 message block_receipt {

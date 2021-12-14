@@ -13,6 +13,10 @@ message transaction_accepted {
    uint64 height = 3 [jstype = JS_STRING];
 }
 
+message pending_transaction_failed {
+   protocol.transaction transaction = 1;
+}
+
 message block_accepted {
    protocol.block block = 1;
    protocol.block_receipt receipt = 2;

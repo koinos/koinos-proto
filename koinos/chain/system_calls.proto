@@ -87,6 +87,13 @@ message put_object_result {
    bool value = 1;
 }
 
+message remove_object_arguments {
+   object_space space = 1;
+   bytes key = 2;
+}
+
+message remove_object_result {}
+
 message get_object_arguments {
    object_space space = 1;
    bytes key = 2;

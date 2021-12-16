@@ -99,9 +99,13 @@ message get_object_arguments {
    bytes key = 2;
 }
 
-message get_object_result {
+message database_object {
    bool exists = 1;
    bytes value = 2;
+}
+
+message get_object_result {
+   database_object value = 1;
 }
 
 message get_next_object_arguments {
@@ -110,8 +114,7 @@ message get_next_object_arguments {
 }
 
 message get_next_object_result {
-   bool exists = 1;
-   bytes value = 2;
+   database_object value = 1;
 }
 
 message get_prev_object_arguments {
@@ -120,8 +123,7 @@ message get_prev_object_arguments {
 }
 
 message get_prev_object_result {
-   bool exists = 1;
-   bytes value = 2;
+   database_object value = 1;
 }
 
 message call_contract_arguments {

@@ -97,31 +97,31 @@ message remove_object_result {}
 message get_object_arguments {
    object_space space = 1;
    bytes key = 2;
-   uint32 object_size_hint = 3; // optional
 }
 
 message get_object_result {
-   bytes value = 3;
+   bool exists = 1;
+   bytes value = 2;
 }
 
 message get_next_object_arguments {
    object_space space = 1;
    bytes key = 2;
-   uint32 object_size_hint = 3; // optional
 }
 
 message get_next_object_result {
-   bytes value = 3;
+   bool exists = 1;
+   bytes value = 2;
 }
 
 message get_prev_object_arguments {
    object_space space = 1;
    bytes key = 2;
-   uint32 object_size_hint = 3; // optional
 }
 
 message get_prev_object_result {
-   bytes value = 3;
+   bool exists = 1;
+   bytes value = 2;
 }
 
 message call_contract_arguments {

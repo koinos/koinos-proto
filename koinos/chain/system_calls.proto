@@ -102,6 +102,7 @@ message get_object_arguments {
 message database_object {
    bool exists = 1;
    bytes value = 2;
+   bytes key = 3; // Only returned with get_next_object and get_prev_object
 }
 
 message get_object_result {

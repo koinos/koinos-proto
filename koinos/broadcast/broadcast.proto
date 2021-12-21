@@ -13,8 +13,8 @@ message transaction_accepted {
    uint64 height = 3 [jstype = JS_STRING];
 }
 
-message pending_transaction_failed {
-   protocol.transaction transaction = 1;
+message transaction_failed {
+   bytes id = 1 [(btype) = TRANSACTION_ID];
 }
 
 message block_accepted {

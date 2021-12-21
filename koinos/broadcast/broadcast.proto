@@ -14,7 +14,7 @@ message transaction_accepted {
 }
 
 message pending_transaction_failed {
-   protocol.transaction transaction = 1;
+   bytes id = 1 [(btype) = TRANSACTION_ID];
 }
 
 message block_accepted {

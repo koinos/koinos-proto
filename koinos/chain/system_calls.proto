@@ -97,31 +97,34 @@ message remove_object_result {}
 message get_object_arguments {
    object_space space = 1;
    bytes key = 2;
-   uint32 object_size_hint = 3; // optional
+}
+
+message database_object {
+   bool exists = 1;
+   bytes value = 2;
+   bytes key = 3; // Only returned with get_next_object and get_prev_object
 }
 
 message get_object_result {
-   bytes value = 3;
+   database_object value = 1;
 }
 
 message get_next_object_arguments {
    object_space space = 1;
    bytes key = 2;
-   uint32 object_size_hint = 3; // optional
 }
 
 message get_next_object_result {
-   bytes value = 3;
+   database_object value = 1;
 }
 
 message get_prev_object_arguments {
    object_space space = 1;
    bytes key = 2;
-   uint32 object_size_hint = 3; // optional
 }
 
 message get_prev_object_result {
-   bytes value = 3;
+   database_object value = 1;
 }
 
 message call_contract_arguments {

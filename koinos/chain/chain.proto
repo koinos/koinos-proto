@@ -47,3 +47,13 @@ message contract_metadata_object {
    bytes hash = 1;
    bool  system = 2;
 }
+
+message genesis_entry {
+   object_space space = 1;
+   bytes key = 2;
+   bytes value = 3;
+}
+
+message genesis_data {
+   repeated genesis_entry entries = 1;
+}

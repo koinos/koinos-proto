@@ -298,6 +298,10 @@ message require_authority_result {}
 
 message get_transaction_signers_arguments {}
 
-message get_transaction_signers_result {
+message transaction_signers {
    repeated bytes signers = 1 [(btype) = ADDRESS];
+}
+
+message get_transaction_signers_result {
+   transaction_signers value = 1;
 }

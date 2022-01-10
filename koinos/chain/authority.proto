@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package koinos.chain;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
+
+import "koinos/options.proto";
+
+message authorize_contract_arguments {
+   bytes caller = 1 [(btype) = ADDRESS];
+   bytes contact = 2 [(btype) = ADDRESS];
+   uint32 entry_point = 3;
+}
+
+message authorize_contract_result {
+   bool value = 1;
+}
+
+message authorize_resources_arguments {
+   bytes payee = 1 [(btype) = ADDRESS];
+   uint32 rc_limit = 2;
+   repeated operation operations = 3;
+}
+
+message authorize_resources_result {
+   bool value = 1;
+}
+
+message authorize_contract_upload_arguments {
+   bytes bytecode_hash = 1 [(btype) = BASE64];
+}
+
+message authorize_contract_upload_result {
+   bool value = 1;
+}

@@ -58,15 +58,17 @@ message operation {
 
 message transaction_header {
    uint64 rc_limit = 1 [jstype = JS_STRING];
-   uint64 nonce = 2 [jstype = JS_STRING];
-   bytes operation_merkle_root = 3;
+   bytes payer = 2 [(btype) = ADDRESS];
+   optional bytes payee = 3 [(btype) = ADDRESS];
+   uint64 nonce = 4 [jstype = JS_STRING];
+   bytes operation_merkle_root = 5;
 }
 
 message transaction {
    bytes id = 1 [(btype) = TRANSACTION_ID];
    transaction_header header = 2;
    repeated operation operations = 3;
-   bytes signature = 4;
+   repeated bytes signatures = 4;
 }
 
 message transaction_receipt {

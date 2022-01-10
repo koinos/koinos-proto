@@ -19,9 +19,9 @@ enum system_call_id {
    process_block_signature = 101;
    get_transaction_payer = 102;
    get_transaction_rc_limit = 103;
-   get_transaction_signature = 104;
    get_last_irreversible_block = 105;
    get_account_nonce = 106;
+   process_transaction_signatures = 107;
 
    // Resource Subsystem
    get_account_rc = 201;
@@ -55,4 +55,5 @@ enum system_call_id {
    get_contract_id = 607;
    get_caller = 608;
    require_authority = 609;
+   get_transaction_signers = 610;
 }

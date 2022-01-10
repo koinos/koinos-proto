@@ -8,37 +8,12 @@ import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/chain/chain.proto";
 
-message event_arguments {
-   string name = 1;
-   bytes data = 2;
-   repeated bytes impacted = 3 [(btype) = ADDRESS];
-}
+// General Blockchain Management
 
-message event_result {}
+message get_head_info_arguments {}
 
-message prints_arguments {
-   string message = 1;
-}
-
-message prints_result {}
-
-message process_block_signature_arguments {
-   bytes digest = 1;
-   protocol.block_header header = 2;
-   bytes signature = 3;
-}
-
-message process_block_signature_result {
-   bool value = 1;
-}
-
-message verify_merkle_root_arguments {
-   bytes root = 1;
-   repeated bytes hashes = 2;
-}
-
-message verify_merkle_root_result {
-   bool value = 1;
+message get_head_info_result {
+   head_info value = 1;
 }
 
 message apply_block_arguments {
@@ -76,6 +51,94 @@ message apply_set_system_contract_operation_arguments {
 }
 
 message apply_set_system_contract_operation_result {}
+
+// System Helpers
+
+message process_block_signature_arguments {
+   bytes digest = 1;
+   protocol.block_header header = 2;
+   bytes signature = 3;
+}
+
+message process_block_signature_result {
+   bool value = 1;
+}
+
+message get_transaction_payer_arguments {
+   protocol.transaction transaction = 1;
+}
+
+message get_transaction_payer_result {
+   bytes value = 1 [(btype) = ADDRESS];
+}
+
+message get_transaction_rc_limit_arguments {
+   protocol.transaction transaction = 1;
+}
+
+message get_transaction_rc_limit_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message get_last_irreversible_block_arguments {}
+
+message get_last_irreversible_block_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message get_account_nonce_arguments {
+   bytes account = 1 [(btype) = ADDRESS];
+}
+
+message get_account_nonce_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message process_transaction_signatures_arguments {
+   bytes id = 1 [(btype) = TRANSACTION_ID];
+   repeated bytes signatures = 2;
+}
+
+message process_transaction_signatures_result {
+   repeated bytes signers = 1 [(btype) = ADDRESSES];
+}
+
+// Resource Subsystem
+
+message get_account_rc_arguments {
+   bytes account = 1 [(btype) = ADDRESS];
+}
+
+message get_account_rc_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message consume_account_rc_arguments {
+   bytes account = 1 [(btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+message consume_account_rc_result {
+   bool value = 1;
+}
+
+message get_resource_limits_arguments {}
+
+message get_resource_limits_result {
+   resource_limit_data value = 1;
+}
+
+message consume_block_resources_arguments {
+   uint64 disk_storage_consumed = 1 [jstype = JS_STRING];
+   uint64 network_bandwidth_consumed = 2 [jstype = JS_STRING];
+   uint64 compute_bandwidth_consumed = 3 [jstype = JS_STRING];
+}
+
+message consume_block_resources_result {
+   bool value = 1;
+}
+
+// Database
 
 message put_object_arguments {
    object_space space = 1;
@@ -127,6 +190,54 @@ message get_prev_object_result {
    database_object value = 1;
 }
 
+// Logging
+
+message prints_arguments {
+   string message = 1;
+}
+
+message prints_result {}
+
+message event_arguments {
+   string name = 1;
+   bytes data = 2;
+   repeated bytes impacted = 3 [(btype) = ADDRESS];
+}
+
+message event_result {}
+
+// Cryptography
+
+message hash_arguments {
+   uint64 code = 1 [jstype = JS_STRING];
+   bytes obj = 2;
+   uint64 size = 3 [jstype = JS_STRING];
+}
+
+message hash_result {
+   bytes value = 1;
+}
+
+message recover_public_key_arguments {
+   bytes signature_data = 1;
+   bytes digest = 2;
+}
+
+message recover_public_key_result {
+   bytes value = 1 [(btype) = ADDRESS];
+}
+
+message verify_merkle_root_arguments {
+   bytes root = 1;
+   repeated bytes hashes = 2;
+}
+
+message verify_merkle_root_result {
+   bool value = 1;
+}
+
+// Contract Management
+
 message call_contract_arguments {
    bytes contract_id = 1 [(btype) = CONTRACT_ID];
    uint32 entry_point = 2;
@@ -167,84 +278,10 @@ message exit_contract_arguments {
 
 message exit_contract_result {}
 
-message get_head_info_arguments {}
+message get_contract_id_arguments {}
 
-message get_head_info_result {
-   head_info value = 1;
-}
-
-message hash_arguments {
-   uint64 code = 1 [jstype = JS_STRING];
-   bytes obj = 2;
-   uint64 size = 3 [jstype = JS_STRING];
-}
-
-message hash_result {
-   bytes value = 1;
-}
-
-message recover_public_key_arguments {
-   bytes signature_data = 1;
-   bytes digest = 2;
-}
-
-message recover_public_key_result {
-   bytes value = 1 [(btype) = ADDRESS];
-}
-
-message get_transaction_payer_arguments {
-   protocol.transaction transaction = 1;
-}
-
-message get_transaction_payer_result {
-   bytes value = 1 [(btype) = ADDRESS];
-}
-
-message get_account_rc_arguments {
-   bytes account = 1 [(btype) = ADDRESS];
-}
-
-message get_account_rc_result {
-   uint64 value = 1 [jstype = JS_STRING];
-}
-
-message consume_account_rc_arguments {
-   bytes account = 1 [(btype) = ADDRESS];
-   uint64 value = 2 [jstype = JS_STRING];
-}
-
-message consume_account_rc_result {
-   bool value = 1;
-}
-
-message get_resource_limits_arguments {}
-
-message get_resource_limits_result {
-   resource_limit_data value = 1;
-}
-
-message consume_block_resources_arguments {
-   uint64 disk_storage_consumed = 1 [jstype = JS_STRING];
-   uint64 network_bandwidth_consumed = 2 [jstype = JS_STRING];
-   uint64 compute_bandwidth_consumed = 3 [jstype = JS_STRING];
-}
-
-message consume_block_resources_result {
-   bool value = 1;
-}
-
-message get_transaction_rc_limit_arguments {
-   protocol.transaction transaction = 1;
-}
-
-message get_transaction_rc_limit_result {
-   uint64 value = 1 [jstype = JS_STRING];
-}
-
-message get_last_irreversible_block_arguments {}
-
-message get_last_irreversible_block_result {
-   uint64 value = 1 [jstype = JS_STRING];
+message get_contract_id_result {
+   bytes value = 1 [(btype) = CONTRACT_ID];
 }
 
 message get_caller_arguments {}
@@ -259,22 +296,8 @@ message require_authority_arguments {
 
 message require_authority_result {}
 
-message get_transaction_signature_arguments {}
+message get_transaction_signers_arguments {}
 
-message get_transaction_signature_result {
-   bytes value = 1;
-}
-
-message get_contract_id_arguments {}
-
-message get_contract_id_result {
-   bytes value = 1 [(btype) = CONTRACT_ID];
-}
-
-message get_account_nonce_arguments {
-   bytes account = 1 [(btype) = ADDRESS];
-}
-
-message get_account_nonce_result {
-   uint64 value = 1 [jstype = JS_STRING];
+message get_transaction_signers_result {
+   repeated bytes signers = 1 [(btype) = ADDRESS];
 }

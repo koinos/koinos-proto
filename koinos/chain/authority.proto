@@ -4,6 +4,7 @@ package koinos.chain;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
 import "koinos/options.proto";
+import "koinos/protocol/protocol.proto";
 
 message authorize_contract_arguments {
    bytes caller = 1 [(btype) = ADDRESS];
@@ -18,7 +19,7 @@ message authorize_contract_result {
 message authorize_resources_arguments {
    bytes payee = 1 [(btype) = ADDRESS];
    uint32 rc_limit = 2;
-   repeated operation operations = 3;
+   repeated protocol.operation operations = 3;
 }
 
 message authorize_resources_result {

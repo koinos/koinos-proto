@@ -100,7 +100,7 @@ message process_transaction_signatures_arguments {
 }
 
 message process_transaction_signatures_result {
-   repeated bytes signers = 1 [(btype) = ADDRESSES];
+   repeated bytes signers = 1 [(btype) = ADDRESS];
 }
 
 // Resource Subsystem

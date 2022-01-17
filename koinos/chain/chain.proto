@@ -18,6 +18,10 @@ message database_key {
    bytes key = 2;
 }
 
+message max_account_resources {
+   uint64 rc = [jstype = JS_STRING];
+}
+
 enum privilege {
    kernel_mode = 0;
    user_mode = 1;

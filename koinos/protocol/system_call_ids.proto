@@ -22,6 +22,7 @@ enum system_call_id {
    get_transaction_signature = 104;
    get_last_irreversible_block = 105;
    get_account_nonce = 106;
+   get_transaction_field = 107;
 
    // Resource Subsystem
    get_account_rc = 201;

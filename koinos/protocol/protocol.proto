@@ -29,9 +29,9 @@ message upload_contract_operation {
    bytes contract_id = 1 [(btype) = CONTRACT_ID];
    bytes bytecode = 2;
    string abi = 3;
-   bool has_authorize_call_contract = 4;
-   bool has_authorize_use_rc = 5;
-   bool has_authorize_upload_contract = 6;
+   bool authorizes_call_contract = 4;
+   bool authorizes_use_rc = 5;
+   bool authorizes_upload_contract = 6;
 }
 
 message call_contract_operation {

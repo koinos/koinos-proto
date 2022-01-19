@@ -10,17 +10,8 @@ import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/chain/chain.proto";
 
-enum dsa {
-   ecdsa_secp256k1 = 0;
-}
-
-enum system_authorization_type {
-   set_system_contract = 0;
-   set_system_call = 1;
-}
-
 message authorize_system_arguments {
-   system_authorization_type type = 1;
+   protocol.system_authorization_type type = 1;
 }
 
 message authorize_system_result {
@@ -28,9 +19,9 @@ message authorize_system_result {
 }
 
 message verify_signature_arguments {
-   dsa type = 1;
+   protocol.dsa type = 1;
    bytes public_key = 2 [(btype) = BASE64];
-   bytes signature_data = 3 [(btype) = BASE64];
+   bytes signature = 3 [(btype) = BASE64];
    bytes digest = 4 [(btype) = BASE64];
 }
 
@@ -39,8 +30,8 @@ message verify_signature_result {
 }
 
 message recover_public_key_arguments {
-   dsa type = 1;
-   bytes signature_data = 2;
+   protocol.dsa type = 1;
+   bytes signature = 2;
    bytes digest = 3;
 }
 
@@ -50,7 +41,7 @@ message recover_public_key_result {
 
 message get_transaction_field_arguments
 {
-   string field_name = 1;
+   string field = 1;
 }
 
 message get_transaction_field_result
@@ -60,7 +51,7 @@ message get_transaction_field_result
 
 message get_block_field_arguments
 {
-   string field_name = 1;
+   string field = 1;
 }
 
 message get_block_field_result

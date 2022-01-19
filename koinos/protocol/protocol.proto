@@ -5,6 +5,15 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "koinos/options.proto";
 
+enum dsa {
+   ecdsa_secp256k1 = 0;
+}
+
+enum system_authorization_type {
+   set_system_contract = 0;
+   set_system_call = 1;
+}
+
 message event_data {
    uint32 sequence = 1;
    bytes source = 2 [(btype) = CONTRACT_ID];

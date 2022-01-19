@@ -31,7 +31,7 @@ message verify_signature_arguments {
    dsa type = 1;
    bytes public_key = 2 [(btype) = BASE64];
    bytes signature_data = 3 [(btype) = BASE64];
-   bytes digest = 4 [(bytpe) = BASE64];
+   bytes digest = 4 [(btype) = BASE64];
 }
 
 message verify_signature_result {

@@ -50,6 +50,9 @@ message resource_limit_data {
 message contract_metadata_object {
    bytes hash = 1;
    bool  system = 2;
+   bool  authorizes_call_contract = 3;
+   bool  authorizes_use_resources = 4;
+   bool  authorizes_upload_contract = 5;
 }
 
 message genesis_entry {

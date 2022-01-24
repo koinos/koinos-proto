@@ -66,22 +66,22 @@ message bytes_value {
 
 message value {
    oneof kind {
-      google.protobuf.Any = 1;
-      double = 2;
-      float = 3;
-      int32 = 4;
-      int64 = 5;
-      uint32 = 6;
-      uint64 = 7;
-      sint32 = 8;
-      sint64 = 9;
-      fixed32 = 10;
-      fixed64 = 11;
-      sfixed32 = 12;
-      sfixed64 = 13;
-      bool = 14;
-      string = 15;
-      bytes = 16;
+      google.protobuf.Any any_value= 1;
+      double double_value = 2;
+      float float_value = 3;
+      int32 int32_value = 4;
+      int64 int64_value = 5;
+      uint32 uint32_value = 6;
+      uint64 uint64_value = 7;
+      sint32 sint32_value = 8;
+      sint64 sint64_value = 9;
+      fixed32 fixed32_value = 10;
+      fixed64 fixed64_value = 11;
+      sfixed32 sfixed32_value = 12;
+      sfixed64 sfixed64_value = 13;
+      bool bool_value = 14;
+      string string_value = 15;
+      bytes bytes_value = 16;
    }
 }
 

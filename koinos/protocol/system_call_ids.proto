@@ -17,11 +17,11 @@ enum system_call_id {
 
    // System Helpers
    process_block_signature = 101;
-   get_transaction_payer = 102;
-   get_transaction_rc_limit = 103;
-   get_transaction_signature = 104;
-   get_last_irreversible_block = 105;
-   get_account_nonce = 106;
+   get_transaction_field = 102;
+   get_block_field = 103;
+   get_last_irreversible_block = 104;
+   get_account_nonce = 105;
+   authorize_system = 106;
 
    // Resource Subsystem
    get_account_rc = 201;
@@ -37,13 +37,14 @@ enum system_call_id {
    get_prev_object = 305;
 
    // Logging
-   prints = 401;
+   log = 401;
    event = 402;
 
    // Cryptography
    hash = 501;
    recover_public_key = 502;
    verify_merkle_root = 503;
+   verify_signature = 504;
 
    // Contract Management
    call_contract = 601;

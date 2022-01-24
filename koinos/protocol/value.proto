@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package koinos.protocol;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
+
+import "google/protobuf/any.proto";
+
+message double_value {
+   double value = 1;
+}
+
+message float_value {
+   float value = 1;
+}
+
+message int32_value {
+   int32 value = 1;
+}
+
+message int64_value {
+   int64 value = 1;
+}
+
+message uint32_value {
+   uint32 value = 1;
+}
+
+message uint64_value {
+   uint64 value = 1;
+}
+
+message sint32_value {
+   sint32 value = 1;
+}
+
+message sint64_value {
+   sint64 value = 1;
+}
+
+message fixed32_value {
+   fixed32 value = 1;
+}
+
+message fixed64_value {
+   fixed64 value = 1;
+}
+
+message sfixed32_value {
+   sfixed32 value = 1;
+}
+
+message sfixed64_value {
+   sfixed64 value = 1;
+}
+
+message bool_value {
+   bool value = 1;
+}
+
+message string_value {
+   string value = 1;
+}
+
+message bytes_value {
+   bytes value = 1;
+}
+
+message enum_value {
+   string name = 1;
+   int32 number = 2;
+}
+
+message value {
+   oneof kind {
+      google.protobuf.Any any_value= 1;
+      double double_value = 2;
+      float float_value = 3;
+      int32 int32_value = 4;
+      int64 int64_value = 5;
+      uint32 uint32_value = 6;
+      uint64 uint64_value = 7;
+      sint32 sint32_value = 8;
+      sint64 sint64_value = 9;
+      fixed32 fixed32_value = 10;
+      fixed64 fixed64_value = 11;
+      sfixed32 sfixed32_value = 12;
+      sfixed64 sfixed64_value = 13;
+      bool bool_value = 14;
+      string string_value = 15;
+      bytes bytes_value = 16;
+   }
+}
+
+message list_value {
+   repeated protocol.value value  = 1;
+}

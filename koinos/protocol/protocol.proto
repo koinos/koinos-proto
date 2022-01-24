@@ -5,6 +5,15 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "koinos/options.proto";
 
+enum dsa {
+   ecdsa_secp256k1 = 0;
+}
+
+enum system_authorization_type {
+   set_system_contract = 0;
+   set_system_call = 1;
+}
+
 message event_data {
    uint32 sequence = 1;
    bytes source = 2 [(btype) = CONTRACT_ID];
@@ -85,6 +94,7 @@ message transaction_receipt {
    uint64 compute_bandwidth_used = 8 [jstype = JS_STRING];
    bool reverted = 9;
    repeated event_data events = 10;
+   repeated string logs = 11;
 }
 
 message block_header {
@@ -112,4 +122,5 @@ message block_receipt {
    bytes state_merkle_root = 6;
    repeated event_data events = 7;
    repeated transaction_receipt transaction_receipts = 8;
+   repeated string logs = 9;
 }

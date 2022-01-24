@@ -3,10 +3,61 @@ syntax = "proto3";
 package koinos.chain;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
+import "google/protobuf/any.proto";
+
 import "koinos/options.proto";
 import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/chain/chain.proto";
+
+message authorize_system_arguments {
+   protocol.system_authorization_type type = 1;
+}
+
+message authorize_system_result {
+   bool value = 1;
+}
+
+message verify_signature_arguments {
+   protocol.dsa type = 1;
+   bytes public_key = 2 [(btype) = BASE64];
+   bytes signature = 3 [(btype) = BASE64];
+   bytes digest = 4 [(btype) = BASE64];
+}
+
+message verify_signature_result {
+   bool value = 1;
+}
+
+message recover_public_key_arguments {
+   protocol.dsa type = 1;
+   bytes signature = 2;
+   bytes digest = 3;
+}
+
+message recover_public_key_result {
+   bytes value = 1 [(btype) = BASE64];
+}
+
+message get_transaction_field_arguments
+{
+   string field = 1;
+}
+
+message get_transaction_field_result
+{
+   google.protobuf.Any value = 1;
+}
+
+message get_block_field_arguments
+{
+   string field = 1;
+}
+
+message get_block_field_result
+{
+   google.protobuf.Any value = 1;
+}
 
 message event_arguments {
    string name = 1;
@@ -16,11 +67,11 @@ message event_arguments {
 
 message event_result {}
 
-message prints_arguments {
+message log_arguments {
    string message = 1;
 }
 
-message prints_result {}
+message log_result {}
 
 message process_block_signature_arguments {
    bytes digest = 1;
@@ -183,23 +234,6 @@ message hash_result {
    bytes value = 1;
 }
 
-message recover_public_key_arguments {
-   bytes signature_data = 1;
-   bytes digest = 2;
-}
-
-message recover_public_key_result {
-   bytes value = 1 [(btype) = ADDRESS];
-}
-
-message get_transaction_payer_arguments {
-   protocol.transaction transaction = 1;
-}
-
-message get_transaction_payer_result {
-   bytes value = 1 [(btype) = ADDRESS];
-}
-
 message get_account_rc_arguments {
    bytes account = 1 [(btype) = ADDRESS];
 }
@@ -233,14 +267,6 @@ message consume_block_resources_result {
    bool value = 1;
 }
 
-message get_transaction_rc_limit_arguments {
-   protocol.transaction transaction = 1;
-}
-
-message get_transaction_rc_limit_result {
-   uint64 value = 1 [jstype = JS_STRING];
-}
-
 message get_last_irreversible_block_arguments {}
 
 message get_last_irreversible_block_result {
@@ -258,12 +284,6 @@ message require_authority_arguments {
 }
 
 message require_authority_result {}
-
-message get_transaction_signature_arguments {}
-
-message get_transaction_signature_result {
-   bytes value = 1;
-}
 
 message get_contract_id_arguments {}
 

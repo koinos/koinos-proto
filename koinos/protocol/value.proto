@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package koinos.protocol;
+
+import "google/protobuf/any.proto";
+
+message double_value {
+   double value = 1;
+}
+
+message float_value {
+   float value = 1;
+}
+
+message int32_value {
+   int32 value = 1;
+}
+
+message int64_value {
+   int64 value = 1;
+}
+
+message uint32_value {
+   uint32 value = 1;
+}
+
+message uint64_value {
+   uint64 value = 1;
+}
+
+message sint32_value {
+   sint32 value = 1;
+}
+
+message sint64_value {
+   sint64 value = 1;
+}
+
+message fixed32_value {
+   fixed32 value = 1;
+}
+
+message fixed64_value {
+   fixed64 value = 1;
+}
+
+message sfixed32_value {
+   sfixed32 value = 1;
+}
+
+message sfixed64_value {
+   sfixed64 value = 1;
+}
+
+message bool_value {
+   bool value = 1;
+}
+
+message string_value {
+   string value = 1;
+}
+
+message bytes_value {
+   bytes value = 1;
+}
+
+message value {
+   oneof kind {
+      google.protobuf.Any = 1;
+      double = 2;
+      float = 3;
+      int32 = 4;
+      int64 = 5;
+      uint32 = 6;
+      uint64 = 7;
+      sint32 = 8;
+      sint64 = 9;
+      fixed32 = 10;
+      fixed64 = 11;
+      sfixed32 = 12;
+      sfixed64 = 13;
+      bool = 14;
+      string = 15;
+      bytes = 16;
+   }
+}
+
+message list_value {
+   repeated value  = 1;
+}

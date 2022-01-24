@@ -86,5 +86,5 @@ message value {
 }
 
 message list_value {
-   repeated value  = 1;
+   repeated protocol.value value  = 1;
 }

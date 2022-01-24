@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package koinos.protocol;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "google/protobuf/any.proto";
 

@@ -94,6 +94,7 @@ message transaction_receipt {
    uint64 compute_bandwidth_used = 8 [jstype = JS_STRING];
    bool reverted = 9;
    repeated event_data events = 10;
+   repeated string logs = 11;
 }
 
 message block_header {
@@ -121,4 +122,5 @@ message block_receipt {
    bytes state_merkle_root = 6;
    repeated event_data events = 7;
    repeated transaction_receipt transaction_receipts = 8;
+   repeated string logs = 9;
 }

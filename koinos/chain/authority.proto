@@ -7,6 +7,15 @@ import "koinos/options.proto";
 import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
 
+enum dsa {
+   ecdsa_secp256k1 = 0;
+}
+
+enum system_authorization_type {
+   set_system_contract = 0;
+   set_system_call = 1;
+}
+
 enum authorization_type {
    call_contract = 0;
    use_rc = 1;

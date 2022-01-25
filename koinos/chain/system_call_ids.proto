@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package koinos.protocol;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
+package koinos.chain;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
 enum system_call_id {
    reserved_id = 0;

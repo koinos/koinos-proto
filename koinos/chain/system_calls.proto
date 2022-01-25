@@ -39,7 +39,7 @@ message verify_signature_result {
 }
 
 message recover_public_key_arguments {
-   chain.dsa type = 1;
+   dsa type = 1;
    bytes signature = 2;
    bytes digest = 3;
 }

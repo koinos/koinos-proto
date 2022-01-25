@@ -10,6 +10,15 @@ import "koinos/chain/authority.proto";
 import "koinos/chain/chain.proto";
 import "koinos/chain/value.proto";
 
+enum dsa {
+   ecdsa_secp256k1 = 0;
+}
+
+enum system_authorization_type {
+   set_system_contract = 0;
+   set_system_call = 1;
+}
+
 message authorize_system_arguments {
    system_authorization_type type = 1;
 }

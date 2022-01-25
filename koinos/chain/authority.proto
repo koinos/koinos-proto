@@ -9,7 +9,7 @@ import "koinos/protocol/protocol.proto";
 
 enum authorization_type {
    contract_call = 0;
-   rc_usage = 1;
+   rc_use = 1;
    contract_upload = 2;
 }
 

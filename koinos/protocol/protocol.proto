@@ -60,11 +60,12 @@ message operation {
 }
 
 message transaction_header {
-   uint64 rc_limit = 1 [jstype = JS_STRING];
-   uint64 nonce = 2 [jstype = JS_STRING];
-   bytes operation_merkle_root = 3;
-   bytes payer = 4 [(btype) = ADDRESS];
-   bytes payee = 5 [(btype) = ADDRESS];
+   bytes chain_id = 1;
+   uint64 rc_limit = 2 [jstype = JS_STRING];
+   uint64 nonce = 3 [jstype = JS_STRING];
+   bytes operation_merkle_root = 4;
+   bytes payer = 5 [(btype) = ADDRESS];
+   bytes payee = 6 [(btype) = ADDRESS];
 }
 
 message transaction {

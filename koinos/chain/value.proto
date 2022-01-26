@@ -26,11 +26,11 @@ message value_type {
    }
 }
 
-message enum_value {
+message enum_type {
    string name = 1;
    int32 number = 2;
 }
 
-message list_value {
+message list_type {
    repeated value_type values = 1;
 }

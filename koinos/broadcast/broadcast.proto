@@ -31,6 +31,6 @@ message fork_heads {
    repeated block_topology heads = 2;
 }
 
-message gossip_changed {
+message gossip_status {
    bool enabled = 1;
 }

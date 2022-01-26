@@ -32,5 +32,5 @@ message enum_value {
 }
 
 message list_value {
-   repeated chain.value value = 1;
+   repeated chain.value values = 1;
 }

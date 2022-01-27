@@ -5,7 +5,7 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "google/protobuf/any.proto";
 
-message value {
+message value_type {
    oneof kind {
       google.protobuf.Any message_value = 1;
       double double_value = 2;
@@ -26,11 +26,11 @@ message value {
    }
 }
 
-message enum_value {
+message enum_type {
    string name = 1;
    int32 number = 2;
 }
 
-message list_value {
-   repeated chain.value value = 1;
+message list_type {
+   repeated value_type values = 1;
 }

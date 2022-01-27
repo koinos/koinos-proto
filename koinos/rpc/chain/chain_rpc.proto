@@ -54,7 +54,7 @@ message read_contract_request {
 
 message read_contract_response {
    bytes result = 1;
-   string logs = 2;
+   repeated string logs = 2;
 }
 
 message get_account_nonce_request {

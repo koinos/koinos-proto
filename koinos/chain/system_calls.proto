@@ -55,7 +55,7 @@ message get_transaction_field_arguments
 
 message get_transaction_field_result
 {
-   chain.value value = 1;
+   value_type value = 1;
 }
 
 message get_block_field_arguments
@@ -65,7 +65,7 @@ message get_block_field_arguments
 
 message get_block_field_result
 {
-   chain.value value = 1;
+   value_type value = 1;
 }
 
 message event_arguments {
@@ -289,7 +289,8 @@ message get_caller_result {
 }
 
 message require_authority_arguments {
-   bytes account = 1 [(btype) = ADDRESS];
+   authorization_type type = 1;
+   bytes account = 2 [(btype) = ADDRESS];
 }
 
 message require_authority_result {}

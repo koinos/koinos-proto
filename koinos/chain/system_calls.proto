@@ -203,12 +203,6 @@ message get_entry_point_result {
    uint32 value = 1;
 }
 
-message get_contract_arguments_size_arguments {}
-
-message get_contract_arguments_size_result {
-   uint32 value = 1;
-}
-
 message get_contract_arguments_arguments {}
 
 message get_contract_arguments_result {

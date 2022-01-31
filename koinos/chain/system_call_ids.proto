@@ -17,11 +17,14 @@ enum system_call_id {
 
    // System Helpers
    process_block_signature = 101;
-   get_transaction_field = 102;
-   get_block_field = 103;
-   get_last_irreversible_block = 104;
-   get_account_nonce = 105;
-   authorize_system = 106;
+   get_transaction = 102;
+   get_transaction_field = 103;
+   get_block = 104;
+   get_block_field = 105;
+   get_last_irreversible_block = 106;
+   get_account_nonce = 107;
+   authorize_system = 108;
+
 
    // Resource Subsystem
    get_account_rc = 201;
@@ -49,11 +52,10 @@ enum system_call_id {
    // Contract Management
    call_contract = 601;
    get_entry_point = 602;
-   get_contract_arguments_size = 603;
-   get_contract_arguments = 604;
-   set_contract_result = 605;
-   exit_contract = 606;
-   get_contract_id = 607;
-   get_caller = 608;
-   require_authority = 609;
+   get_contract_arguments = 603;
+   set_contract_result = 604;
+   exit_contract = 605;
+   get_contract_id = 606;
+   get_caller = 607;
+   require_authority = 608;
 }

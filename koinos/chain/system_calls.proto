@@ -19,6 +19,18 @@ enum system_authorization_type {
    set_system_call = 1;
 }
 
+message get_transaction_arguments {}
+
+message get_transaction_result {
+   protocol.transaction value = 1;
+}
+
+message get_block_arguments {}
+
+message get_block_result {
+   protocol.block value = 1;
+}
+
 message authorize_system_arguments {
    system_authorization_type type = 1;
 }

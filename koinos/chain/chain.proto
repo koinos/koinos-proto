@@ -55,6 +55,15 @@ message contract_metadata_object {
    bool  authorizes_upload_contract = 5;
 }
 
+message compute_bandwidth_entry {
+   string name = 1;
+   uint64 compute = 2;
+}
+
+message compute_bandwidth_registry {
+   repeated compute_bandwidth_entry entries = 1;
+}
+
 message genesis_entry {
    object_space space = 1;
    bytes key = 2;

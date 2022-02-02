@@ -44,7 +44,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    find $TRAVIS_BUILD_DIR/build/go/
 
    mkdir -p koinos
-   rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/go/github.com/koinos/koinos-proto-golang/ ./
+   rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/go/github.com/koinos/koinos-proto-golang/ ./
 
    git add .
 
@@ -107,7 +107,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    mkdir -p koinos
 
-   rsync -rvm --include "*_pb2.py" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/python/ ./
+   rsync -rvm --include "*_pb2.py" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/python/ ./
 
    git add .
 
@@ -142,8 +142,8 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    mkdir -p libraries/koinos/generated
    mkdir -p libraries/koinos/src
 
-   rsync -rvm --include "*.h" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/eams/ ./libraries/proto_embedded/generated/
-   rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/EmbeddedProto/src/ ./libraries/proto_embedded/src/
+   rsync -rvm --include "*.h" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/eams/ ./libraries/proto_embedded/generated/
+   rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/EmbeddedProto/src/ ./libraries/proto_embedded/src/
 
    git add .
 

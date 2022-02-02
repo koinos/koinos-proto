@@ -62,7 +62,7 @@ message operation {
 message transaction_header {
    bytes chain_id = 1;
    uint64 rc_limit = 2 [jstype = JS_STRING];
-   byes nonce = 3;
+   bytes nonce = 3;
    bytes operation_merkle_root = 4;
    bytes payer = 5 [(btype) = ADDRESS];
    bytes payee = 6 [(btype) = ADDRESS];

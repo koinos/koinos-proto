@@ -58,11 +58,19 @@ message apply_set_system_contract_operation_result {}
 
 message pre_block_callback_arguments {}
 
+message pre_block_callback_result {}
+
 message post_block_callback_arguments {}
 
-message pre_transaction_callback_arguments {}
+message post_block_callback_result {}
 
 message pre_transaction_callback_arguments {}
+
+message pre_transaction_callback_result {}
+
+message post_transaction_callback_arguments {}
+
+message post_transaction_callback_result {}
 
 ///////////////////////////////////////////////////////////////////////////////
 // System Helpers                                                            //
@@ -131,7 +139,8 @@ message get_account_nonce_result {
 }
 
 message verify_account_nonce_arguments {
-   bytes nonce = 1;
+   bytes account = 1 [(btype) = ADDRESS];
+   bytes nonce = 2;
 }
 
 message verify_account_nonce_result {
@@ -139,7 +148,8 @@ message verify_account_nonce_result {
 }
 
 message set_account_nonce_arguments {
-   bytes nonce = 1;
+   bytes account = 1 [(btype) = ADDRESS];
+   bytes nonce = 2;
 }
 
 message set_account_nonce_result {}

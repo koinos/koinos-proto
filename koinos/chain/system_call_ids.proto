@@ -29,7 +29,7 @@ enum system_call_id {
    get_account_nonce = 107;
    verify_account_nonce = 108;
    set_account_nonce = 109;
-   authorize_system = 110;
+   require_system_authority = 110;
 
    // Resource Subsystem
    get_account_rc = 201;

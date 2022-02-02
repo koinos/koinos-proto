@@ -154,13 +154,11 @@ message set_account_nonce_arguments {
 
 message set_account_nonce_result {}
 
-message authorize_system_arguments {
+message require_system_authority_arguments {
    system_authorization_type type = 1;
 }
 
-message authorize_system_result {
-   bool value = 1;
-}
+message require_system_authority_result {}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Resource Subsystem                                                        //

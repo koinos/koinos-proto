@@ -11,6 +11,7 @@ enum authorization_type {
    contract_call = 0;
    rc_use = 1;
    contract_upload = 2;
+   signature_exists = 3;
 }
 
 message call_target {

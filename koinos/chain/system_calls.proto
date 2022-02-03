@@ -135,7 +135,7 @@ message get_account_nonce_arguments {
 }
 
 message get_account_nonce_result {
-   uint64 value = 1 [jstype = JS_STRING];
+   bytes value = 1;
 }
 
 message verify_account_nonce_arguments {

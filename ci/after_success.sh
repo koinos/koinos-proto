@@ -15,7 +15,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    pushd koinos-proto-cpp
 
    mkdir -p libraries/proto/generated
-   rsync -rvm --include "*.pb.h" --include "*.pb.cc" --include "*/" --exclude "*" $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
+   rsync -rvm --include "*.pb.h" --include "*.pb.cc" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
 
    git add .
 

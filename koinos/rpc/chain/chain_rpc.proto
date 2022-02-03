@@ -62,7 +62,7 @@ message get_account_nonce_request {
 }
 
 message get_account_nonce_response {
-   uint64 nonce = 1 [jstype = JS_STRING];
+   bytes nonce = 1;
 }
 
 message get_account_rc_request {

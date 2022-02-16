@@ -9,9 +9,8 @@ import "koinos/protocol/protocol.proto";
 
 enum authorization_type {
    contract_call = 0;
-   rc_use = 1;
+   transaction_application = 1;
    contract_upload = 2;
-   signature_exists = 3;
 }
 
 message call_target {

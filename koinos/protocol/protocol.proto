@@ -30,7 +30,7 @@ message upload_contract_operation {
    bytes bytecode = 2;
    string abi = 3;
    bool authorizes_call_contract = 4;
-   bool authorizes_use_rc = 5;
+   bool authorizes_transaction_application = 5;
    bool authorizes_upload_contract = 6;
 }
 

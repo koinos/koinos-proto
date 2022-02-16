@@ -116,3 +116,13 @@ message block_receipt {
    repeated transaction_receipt transaction_receipts = 8;
    repeated string logs = 9;
 }
+
+message set_system_call_event {
+   uint32 call_id = 1;
+   system_call_target target = 2;
+}
+
+message set_system_contract_event {
+   bytes contract_id = 1 [(btype) = CONTRACT_ID];
+   bool system_contract = 2;
+}

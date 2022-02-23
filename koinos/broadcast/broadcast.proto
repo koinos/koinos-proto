@@ -34,3 +34,10 @@ message fork_heads {
 message gossip_status {
    bool enabled = 1;
 }
+
+message event_parcel {
+   bytes block_id = 1 [(btype) = BLOCK_ID];
+   uint64 height = 2;
+   optional bytes transaction_id = 3 [(btype) = TRANSACTION_ID];
+   protocol.event_data event = 4;
+}

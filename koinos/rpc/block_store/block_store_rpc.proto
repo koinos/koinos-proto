@@ -33,6 +33,7 @@ message get_blocks_by_height_response {
 
 message add_block_request {
    protocol.block block_to_add = 1;
+   protocol.block_receipt receipt_to_add = 2;
 }
 
 message add_block_response {}

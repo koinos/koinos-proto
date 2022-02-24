@@ -68,7 +68,7 @@ message mana_balance_object {
 
 message mint_event {
    bytes to = 1 [(btype) = ADDRESS];
-   uint64 value = 3 [jstype = JS_STRING];
+   uint64 value = 2 [jstype = JS_STRING];
 }
 
 message transfer_event {

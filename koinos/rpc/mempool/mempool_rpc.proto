@@ -25,7 +25,8 @@ message check_pending_account_resources_response {
 }
 
 message get_pending_transactions_request {
-   uint64 limit = 1 [jstype = JS_STRING];
+   uint64_t start = 1 [jstype = JS_STRING];
+   uint64 limit = 2 [jstype = JS_STRING];
 }
 
 message get_pending_transactions_response {

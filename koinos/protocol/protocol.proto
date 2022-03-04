@@ -95,7 +95,7 @@ message block_header {
    uint64 timestamp = 3 [jstype = JS_STRING];
    bytes previous_state_merkle_root = 4;
    bytes transaction_merkle_root = 5;
-   bytes signer = 6;
+   bytes signer = 6 [(btype) = ADDRESS];
 }
 
 message block {

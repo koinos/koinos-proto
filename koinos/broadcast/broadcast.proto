@@ -17,6 +17,14 @@ message transaction_failed {
    bytes id = 1 [(btype) = TRANSACTION_ID];
 }
 
+message mempool_accepted {
+   protocol.transaction transaction = 1;
+   protocol.transaction_receipt receipt = 2;
+   uint64 height = 3 [jstype = JS_STRING];
+   uint64 pending_rc_used = 4 [jstype = JS_STRING];
+   uint64 rc_limit = 5 [jstype = JS_STRING];
+}
+
 message block_accepted {
    protocol.block block = 1;
    protocol.block_receipt receipt = 2;

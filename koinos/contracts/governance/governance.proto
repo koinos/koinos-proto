@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package koinos.contracts.governance;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/governance";
+
+message submit_proposal_arguments {
+   koinos.protocol.transaction proposal = 1;
+   uint64 fee = 2;
+}
+
+message submit_proposal_result {
+   bool value = 1;
+}

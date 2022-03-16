@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "koinos/protocol/protocol.proto";
+
 package koinos.contracts.governance;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/governance";
 

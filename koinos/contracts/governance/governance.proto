@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 
 package koinos.contracts.governance;

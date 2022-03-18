@@ -13,7 +13,7 @@ enum proposal_status {
 }
 
 message proposal_record {
-   bytes proposal_id = 1 [(btype) = TRANSACTION_ID];
+   bytes id = 1 [(btype) = TRANSACTION_ID];
    koinos.protocol.transaction proposal = 2;
    uint64 vote_start_height = 3;
    uint64 vote_tally = 4;

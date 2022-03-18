@@ -96,6 +96,7 @@ message block_header {
    bytes previous_state_merkle_root = 4;
    bytes transaction_merkle_root = 5;
    bytes signer = 6 [(btype) = ADDRESS];
+   repeated bytes approved_proposals = 7 [(btype) = TRANSACTION_ID];
 }
 
 message block {

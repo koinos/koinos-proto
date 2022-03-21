@@ -75,6 +75,11 @@ message mana_balance_object {
    uint64 last_mana_update = 3 [jstype = JS_STRING];
 }
 
+message burn_event {
+   bytes from = 1 [(btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
 message mint_event {
    bytes to = 1 [(btype) = ADDRESS];
    uint64 value = 2 [jstype = JS_STRING];

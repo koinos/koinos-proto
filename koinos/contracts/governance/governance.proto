@@ -8,8 +8,9 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/gove
 
 enum proposal_status {
    pending = 0;
-   approved = 1;
-   expired = 2;
+   active = 1;
+   approved = 2;
+   expired = 3;
 }
 
 message proposal_record {
@@ -17,8 +18,9 @@ message proposal_record {
    koinos.protocol.transaction proposal = 2;
    uint64 vote_start_height = 3;
    uint64 vote_tally = 4;
-   bool shall_authorize = 5;
-   proposal_status status = 6;
+   uint64 vote_threshold = 5;
+   bool shall_authorize = 6;
+   proposal_status status = 7;
 }
 
 message submit_proposal_arguments {
@@ -60,3 +62,18 @@ message get_proposals_result {
 message block_callback_arguments {}
 
 message block_callback_result {}
+
+message proposal_submission_event {
+   proposal_record proposal = 1;
+}
+
+message proposal_status_event {
+   bytes id = 1 [(btype) = TRANSACTION_ID];
+   proposal_status status = 2;
+}
+
+message proposal_vote_event {
+   bytes id = 1 [(btype) = TRANSACTION_ID];
+   uint64 vote_tally = 2;
+   uint64 vote_threshold = 3;
+}

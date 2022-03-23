@@ -11,6 +11,7 @@ enum proposal_status {
    active = 1;
    approved = 2;
    expired = 3;
+   applied = 4;
 }
 
 message proposal_record {
@@ -19,7 +20,8 @@ message proposal_record {
    uint64 vote_tally = 3;
    uint64 vote_threshold = 4;
    bool shall_authorize = 5;
-   proposal_status status = 6;
+   bool updates_governance = 6;
+   proposal_status status = 7;
 }
 
 message submit_proposal_arguments {

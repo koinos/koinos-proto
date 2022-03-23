@@ -48,7 +48,7 @@ message get_proposals_by_status_arguments {
 }
 
 message get_proposals_by_status_result {
-   repeated proposal_record proposals = 1;
+   repeated proposal_record value = 1;
 }
 
 message get_proposals_arguments {
@@ -57,12 +57,8 @@ message get_proposals_arguments {
 }
 
 message get_proposals_result {
-   repeated proposal_record proposals = 1;
+   repeated proposal_record value = 1;
 }
-
-message block_callback_arguments {}
-
-message block_callback_result {}
 
 message proposal_submission_event {
    proposal_record proposal = 1;

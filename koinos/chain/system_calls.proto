@@ -92,10 +92,6 @@ message get_transaction_result {
    protocol.transaction value = 1;
 }
 
-enum dsa {
-   ecdsa_secp256k1 = 0;
-}
-
 enum system_authorization_type {
    set_system_contract = 0;
    set_system_call = 1;

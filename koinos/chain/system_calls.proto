@@ -92,10 +92,6 @@ message get_transaction_result {
    protocol.transaction value = 1;
 }
 
-enum dsa {
-   ecdsa_secp256k1 = 0;
-}
-
 enum system_authorization_type {
    set_system_contract = 0;
    set_system_call = 1;
@@ -310,6 +306,18 @@ message verify_signature_arguments {
 }
 
 message verify_signature_result {
+   bool value = 1;
+}
+
+message verify_vrf_proof_arguments {
+   dsa type = 1;
+   bytes public_key = 2 [(btype) = BASE64];
+   bytes proof = 3 [(btype) = BASE64];
+   bytes hash = 4 [(btype) = BASE64];
+   bytes message = 5 [(btype) = BASE64];
+}
+
+message verify_vrf_proof_result {
    bool value = 1;
 }
 

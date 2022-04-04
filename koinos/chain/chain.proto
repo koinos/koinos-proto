@@ -73,3 +73,7 @@ message genesis_entry {
 message genesis_data {
    repeated genesis_entry entries = 1;
 }
+
+enum dsa {
+   ecdsa_secp256k1 = 0;
+}

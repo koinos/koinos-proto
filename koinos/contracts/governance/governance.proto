@@ -74,3 +74,6 @@ message proposal_vote_event {
    uint64 vote_tally = 2;
    uint64 vote_threshold = 3;
 }
+
+message block_callback_arguments{}
+message block_callback_result{}

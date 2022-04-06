@@ -53,6 +53,7 @@ enum system_call_id {
    recover_public_key = 502;
    verify_merkle_root = 503;
    verify_signature = 504;
+   verify_vrf_proof = 505;
 
    // Contract Management
    call_contract = 601;

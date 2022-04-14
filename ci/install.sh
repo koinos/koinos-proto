@@ -18,3 +18,15 @@ git checkout $PB_EMBEDDED_CPP_VERSION
 pwd
 
 popd
+
+pwd
+
+curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | sh
+source ~/.nvm/nvm.sh
+nvm install $NODE_VERSION
+nvm usm $NODE_VERSION
+
+node --version
+
+yarn add as-proto@$AS_PROTO_VERSION
+yarn add --dev as-proto-gen@$AS_PROTO_VERSION

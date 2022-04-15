@@ -10,7 +10,7 @@ jobs:
       KOINOS_CI_TOKEN: ${{ secrets.KOINOS_CI_TOKEN }}
     steps:
       - run: |
-          for lang in cpp golang js python embedded-cpp descriptors
+          for lang in cpp golang js python embedded-cpp descriptors as
           do
             repo=koinos-proto-$lang
             git clone https://$KOINOS_CI_TOKEN@github.com/koinos/`echo $repo`.git

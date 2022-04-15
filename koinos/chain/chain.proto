@@ -5,7 +5,6 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
 import "koinos/options.proto";
 import "koinos/common.proto";
-import "koinos/protocol/protocol.proto";
 
 message object_space {
    bool system = 1;

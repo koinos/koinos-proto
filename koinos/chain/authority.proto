@@ -4,8 +4,6 @@ package koinos.chain;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
 import "koinos/options.proto";
-import "koinos/common.proto";
-import "koinos/protocol/protocol.proto";
 
 enum authorization_type {
    contract_call = 0;

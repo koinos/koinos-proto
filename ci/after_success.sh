@@ -214,4 +214,33 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    fi
 
    popd
+
+
+   #as
+   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git
+
+   ls -la $TRAVIS_BUILD_DIR/build/as/koinos/
+
+   pushd koinos-proto-as
+
+   mkdir -p koinos
+   rsync -rvm --include "*.ts" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/as/koinos/ ./koinos
+
+   git add .
+
+   if ! git diff --cached --quiet --exit-code; then
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
+      git commit -m "Update for koinos-proto commit $COMMIT_HASH"
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git $TRAVIS_BRANCH
+   fi
+
+   if ! [ -z "$TRAVIS_TAG" ]; then
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_TAG}
+   fi
+
+   popd
 fi

@@ -3,7 +3,6 @@ syntax = "proto3";
 package koinos.rpc.p2p;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/p2p";
 
-import "koinos/options.proto";
 import "koinos/rpc/rpc.proto";
 
 message get_gossip_status_request {

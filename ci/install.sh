@@ -28,5 +28,4 @@ nvm usm $NODE_VERSION
 
 node --version
 
-yarn add as-proto@$AS_PROTO_VERSION
-yarn add --dev as-proto-gen@$AS_PROTO_VERSION
+yarn add --dev @roaminroe/as-proto-gen@$AS_PROTO_VERSION

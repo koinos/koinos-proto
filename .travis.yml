@@ -12,7 +12,7 @@ jobs:
       - GO_VERSION="1.16.6"
       - PB_EMBEDDED_CPP_VERSION="field-options-hack"
       - NODE_VERSION="16.14.2"
-      - AS_PROTO_VERSION="0.2.2"
+      - AS_PROTO_VERSION="0.3.3"
 
 install:
   - source ci/install.sh

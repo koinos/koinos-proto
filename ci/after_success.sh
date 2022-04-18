@@ -223,8 +223,8 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    pushd koinos-proto-as
 
-   mkdir -p koinos
-   rsync -rvm --include "*.ts" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/as/koinos/ ./koinos
+   mkdir -p assembly/koinos
+   rsync -rvm --include "*.ts" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/as/koinos/ ./assembly/koinos
 
    git add .
 

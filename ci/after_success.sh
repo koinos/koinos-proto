@@ -226,6 +226,8 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    mkdir -p koinos
    rsync -rvm --include "*.ts" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/as/koinos/ ./koinos
 
+   ./generate_index.sh
+
    git add .
 
    if ! git diff --cached --quiet --exit-code; then

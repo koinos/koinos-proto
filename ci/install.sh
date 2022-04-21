@@ -29,3 +29,4 @@ nvm usm $NODE_VERSION
 node --version
 
 yarn add --dev @roaminroe/as-proto-gen@$AS_PROTO_VERSION
+yarn global add @jsdevtools/version-bump-prompt

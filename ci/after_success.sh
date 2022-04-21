@@ -228,12 +228,13 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    ./generate_index.sh
 
-   # Bumps the npm patch version
-   bump patch
-
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
+      # Bumps the npm patch version
+      bump patch
+      git add .
+
       if [ "$TRAVIS_BRANCH" != "master" ]; then
          git checkout -b $TRAVIS_BRANCH
       fi

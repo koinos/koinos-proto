@@ -29,7 +29,7 @@ enum system_call_id {
    get_account_nonce = 107;
    verify_account_nonce = 108;
    set_account_nonce = 109;
-   require_system_authority = 110;
+   check_system_authority = 110;
 
    // Resource Subsystem
    get_account_rc = 201;
@@ -63,5 +63,5 @@ enum system_call_id {
    exit_contract = 605;
    get_contract_id = 606;
    get_caller = 607;
-   require_authority = 608;
+   check_authority = 608;
 }

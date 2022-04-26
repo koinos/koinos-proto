@@ -71,6 +71,12 @@ message post_transaction_callback_arguments {}
 
 message post_transaction_callback_result {}
 
+message get_chain_id_arguments {}
+
+message get_chain_id_result {
+   bytes value = 1;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // System Helpers                                                            //
 ///////////////////////////////////////////////////////////////////////////////

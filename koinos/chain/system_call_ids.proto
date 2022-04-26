@@ -18,6 +18,7 @@ enum system_call_id {
    post_block_callback = 9;
    pre_transaction_callback = 10;
    post_transaction_callback = 11;
+   get_chain_id = 12;
 
    // System Helpers
    process_block_signature = 101;

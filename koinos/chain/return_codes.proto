@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package koinos.chain;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
+
+enum return_code {
+   success = 0;
+   failure = 1;
+
+   insufficient_return_buffer = 3;
+   unknown_system_call = 4;
+   invalid_contract = 5;
+   forbidden_override = 6;
+   unknown_exit_code = 7;
+   insufficient_privileges = 8;
+   unknown_hash_code = 9;
+   empty_block_header = 10;
+   transaction_root_mismatch = 11;
+   operation_root_mismatch = 12;
+   invalid_block_signature = 13;
+   invalid_transaction_signature = 14;
+   invalid_signature = 15;
+   authorization_failed = 16;
+   unimplemented_feature = 17;
+   thunk_not_found = 18;
+   thunk_not_enabled = 19;
+   read_only_context = 20;
+   transaction_reverted = 21;
+   invalid_dsa = 22;
+   invalid_nonce = 23;
+   block_id_mismatch = 24;
+   transaction_id_mismatch = 25;
+   chain_id_mismatch = 26;
+   hash_code_mismatch = 27;
+   merkle_hash_mismatch = 28;
+   invalid_argument = 29;
+   callback_failure = 30;
+}

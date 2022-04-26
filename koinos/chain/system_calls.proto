@@ -24,7 +24,7 @@ message apply_block_arguments {
 }
 
 message apply_block_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message apply_transaction_arguments {
@@ -32,7 +32,7 @@ message apply_transaction_arguments {
 }
 
 message apply_transaction_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message apply_upload_contract_operation_arguments {
@@ -40,7 +40,7 @@ message apply_upload_contract_operation_arguments {
 }
 
 message apply_upload_contract_operation_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message apply_call_contract_operation_arguments {
@@ -48,7 +48,7 @@ message apply_call_contract_operation_arguments {
 }
 
 message apply_call_contract_operation_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message apply_set_system_call_operation_arguments {
@@ -56,7 +56,7 @@ message apply_set_system_call_operation_arguments {
 }
 
 message apply_set_system_call_operation_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message apply_set_system_contract_operation_arguments {
@@ -64,31 +64,31 @@ message apply_set_system_contract_operation_arguments {
 }
 
 message apply_set_system_contract_operation_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message pre_block_callback_arguments {}
 
 message pre_block_callback_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message post_block_callback_arguments {}
 
 message post_block_callback_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message pre_transaction_callback_arguments {}
 
 message pre_transaction_callback_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 message post_transaction_callback_arguments {}
 
 message post_transaction_callback_result {
-   bool value  = 1;
+   uint32 value  = 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ message process_block_signature_arguments {
 }
 
 message process_block_signature_result {
-   bool value = 1;
+   uint32 value = 1;
 }
 
 message get_transaction_arguments {}

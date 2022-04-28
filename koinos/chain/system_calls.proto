@@ -24,7 +24,7 @@ message apply_block_arguments {
 }
 
 message apply_block_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message apply_transaction_arguments {
@@ -32,7 +32,7 @@ message apply_transaction_arguments {
 }
 
 message apply_transaction_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message apply_upload_contract_operation_arguments {
@@ -40,7 +40,7 @@ message apply_upload_contract_operation_arguments {
 }
 
 message apply_upload_contract_operation_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message apply_call_contract_operation_arguments {
@@ -48,7 +48,7 @@ message apply_call_contract_operation_arguments {
 }
 
 message apply_call_contract_operation_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message apply_set_system_call_operation_arguments {
@@ -56,7 +56,7 @@ message apply_set_system_call_operation_arguments {
 }
 
 message apply_set_system_call_operation_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message apply_set_system_contract_operation_arguments {
@@ -64,31 +64,31 @@ message apply_set_system_contract_operation_arguments {
 }
 
 message apply_set_system_contract_operation_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message pre_block_callback_arguments {}
 
 message pre_block_callback_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message post_block_callback_arguments {}
 
 message post_block_callback_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message pre_transaction_callback_arguments {}
 
 message pre_transaction_callback_result {
-   result value  = 1;
+   result value = 1;
 }
 
 message post_transaction_callback_arguments {}
 
 message post_transaction_callback_result {
-   result value  = 1;
+   result value = 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -174,7 +174,7 @@ message check_system_authority_arguments {
 }
 
 message check_system_authority_result {
-   bool value  = 1;
+   bool value = 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -390,5 +390,5 @@ message check_authority_arguments {
 }
 
 message check_authority_result {
-   bool value  = 1;
+   bool value = 1;
 }

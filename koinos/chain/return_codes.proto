@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package koinos.chain;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
-
-enum return_code {
-   success = 0;
-   failure = 1;
-}

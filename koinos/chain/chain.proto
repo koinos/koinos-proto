@@ -6,6 +6,11 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 import "koinos/options.proto";
 import "koinos/common.proto";
 
+message result {
+   int32 errno = 1;
+   bytes value = 2;
+}
+
 message object_space {
    bool system = 1;
    bytes zone = 2;

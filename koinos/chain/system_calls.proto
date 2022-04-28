@@ -24,7 +24,7 @@ message apply_block_arguments {
 }
 
 message apply_block_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message apply_transaction_arguments {
@@ -32,7 +32,7 @@ message apply_transaction_arguments {
 }
 
 message apply_transaction_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message apply_upload_contract_operation_arguments {
@@ -40,7 +40,7 @@ message apply_upload_contract_operation_arguments {
 }
 
 message apply_upload_contract_operation_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message apply_call_contract_operation_arguments {
@@ -48,7 +48,7 @@ message apply_call_contract_operation_arguments {
 }
 
 message apply_call_contract_operation_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message apply_set_system_call_operation_arguments {
@@ -56,7 +56,7 @@ message apply_set_system_call_operation_arguments {
 }
 
 message apply_set_system_call_operation_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message apply_set_system_contract_operation_arguments {
@@ -64,31 +64,31 @@ message apply_set_system_contract_operation_arguments {
 }
 
 message apply_set_system_contract_operation_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message pre_block_callback_arguments {}
 
 message pre_block_callback_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message post_block_callback_arguments {}
 
 message post_block_callback_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message pre_transaction_callback_arguments {}
 
 message pre_transaction_callback_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 message post_transaction_callback_arguments {}
 
 message post_transaction_callback_result {
-   uint32 value  = 1;
+   result value  = 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ message process_block_signature_arguments {
 }
 
 message process_block_signature_result {
-   uint32 value = 1;
+   bool value = 1;
 }
 
 message get_transaction_arguments {}
@@ -344,14 +344,14 @@ message verify_vrf_proof_result {
 // Contract Management                                                       //
 ///////////////////////////////////////////////////////////////////////////////
 
-message call_contract_arguments {
+message call_arguments {
    bytes contract_id = 1 [(btype) = CONTRACT_ID];
    uint32 entry_point = 2;
    bytes args = 3;
 }
 
-message call_contract_result {
-   bytes value = 1;
+message call_result {
+   result value = 1;
 }
 
 message get_entry_point_arguments {}
@@ -360,23 +360,17 @@ message get_entry_point_result {
    uint32 value = 1;
 }
 
-message get_contract_arguments_arguments {}
+message get_arguments_arguments {}
 
-message get_contract_arguments_result {
+message get_arguments_result {
    bytes value = 1;
 }
 
-message set_contract_result_arguments {
-   bytes value = 1;
+message exit_arguments {
+   result retval = 1;
 }
 
-message set_contract_result_result {}
-
-message exit_contract_arguments {
-   uint32 exit_code = 1;
-}
-
-message exit_contract_result {}
+message exit_result {}
 
 message get_contract_id_arguments {}
 

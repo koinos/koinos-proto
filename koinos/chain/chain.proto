@@ -7,7 +7,7 @@ import "koinos/options.proto";
 import "koinos/common.proto";
 
 message result {
-   int32 errno = 1;
+   int32 code = 1;
    bytes value = 2;
 }
 

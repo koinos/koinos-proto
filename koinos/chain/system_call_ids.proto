@@ -62,5 +62,5 @@ enum system_call_id {
    exit = 604;
    get_contract_id = 605;
    get_caller = 606;
-   check_authority = 609;
+   check_authority = 607;
 }

@@ -23,53 +23,73 @@ message apply_block_arguments {
    protocol.block block = 1;
 }
 
-message apply_block_result {}
+message apply_block_result {
+   result value = 1;
+}
 
 message apply_transaction_arguments {
    protocol.transaction transaction = 1;
 }
 
-message apply_transaction_result {}
+message apply_transaction_result {
+   result value = 1;
+}
 
 message apply_upload_contract_operation_arguments {
    protocol.upload_contract_operation op = 1;
 }
 
-message apply_upload_contract_operation_result {}
+message apply_upload_contract_operation_result {
+   result value = 1;
+}
 
 message apply_call_contract_operation_arguments {
    protocol.call_contract_operation op = 1;
 }
 
-message apply_call_contract_operation_result {}
+message apply_call_contract_operation_result {
+   result value = 1;
+}
 
 message apply_set_system_call_operation_arguments {
    protocol.set_system_call_operation op = 1;
 }
 
-message apply_set_system_call_operation_result {}
+message apply_set_system_call_operation_result {
+   result value = 1;
+}
 
 message apply_set_system_contract_operation_arguments {
    protocol.set_system_contract_operation op = 1;
 }
 
-message apply_set_system_contract_operation_result {}
+message apply_set_system_contract_operation_result {
+   result value = 1;
+}
 
 message pre_block_callback_arguments {}
 
-message pre_block_callback_result {}
+message pre_block_callback_result {
+   result value = 1;
+}
 
 message post_block_callback_arguments {}
 
-message post_block_callback_result {}
+message post_block_callback_result {
+   result value = 1;
+}
 
 message pre_transaction_callback_arguments {}
 
-message pre_transaction_callback_result {}
+message pre_transaction_callback_result {
+   result value = 1;
+}
 
 message post_transaction_callback_arguments {}
 
-message post_transaction_callback_result {}
+message post_transaction_callback_result {
+   result value = 1;
+}
 
 message get_chain_id_arguments {}
 
@@ -155,11 +175,13 @@ message set_account_nonce_arguments {
 
 message set_account_nonce_result {}
 
-message require_system_authority_arguments {
+message check_system_authority_arguments {
    system_authorization_type type = 1;
 }
 
-message require_system_authority_result {}
+message check_system_authority_result {
+   bool value = 1;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Resource Subsystem                                                        //
@@ -208,9 +230,7 @@ message put_object_arguments {
    bytes obj = 3;
 }
 
-message put_object_result {
-   int32 value = 1;
-}
+message put_object_result {}
 
 message remove_object_arguments {
    object_space space = 1;
@@ -330,14 +350,14 @@ message verify_vrf_proof_result {
 // Contract Management                                                       //
 ///////////////////////////////////////////////////////////////////////////////
 
-message call_contract_arguments {
+message call_arguments {
    bytes contract_id = 1 [(btype) = CONTRACT_ID];
    uint32 entry_point = 2;
    bytes args = 3;
 }
 
-message call_contract_result {
-   bytes value = 1;
+message call_result {
+   result value = 1;
 }
 
 message get_entry_point_arguments {}
@@ -346,23 +366,17 @@ message get_entry_point_result {
    uint32 value = 1;
 }
 
-message get_contract_arguments_arguments {}
+message get_arguments_arguments {}
 
-message get_contract_arguments_result {
+message get_arguments_result {
    bytes value = 1;
 }
 
-message set_contract_result_arguments {
-   bytes value = 1;
+message exit_arguments {
+   result retval = 1;
 }
 
-message set_contract_result_result {}
-
-message exit_contract_arguments {
-   uint32 exit_code = 1;
-}
-
-message exit_contract_result {}
+message exit_result {}
 
 message get_contract_id_arguments {}
 
@@ -376,9 +390,11 @@ message get_caller_result {
    caller_data value = 1;
 }
 
-message require_authority_arguments {
+message check_authority_arguments {
    authorization_type type = 1;
    bytes account = 2 [(btype) = ADDRESS];
 }
 
-message require_authority_result {}
+message check_authority_result {
+   bool value = 1;
+}

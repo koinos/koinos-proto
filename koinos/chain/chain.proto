@@ -11,6 +11,10 @@ message result {
    bytes value = 2;
 }
 
+message error_info {
+   string message = 1;
+}
+
 message object_space {
    bool system = 1;
    bytes zone = 2;

@@ -46,6 +46,11 @@ message caller_data {
    privilege caller_privilege = 2;
 }
 
+message argument_data {
+   uint32 entry_point = 1;
+   bytes arguments = 2;
+}
+
 message resource_limit_data {
    uint64 disk_storage_limit = 1 [jstype = JS_STRING];
    uint64 disk_storage_cost = 2 [jstype = JS_STRING];

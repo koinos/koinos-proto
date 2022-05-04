@@ -342,16 +342,10 @@ message call_result {
    bytes value = 1;
 }
 
-message get_entry_point_arguments {}
-
-message get_entry_point_result {
-   uint32 value = 1;
-}
-
 message get_arguments_arguments {}
 
 message get_arguments_result {
-   bytes value = 1;
+   argument_data value = 1;
 }
 
 message exit_arguments {

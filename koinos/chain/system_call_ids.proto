@@ -58,10 +58,9 @@ enum system_call_id {
 
    // Contract Management
    call = 601;
-   get_entry_point = 602;
+   exit = 602;
    get_arguments = 603;
-   exit = 604;
-   get_contract_id = 605;
-   get_caller = 606;
-   check_authority = 607;
+   get_contract_id = 604;
+   get_caller = 605;
+   check_authority = 606;
 }

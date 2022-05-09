@@ -8,7 +8,6 @@ mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as
 protobuf/bin/protoc --experimental_allow_proto3_optional \
    --cpp_out=build/cpp/ \
    --go_out=build/go/ \
-   --js_out=library=koinos_proto,one_output_file_per_input_file,binary:build/js \
    --python_out=build/python \
    --descriptor_set_out=build/koinos_descriptors.pb \
    --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen \
@@ -26,3 +25,7 @@ pushd EmbeddedProto
    `find ../koinos -name '*.proto'`
 
 popd
+
+yarn pbjs  --keep-case --target static-module -o build/js/index.js `find ./koinos -name '*.proto'` `find ./google -name '*.proto'`
+yarn pbts -o build/js/index.d.ts build/js/index.js
+yarn pbjs  --keep-case --target json -o build/js/index.json `find ./koinos -name '*.proto'` `find ./google -name '*.proto'`

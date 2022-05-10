@@ -19,7 +19,7 @@ enum error_code {
 
     // Failures
     failure                    =   -1;
-    
+
     field_not_found            = -100;
     unknown_hash_code          = -101;
     invalid_dsa                = -102;

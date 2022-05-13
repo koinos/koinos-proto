@@ -24,6 +24,7 @@ message proposal_record {
    bool shall_authorize = 6;
    bool updates_governance = 7;
    proposal_status status = 8;
+   uint64 fee = 9;
 }
 
 message submit_proposal_arguments {

@@ -10,7 +10,7 @@ protobuf/bin/protoc --experimental_allow_proto3_optional \
    --go_out=build/go/ \
    --python_out=build/python \
    --descriptor_set_out=build/koinos_descriptors.pb \
-   --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen \
+   --plugin=protoc-gen-as=./node_modules/as-proto-gen/packages/as-proto-gen/bin/as-proto-gen \
    --as_out=build/as \
    `find koinos -name '*.proto'`
 

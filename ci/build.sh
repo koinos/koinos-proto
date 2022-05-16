@@ -3,7 +3,7 @@
 set -e
 set -x
 
-export PATH=$PATH:`npm root -g`../../bin
+export PATH=$PATH:`npm root -g`/../../bin
 
 mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as
 

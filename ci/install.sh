@@ -29,6 +29,7 @@ nvm usm $NODE_VERSION
 node --version
 
 npm install -g lerna
+export PATH=$PATH:`npm root -g`/../../bin
 
 yarn add --dev protobufjs
 #yarn add --dev @roaminroe/as-proto-gen@$AS_PROTO_VERSION

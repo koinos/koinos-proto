@@ -3,8 +3,6 @@
 set -e
 set -x
 
-export PATH=$PATH:`npm root -g`/../../bin
-
 mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as
 
 protobuf/bin/protoc --experimental_allow_proto3_optional \

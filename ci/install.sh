@@ -31,7 +31,7 @@ node --version
 npm install -g lerna
 
 git clone --recursive https://github.com/koinos/as-proto.git
-pushd as-proto
+pushd as-proto/packages/as-proto-gen
 git checkout default-value
 yarn add @types/node
 yarn add rimraf

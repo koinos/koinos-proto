@@ -41,8 +41,10 @@ yarn build
 yarn link
 popd
 
+which as-proto-gen
+
 yarn add --dev protobufjs
 #yarn add --dev @roaminroe/as-proto-gen@$AS_PROTO_VERSION
 #yarn add --dev as-proto-gen@koinos/as-proto#default-value
-yarn link "@roaminroe/as-proto-gen"
+#yarn link "@roaminroe/as-proto-gen"
 yarn global add @jsdevtools/version-bump-prompt

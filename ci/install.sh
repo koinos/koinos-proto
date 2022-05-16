@@ -28,7 +28,7 @@ nvm usm $NODE_VERSION
 
 node --version
 
-npm install --global lerna
+sudo npm install -g lerna
 
 yarn add --dev protobufjs
 #yarn add --dev @roaminroe/as-proto-gen@$AS_PROTO_VERSION

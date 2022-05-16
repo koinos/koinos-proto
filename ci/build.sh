@@ -3,7 +3,7 @@
 set -e
 set -x
 
-yarn link "@roamin/as-proto-gen"
+yarn link "@roaminroe/as-proto-gen"
 
 mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as
 

@@ -28,6 +28,8 @@ nvm usm $NODE_VERSION
 
 node --version
 
+yarn global add lerna
+
 yarn add --dev protobufjs
 #yarn add --dev @roaminroe/as-proto-gen@$AS_PROTO_VERSION
 yarn add --dev as-proto-gen@koinos/as-proto#default-value

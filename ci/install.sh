@@ -31,7 +31,7 @@ node --version
 npm install -g lerna
 
 git clone --recursive https://github.com/koinos/as-proto.git
-pushd as-proto/packages/as-proto-gen
+pushd as-proto
 git checkout default-value
 yarn add @types/node
 yarn add rimraf
@@ -44,5 +44,5 @@ popd
 yarn add --dev protobufjs
 #yarn add --dev @roaminroe/as-proto-gen@$AS_PROTO_VERSION
 #yarn add --dev as-proto-gen@koinos/as-proto#default-value
-yarn link "@roamin/as-proto-gen"
+yarn link "as-proto-workspace"
 yarn global add @jsdevtools/version-bump-prompt

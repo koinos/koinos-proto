@@ -3,6 +3,8 @@
 set -e
 set -x
 
+yarn link "@roamin/as-proto-gen"
+
 mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as
 
 protobuf/bin/protoc --experimental_allow_proto3_optional \

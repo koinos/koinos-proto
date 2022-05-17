@@ -23,7 +23,7 @@ enum error_code {
     field_not_found              = -100;
     unknown_hash_code            = -101;
     unknown_dsa                  = -102;
-    unknown_system               = -103;
+    unknown_system_call          = -103;
 
     internal_error               = -200;
     read_only_context            = -201;

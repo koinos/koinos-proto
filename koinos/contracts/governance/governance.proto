@@ -13,6 +13,7 @@ enum proposal_status {
    expired = 3;
    applied = 4;
    failed = 5;
+   reverted = 6;
 }
 
 message proposal_record {

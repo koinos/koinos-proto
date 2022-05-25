@@ -12,21 +12,26 @@ enum proposal_status {
    approved = 2;
    expired = 3;
    applied = 4;
+   failed = 5;
+   reverted = 6;
 }
 
 message proposal_record {
-   koinos.protocol.transaction proposal = 1;
-   uint64 vote_start_height = 2;
-   uint64 vote_tally = 3;
-   uint64 vote_threshold = 4;
-   bool shall_authorize = 5;
-   bool updates_governance = 6;
-   proposal_status status = 7;
+   repeated koinos.protocol.operation operations = 1;
+   bytes operation_merkle_root = 2;
+   uint64 vote_start_height = 3;
+   uint64 vote_tally = 4;
+   uint64 vote_threshold = 5;
+   bool shall_authorize = 6;
+   bool updates_governance = 7;
+   proposal_status status = 8;
+   uint64 fee = 9;
 }
 
 message submit_proposal_arguments {
-   koinos.protocol.transaction proposal = 1;
-   uint64 fee = 2;
+   repeated koinos.protocol.operation operations = 1;
+   bytes operation_merkle_root = 2;
+   uint64 fee = 3;
 }
 
 message submit_proposal_result {
@@ -74,6 +79,3 @@ message proposal_vote_event {
    uint64 vote_tally = 2;
    uint64 vote_threshold = 3;
 }
-
-message block_callback_arguments{}
-message block_callback_result{}

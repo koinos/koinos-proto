@@ -28,23 +28,8 @@ nvm usm $NODE_VERSION
 
 node --version
 
-npm install -g lerna
-
-git clone --recursive https://github.com/koinos/as-proto.git
-pushd as-proto/packages/as-proto-gen
-git checkout default-value
-yarn add @types/node
-yarn add rimraf
-yarn add typescript
-yarn install
-yarn build
-yarn link
-popd
-
 which as-proto-gen
 
 yarn add --dev protobufjs
-#yarn add --dev @roaminroe/as-proto-gen@$AS_PROTO_VERSION
-#yarn add --dev as-proto-gen@koinos/as-proto#default-value
-#yarn link "@roaminroe/as-proto-gen"
+yarn add --dev @koinos/as-proto-gen@$AS_PROTO_VERSION
 yarn global add @jsdevtools/version-bump-prompt

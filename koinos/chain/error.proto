@@ -9,6 +9,7 @@ enum error_code {
     // Reversions
     reversion                    =    1;
 
+    internal_error               =  100;
     system_authorization_failure =  101;
     invalid_contract             =  102;
     insufficient_privileges      =  103;
@@ -26,12 +27,10 @@ enum error_code {
     unknown_dsa                  = -102;
     unknown_system_call          = -103;
 
-    internal_error               = -200;
-    unexpected_access            = -201;
-    authorization_failure        = -202;
-    invalid_nonce                = -203;
-    invalid_signature            = -204;
-    malformed_block              = -205;
-    malformed_transaction        = -206;
-    block_resource_failure       = -207;
+    authorization_failure        = -200;
+    invalid_nonce                = -201;
+    invalid_signature            = -202;
+    malformed_block              = -203;
+    malformed_transaction        = -204;
+    block_resource_failure       = -205;
 }

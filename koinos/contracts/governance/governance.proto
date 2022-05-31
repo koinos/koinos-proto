@@ -34,9 +34,7 @@ message submit_proposal_arguments {
    uint64 fee = 3;
 }
 
-message submit_proposal_result {
-   bool value = 1;
-}
+message submit_proposal_result {}
 
 message get_proposal_by_id_arguments {
    bytes proposal_id = 1 [(btype) = TRANSACTION_ID];

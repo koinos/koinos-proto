@@ -16,6 +16,7 @@ enum error_code {
     insufficient_return_buffer   =  105;
     unknown_thunk                =  106;
     unknown_operation            =  107;
+    read_only_context            =  108;
 
     // Failures
     failure                      =   -1;
@@ -26,12 +27,11 @@ enum error_code {
     unknown_system_call          = -103;
 
     internal_error               = -200;
-    read_only_context            = -201;
-    unexpected_access            = -202;
-    authorization_failure        = -203;
-    invalid_nonce                = -204;
-    invalid_signature            = -205;
-    malformed_block              = -206;
-    malformed_transaction        = -207;
-    block_resource_failure       = -208;
+    unexpected_access            = -201;
+    authorization_failure        = -202;
+    invalid_nonce                = -203;
+    invalid_signature            = -204;
+    malformed_block              = -205;
+    malformed_transaction        = -206;
+    block_resource_failure       = -207;
 }

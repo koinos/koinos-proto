@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package koinos.chain;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
+
+enum error_code {
+    success                      =    0;
+
+    // Reversions
+    reversion                    =    1;
+
+    internal_error               =  100;
+    system_authorization_failure =  101;
+    invalid_contract             =  102;
+    insufficient_privileges      =  103;
+    insufficient_rc              =  104;
+    insufficient_return_buffer   =  105;
+    unknown_thunk                =  106;
+    unknown_operation            =  107;
+    read_only_context            =  108;
+
+    // Failures
+    failure                      =   -1;
+
+    field_not_found              = -100;
+    unknown_hash_code            = -101;
+    unknown_dsa                  = -102;
+    unknown_system_call          = -103;
+
+    authorization_failure        = -200;
+    invalid_nonce                = -201;
+    invalid_signature            = -202;
+    malformed_block              = -203;
+    malformed_transaction        = -204;
+    block_resource_failure       = -205;
+}

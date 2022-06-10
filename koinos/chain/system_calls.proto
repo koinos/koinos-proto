@@ -69,9 +69,7 @@ message pre_transaction_callback_result {}
 
 message post_transaction_callback_arguments {}
 
-message post_transaction_callback_result {
-   result value = 1;
-}
+message post_transaction_callback_result {}
 
 message get_chain_id_arguments {}
 
@@ -339,7 +337,7 @@ message call_arguments {
 }
 
 message call_result {
-   bytes value = 1;
+   result value = 1;
 }
 
 message get_arguments_arguments {}
@@ -349,7 +347,8 @@ message get_arguments_result {
 }
 
 message exit_arguments {
-   result retval = 1;
+   int32 code = 1;
+   result res = 2;
 }
 
 message exit_result {}

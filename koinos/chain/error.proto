@@ -26,6 +26,7 @@ enum error_code {
     unknown_hash_code            = -101;
     unknown_dsa                  = -102;
     unknown_system_call          = -103;
+    no_operation                 = -104;
 
     authorization_failure        = -200;
     invalid_nonce                = -201;

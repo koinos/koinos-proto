@@ -163,6 +163,12 @@ message check_system_authority_result {
    bool value = 1;
 }
 
+message get_operation_arguments {}
+
+message get_operation_result {
+   protocol.operation value = 1;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Resource Subsystem                                                        //
 ///////////////////////////////////////////////////////////////////////////////

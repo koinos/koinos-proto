@@ -343,7 +343,7 @@ message call_arguments {
 }
 
 message call_result {
-   result value = 1;
+   bytes value = 1;
 }
 
 message get_arguments_arguments {}

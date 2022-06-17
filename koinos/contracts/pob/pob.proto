@@ -3,6 +3,8 @@ syntax = "proto3";
 package koinos.contracts.pob;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/pob";
 
+import "koinos/options.proto";
+
 message address_record {
    bytes address = 1 [(btype) = ADDRESS];
 }

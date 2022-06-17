@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package koinos.contracts.pob;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/pob";
+
+message address_record {
+   bytes address = 1 [(btype) = ADDRESS];
+}
+
+message register_public_key_arguments {
+   bytes public_key = 1 [(btype) = BASE64];
+}
+
+message register_public_key_result {}
+
+message burn_arguments {
+   uint64 token_amount = 1 [jstype = JS_STRING];
+   bytes burn_address = 2 [(btype) = ADDRESS];
+   bytes vhp_address = 3 [(btype) = ADDRESS];
+}
+
+message burn_result {
+   uint64 vhp_minted = 1 [jstype = JS_STRING];
+}
+
+message register_public_key_event {
+   bytes public_key = 1 [(btype) = BASE64];
+   bytes address = 2 [(btype) = ADDRESS];
+}
+
+message burn_event {
+   uint64 token_amount = 1 [jstype = JS_STRING];
+   bytes burn_address = 2 [(btype) = ADDRESS];
+   bytes vhp_address = 3 [(btype) = ADDRESS];
+}

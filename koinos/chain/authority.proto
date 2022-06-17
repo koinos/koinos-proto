@@ -11,14 +11,16 @@ enum authorization_type {
    contract_upload = 2;
 }
 
-message call_target {
+message call_data {
    bytes contract_id = 1 [(btype) = ADDRESS];
    uint32 entry_point = 2;
+   bytes caller = 3;
+   bytes data = 4;
 }
 
 message authorize_arguments {
    authorization_type type = 1;
-   optional call_target call = 2;
+   optional call_data call = 2;
 }
 
 message authorize_result {

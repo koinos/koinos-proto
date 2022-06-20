@@ -16,6 +16,17 @@ message metadata {
    uint64 target_block_interval = 4 [jstype = JS_STRING];
 }
 
+message signature_data {
+    bytes vrf_proof = 1 [(btype) = BASE64];
+    bytes vrf_hash = 2 [(btype) = BASE64];
+    bytes signature = 3 [(btype) = BASE64];
+}
+
+message vrf_payload {
+    bytes previous_seed = 1 [(btype) = BASE64];
+    uint64 previous_time = 2 [jstype = JS_STRING];
+}
+
 message register_public_key_arguments {
    bytes public_key = 1 [(btype) = BASE64];
 }

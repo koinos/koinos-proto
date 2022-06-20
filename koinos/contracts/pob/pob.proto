@@ -30,15 +30,10 @@ message burn_arguments {
 
 message burn_result {}
 
-message get_metadata_arguments {
-    metadata metadata = 1;
-}
+message get_metadata_arguments {}
 
 message get_metadata_result {
-   bytes seed = 1 [(btype) = BASE64];
-   bytes difficulty = 2 [(btype) = BASE64];
-   uint64 last_block_time = 3 [jstype = JS_STRING];
-   uint64 target_block_interval = 4 [jstype = JS_STRING];
+   metadata metadata = 1;
 }
 
 message register_public_key_event {

@@ -21,17 +21,18 @@ message burn_arguments {
    bytes vhp_address = 3 [(btype) = ADDRESS];
 }
 
-message burn_result {
-   uint64 vhp_minted = 1 [jstype = JS_STRING];
+message burn_result {}
+
+message get_metadata_arguments {}
+
+message get_metadata_result {
+   bytes seed = 1;
+   bytes difficulty = 2;
+   uint64 last_block_time = 3 [jstype = JS_STRING];
+   uint64 target_block_interval = 4 [jstype = JS_STRING];
 }
 
 message register_public_key_event {
    bytes public_key = 1 [(btype) = BASE64];
    bytes address = 2 [(btype) = ADDRESS];
-}
-
-message burn_event {
-   uint64 token_amount = 1 [jstype = JS_STRING];
-   bytes burn_address = 2 [(btype) = ADDRESS];
-   bytes vhp_address = 3 [(btype) = ADDRESS];
 }

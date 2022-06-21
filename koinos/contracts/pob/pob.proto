@@ -5,8 +5,8 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/pob"
 
 import "koinos/options.proto";
 
-message address_record {
-   bytes address = 1 [(btype) = ADDRESS];
+message public_key_record {
+   bytes public_key = 1 [(btype) = BASE64];
 }
 
 message metadata {
@@ -23,8 +23,8 @@ message signature_data {
 }
 
 message vrf_payload {
-    bytes previous_seed = 1 [(btype) = BASE64];
-    uint64 previous_time = 2 [jstype = JS_STRING];
+    bytes seed = 1 [(btype) = BASE64];
+    uint64 block_time = 2 [jstype = JS_STRING];
 }
 
 message register_public_key_arguments {

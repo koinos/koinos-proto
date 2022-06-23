@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package koinos.contracts.pob;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/pob";
+
+import "koinos/options.proto";
+
+message public_key_record {
+   bytes public_key = 1 [(btype) = BASE64];
+}
+
+message metadata {
+   bytes seed = 1 [(btype) = BASE64];
+   bytes difficulty = 2 [(btype) = BASE64];
+   uint64 last_block_time = 3 [jstype = JS_STRING];
+   uint64 target_block_interval = 4 [jstype = JS_STRING];
+}
+
+message signature_data {
+    bytes vrf_proof = 1 [(btype) = BASE64];
+    bytes vrf_hash = 2 [(btype) = BASE64];
+    bytes signature = 3 [(btype) = BASE64];
+}
+
+message vrf_payload {
+    bytes seed = 1 [(btype) = BASE64];
+    uint64 block_time = 2 [jstype = JS_STRING];
+}
+
+message register_public_key_arguments {
+   bytes public_key = 1 [(btype) = BASE64];
+}
+
+message register_public_key_result {}
+
+message burn_arguments {
+   uint64 token_amount = 1 [jstype = JS_STRING];
+   bytes burn_address = 2 [(btype) = ADDRESS];
+   bytes vhp_address = 3 [(btype) = ADDRESS];
+}
+
+message burn_result {}
+
+message get_metadata_arguments {}
+
+message get_metadata_result {
+   metadata metadata = 1;
+}
+
+message register_public_key_event {
+   bytes public_key = 1 [(btype) = BASE64];
+   bytes address = 2 [(btype) = ADDRESS];
+}

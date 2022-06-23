@@ -374,6 +374,7 @@ message get_caller_result {
 message check_authority_arguments {
    authorization_type type = 1;
    bytes account = 2 [(btype) = ADDRESS];
+   bytes data = 3;
 }
 
 message check_authority_result {

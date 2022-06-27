@@ -4,7 +4,7 @@ package koinos.chain;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
 enum system_call_id {
-   reserved_id = 0;
+   nop = 0;
 
    // General Blockchain Management
    get_head_info = 1;

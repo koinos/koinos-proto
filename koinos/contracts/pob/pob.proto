@@ -44,7 +44,7 @@ message burn_result {}
 message get_metadata_arguments {}
 
 message get_metadata_result {
-   metadata metadata = 1;
+   metadata value = 1;
 }
 
 message register_public_key_event {

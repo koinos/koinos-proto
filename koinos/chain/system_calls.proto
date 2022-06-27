@@ -9,6 +9,10 @@ import "koinos/chain/authority.proto";
 import "koinos/chain/chain.proto";
 import "koinos/chain/value.proto";
 
+message nop_arguments {}
+
+message nop_result {}
+
 ///////////////////////////////////////////////////////////////////////////////
 // General Blockchain Management                                             //
 ///////////////////////////////////////////////////////////////////////////////

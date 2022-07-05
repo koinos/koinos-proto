@@ -28,6 +28,7 @@ message block_accepted {
    protocol.block block = 1;
    protocol.block_receipt receipt = 2;
    bool live = 3;
+   bool head = 4;
 }
 
 message block_irreversible {

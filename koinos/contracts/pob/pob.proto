@@ -5,6 +5,12 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/pob"
 
 import "koinos/options.proto";
 
+message consensus_parameters {
+   uint64 target_annual_inflation_rate = 1 [jstype = JS_STRING];
+   uint64 target_burn_percent = 2 [jstype = JS_STRING];
+   uint64 target_block_interval = 3 [jstype = JS_STRING];
+}
+
 message public_key_record {
    bytes public_key = 1 [(btype) = BASE64];
 }
@@ -13,7 +19,6 @@ message metadata {
    bytes seed = 1 [(btype) = BASE64];
    bytes difficulty = 2 [(btype) = BASE64];
    uint64 last_block_time = 3 [jstype = JS_STRING];
-   uint64 target_block_interval = 4 [jstype = JS_STRING];
 }
 
 message signature_data {
@@ -40,6 +45,12 @@ message burn_arguments {
 }
 
 message burn_result {}
+
+message get_consensus_parameters_arguments {}
+
+message get_consensus_parameters_result {
+   consensus_parameters value = 1;
+}
 
 message get_metadata_arguments {}
 

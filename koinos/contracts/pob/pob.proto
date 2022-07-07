@@ -34,7 +34,8 @@ message vrf_payload {
 }
 
 message register_public_key_arguments {
-   bytes public_key = 1 [(btype) = BASE64];
+   bytes producer = 1 [(btype) = ADDRESS];
+   bytes public_key = 2 [(btype) = BASE64];
 }
 
 message register_public_key_result {}

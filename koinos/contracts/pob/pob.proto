@@ -6,9 +6,10 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/pob"
 import "koinos/options.proto";
 
 message consensus_parameters {
-   uint64 target_annual_inflation_rate = 1 [jstype = JS_STRING];
-   uint64 target_burn_percent = 2 [jstype = JS_STRING];
-   uint64 target_block_interval = 3 [jstype = JS_STRING];
+   uint32 target_annual_inflation_rate = 1;
+   uint32 target_burn_percent = 2;
+   uint32 target_block_interval = 3;
+   uint32 quantum_length = 4;
 }
 
 message public_key_record {

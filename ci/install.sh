@@ -29,5 +29,6 @@ nvm usm $NODE_VERSION
 node --version
 
 yarn add --dev protobufjs
+yarn add --dev protobufjs-cli
 yarn add --dev @koinos/as-proto-gen@$AS_PROTO_VERSION
 yarn global add @jsdevtools/version-bump-prompt

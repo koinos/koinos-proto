@@ -26,6 +26,6 @@ pushd EmbeddedProto
 
 popd
 
-yarn pbjs  --keep-case --target static-module -o build/js/index.js `find ./koinos -name '*.proto'` `find ./google -name '*.proto'`
+yarn protobufjs-cli  --keep-case --target static-module -o build/js/index.js `find ./koinos -name '*.proto'` `find ./google -name '*.proto'`
 yarn pbts -o build/js/index.d.ts build/js/index.js
-yarn pbjs  --keep-case --target json -o build/js/index.json `find ./koinos -name '*.proto'` `find ./google -name '*.proto'`
+yarn protobufjs-cli  --keep-case --target json -o build/js/index.json `find ./koinos -name '*.proto'` `find ./google -name '*.proto'`

@@ -19,6 +19,7 @@ message submit_block_response {
 
 message submit_transaction_request {
    protocol.transaction transaction = 1;
+   bool broadcast = 2;
 }
 
 message submit_transaction_response {

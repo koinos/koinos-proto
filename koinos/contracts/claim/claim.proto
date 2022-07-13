@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package koinos.contracts.claim;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/claim";
+
+import "koinos/options.proto";
+
+message claim_status {
+    uint64 token_amount = 1 [jstype = JS_STRING];
+    bool claimed = 2;
+}
+
+message claim_arguments {
+   bytes eth_address = 1 [(btype) = HEX];
+}
+
+message claim_result {}

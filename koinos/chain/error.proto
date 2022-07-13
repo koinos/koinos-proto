@@ -46,4 +46,5 @@ enum error_code {
     unexpected_receipt           = -1007;
     rpc_failure                  = -1008;
     pending_state_error          = -1009;
+    timestamp_out_of_bounds      = -1010;
 }

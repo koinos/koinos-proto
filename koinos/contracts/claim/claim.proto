@@ -12,6 +12,7 @@ message claim_status {
 
 message claim_arguments {
    bytes eth_address = 1 [(btype) = HEX];
+   bytes koin_address = 2 [(btype) = ADDRESS];
 }
 
 message claim_result {}

@@ -64,3 +64,11 @@ message register_public_key_event {
    bytes public_key = 1 [(btype) = BASE64];
    bytes address = 2 [(btype) = ADDRESS];
 }
+
+message get_public_key_arguments {
+   bytes producer = 1 [(btype) = ADDRESS];
+}
+
+message get_public_key_result {
+   bytes value = 1 [(btype) = BASE64];
+}

@@ -6,9 +6,9 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/clai
 import "koinos/options.proto";
 
 message claim_info {
-    uint32 eth_accounts = 1;
+    uint32 total_eth_accounts = 1;
     uint32 eth_accounts_claimed = 2;
-    uint64 koin = 3;
+    uint64 total_koin = 3;
     uint64 koin_claimed = 4;
 }
 

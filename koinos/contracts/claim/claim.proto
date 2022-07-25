@@ -24,8 +24,8 @@ message claim_arguments {
 
 message claim_result {}
 
-message info_arguments {}
+message get_info_arguments {}
 
-message info_result {
-    claim_info value;
+message get_info_result {
+    claim_info value = 1;
 }

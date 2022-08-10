@@ -32,7 +32,7 @@ message get_info_result {
 }
 
 message check_claim_arguments {
-    bytes eth_address = 1 [(byte) = HEX];
+    bytes eth_address = 1 [(btype) = HEX];
 }
 
 message check_claim_result {

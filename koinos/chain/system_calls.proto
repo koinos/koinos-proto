@@ -101,11 +101,6 @@ message get_transaction_result {
    protocol.transaction value = 1;
 }
 
-enum system_authorization_type {
-   set_system_contract = 0;
-   set_system_call = 1;
-}
-
 message get_transaction_field_arguments {
    string field = 1;
 }
@@ -159,9 +154,7 @@ message set_account_nonce_arguments {
 
 message set_account_nonce_result {}
 
-message check_system_authority_arguments {
-   system_authorization_type type = 1;
-}
+message check_system_authority_arguments {}
 
 message check_system_authority_result {
    bool value = 1;

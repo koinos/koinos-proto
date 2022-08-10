@@ -30,3 +30,11 @@ message get_info_arguments {}
 message get_info_result {
     claim_info value = 1;
 }
+
+message check_claim_arguments {
+    bytes eth_address = 1 [(byte) = HEX];
+}
+
+message check_claim_result {
+    claim_status value = 1;
+}

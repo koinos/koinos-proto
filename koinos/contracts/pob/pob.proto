@@ -73,3 +73,9 @@ message get_public_key_arguments {
 message get_public_key_result {
    bytes value = 1 [(btype) = BASE64];
 }
+
+message update_consensus_parameters_arguments {
+   consensus_parameters value = 1;
+}
+
+message update_consensus_parameters_result {}

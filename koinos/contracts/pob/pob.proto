@@ -10,6 +10,7 @@ message consensus_parameters {
    uint32 target_burn_percent = 2;
    uint32 target_block_interval = 3;
    uint32 quantum_length = 4;
+   uint64 minimum_block_time = 5;
 }
 
 message public_key_record {

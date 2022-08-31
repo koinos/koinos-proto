@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package koinos.contracts.vhp;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/vhp";
+
+import "koinos/options.proto";
+
+message effective_balance_of_arguments {
+   bytes owner = 1 [(btype) = ADDRESS];
+}
+
+message effective_balance_of_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message balance_entry {
+   uint64 block_height = 1 [jstype = JS_STRING];
+   uint64 balance = 2 [jstype = JS_STRING];
+}
+
+message effective_balance_object {
+   uint64 current_balance = 1 [jstype = JS_STRING];
+   repeated balance_entry past_balances = 2;
+}

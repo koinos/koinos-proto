@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package koinos.contracts.koin;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/koin";
+
+import "koinos/options.proto";
+
+message mana_balance_object {
+   uint64 balance = 1 [jstype = JS_STRING];
+   uint64 mana = 2 [jstype = JS_STRING];
+   uint64 last_mana_update = 3 [jstype = JS_STRING];
+}

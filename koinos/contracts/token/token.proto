@@ -69,6 +69,11 @@ message mana_balance_object {
    uint64 last_mana_update = 3 [jstype = JS_STRING];
 }
 
+message effective_balance_object {
+   uint64 current_balance = 1 [jstype = JS_STRING];
+   map< uint64, uint64 > past_balances = 2 [jstype = JS_STRING];
+}
+
 message burn_event {
    bytes from = 1 [(btype) = ADDRESS];
    uint64 value = 2 [jstype = JS_STRING];

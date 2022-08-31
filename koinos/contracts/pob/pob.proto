@@ -14,6 +14,7 @@ message consensus_parameters {
 
 message public_key_record {
    bytes public_key = 1 [(btype) = BASE64];
+   uint64 set_block_height = 2 [jstype = JS_STRING];
 }
 
 message metadata {

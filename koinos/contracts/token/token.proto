@@ -37,6 +37,14 @@ message balance_of_result {
    uint64 value = 1 [jstype = JS_STRING];
 }
 
+message effective_balance_of_arguments {
+   bytes owner = 1 [(btype) = ADDRESS];
+}
+
+message effective_balance_of_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
 message transfer_arguments {
    bytes from = 1 [(btype) = ADDRESS];
    bytes to = 2 [(btype) = ADDRESS];
@@ -67,6 +75,11 @@ message mana_balance_object {
    uint64 balance = 1 [jstype = JS_STRING];
    uint64 mana = 2 [jstype = JS_STRING];
    uint64 last_mana_update = 3 [jstype = JS_STRING];
+}
+
+message effective_balance_object {
+   uint64 current_balance = 1 [jstype = JS_STRING];
+   map< uint64, uint64 > past_balances = 2;
 }
 
 message burn_event {

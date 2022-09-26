@@ -29,13 +29,13 @@ message resource_parameters {
    uint64 print_rate_precision = 6 [jstype = JS_STRING];
 }
 
-message set_market_parameters_arguments {
+message set_resource_market_parameters_arguments {
    market_parameters disk_storage = 1;
    market_parameters network_bandwidth = 2;
    market_parameters compute_bandwidth = 3;
 }
 
-message set_market_parameters_result {}
+message set_resource_market_parameters_result {}
 
 message get_resource_markets_arguments {}
 

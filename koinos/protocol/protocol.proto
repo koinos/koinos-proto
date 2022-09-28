@@ -116,4 +116,7 @@ message block_receipt {
    repeated event_data events = 7;
    repeated transaction_receipt transaction_receipts = 8;
    repeated string logs = 9;
+   uint64 disk_storage_charged = 10 [jstype = JS_STRING];
+   uint64 network_bandwidth_charged = 11 [jstype = JS_STRING];
+   uint64 compute_bandwidth_charged = 12 [jstype = JS_STRING];
 }

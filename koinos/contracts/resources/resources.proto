@@ -5,7 +5,6 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/reso
 
 message market {
    uint64 resource_supply = 1 [jstype = JS_STRING];
-   uint64 rc_reserve = 2 [jstype = JS_STRING];
    uint64 block_budget = 3 [jstype = JS_STRING];
    uint64 block_limit = 4 [jstype = JS_STRING];
 }
@@ -16,8 +15,42 @@ message resource_markets {
    market compute_bandwidth = 3;
 }
 
+message market_parameters {
+   uint64 block_budget = 1 [jstype = JS_STRING];
+   uint64 block_limit = 2 [jstype = JS_STRING];
+}
+
+message resource_parameters {
+   uint64 block_interval_ms = 1 [jstype = JS_STRING];
+   uint64 rc_regen_ms = 2 [jstype = JS_STRING];
+   uint64 decay_constant = 3 [jstype = JS_STRING];
+   uint64 one_minus_decay_constant = 4 [jstype = JS_STRING];
+   uint64 print_rate_premium = 5 [jstype = JS_STRING];
+   uint64 print_rate_precision = 6 [jstype = JS_STRING];
+}
+
+message set_resource_markets_parameters_arguments {
+   market_parameters disk_storage = 1;
+   market_parameters network_bandwidth = 2;
+   market_parameters compute_bandwidth = 3;
+}
+
+message set_resource_markets_parameters_result {}
+
 message get_resource_markets_arguments {}
 
 message get_resource_markets_result {
    resource_markets value = 1;
+}
+
+message set_resource_parameters_arguments {
+   resource_parameters params = 1;
+}
+
+message set_resource_parameters_result {}
+
+message get_resource_parameters_arguments {}
+
+message get_resource_parameters_result {
+   resource_parameters value = 1;
 }

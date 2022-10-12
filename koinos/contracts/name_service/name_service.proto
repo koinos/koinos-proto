@@ -31,7 +31,7 @@ message get_name_result {
 
 message set_record_arguments {
    string name = 1;
-   bytes address = 1 [(btype) = ADDRESS];
+   bytes address = 2 [(btype) = ADDRESS];
 }
 
 message set_record_result {}

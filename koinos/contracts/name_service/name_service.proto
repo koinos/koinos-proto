@@ -25,7 +25,7 @@ message get_name_arguments {
    bytes address = 1 [(btype) = ADDRESS];
 }
 
-message get_address_result {
+message get_name_result {
    name_record record = 1;
 }
 

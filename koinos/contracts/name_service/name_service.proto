@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package koinos.contracts.name_service;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/name-service";
+
+import "koinos/options.proto";
+
+message name_record {
+   string name = 1;
+}
+
+message address_record {
+   bytes address = 1 [(btype) = ADDRESS];
+}
+
+message get_address_arguments {
+   string name = 1;
+}
+
+message get_address_result {
+   address_record value = 1;
+}
+
+message get_name_arguments {
+   bytes address = 1 [(btype) = ADDRESS];
+}
+
+message get_name_result {
+   name_record value = 1;
+}
+
+message set_record_arguments {
+   string name = 1;
+   bytes address = 2 [(btype) = ADDRESS];
+}
+
+message set_record_result {}
+
+message record_update_event {
+   string name = 1;
+   bytes address = 2 [(btype) = ADDRESS];
+}

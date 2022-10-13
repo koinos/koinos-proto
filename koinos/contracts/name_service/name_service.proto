@@ -18,7 +18,7 @@ message get_address_arguments {
 }
 
 message get_address_result {
-   address_record record = 1;
+   address_record value = 1;
 }
 
 message get_name_arguments {
@@ -26,7 +26,7 @@ message get_name_arguments {
 }
 
 message get_name_result {
-   name_record record = 1;
+   name_record value = 1;
 }
 
 message set_record_arguments {
@@ -35,3 +35,8 @@ message set_record_arguments {
 }
 
 message set_record_result {}
+
+message record_update_event {
+   string name = 1;
+   bytes address = 2 [(btype) = ADDRESS];
+}

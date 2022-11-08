@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package koinos.account_history;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/account_history";
+
+import "koinos/options.proto";
+
+message account_metadata {
+   uint64 seq_num = 1;
+}
+
+message history_index {
+   bytes address = 1 [(btype) = ADDRESS];
+   uint64 seq_num = 2;
+}
+
+message object_key {
+   oneof key {
+      bytes transaction_id = 1;
+      bytes account_metadata = 2;
+      history_index h_index = 3;
+   }
+}

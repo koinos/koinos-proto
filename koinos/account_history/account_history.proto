@@ -31,3 +31,12 @@ message history_record {
       block_record block = 2;
    }
 }
+
+
+message account_history_entry {
+   uint64 seq_num = 1;
+   oneof record {
+      transaction_record trx = 2;
+      block_record block = 3;
+   }
+}

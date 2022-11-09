@@ -4,6 +4,7 @@ package koinos.account_history;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/account_history";
 
 import "koinos/options.proto";
+import "koinos/protocol/protocol.proto";
 
 message account_metadata {
    uint64 seq_num = 1;

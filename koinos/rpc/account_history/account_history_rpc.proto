@@ -20,7 +20,7 @@ message account_history_entry {
 message get_account_history_request {
    bytes address = 1 [(btype) = ADDRESS];
    uint64 seq_num = 2 [jstype = JS_STRING];
-   uint32 limit = 3 [jstype = JS_STRING];
+   uint64 limit = 3 [jstype = JS_STRING];
    bool ascending = 4;
    bool from_lib = 5;
 }

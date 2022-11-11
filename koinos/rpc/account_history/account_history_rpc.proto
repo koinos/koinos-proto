@@ -26,7 +26,7 @@ message get_account_history_request {
 }
 
 message get_blocks_by_id_response {
-   repeated account_history_entry = 1;
+   repeated account_history_entry values = 1;
 }
 
 message account_history_request {

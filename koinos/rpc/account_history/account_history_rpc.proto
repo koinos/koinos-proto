@@ -25,11 +25,11 @@ message get_account_history_request {
    bool from_lib = 5;
 }
 
-message get_blocks_by_id_response {
+message get_account_history_response {
    repeated account_history_entry values = 1;
 }
 
-message get_account_history_response {
+message account_history_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
       get_account_history_request get_account_history = 2;

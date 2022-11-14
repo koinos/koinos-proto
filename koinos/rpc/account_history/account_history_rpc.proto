@@ -22,7 +22,7 @@ message get_account_history_request {
    optional uint64 seq_num = 2 [jstype = JS_STRING];
    uint64 limit = 3 [jstype = JS_STRING];
    bool ascending = 4;
-   bool from_lib = 5;
+   bool irreversible = 5;
 }
 
 message get_account_history_response {

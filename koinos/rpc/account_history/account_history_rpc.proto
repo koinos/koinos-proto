@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package koinos.rpc.account_history;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/account_history";
+
+import "koinos/account_history/account_history.proto";
+import "koinos/options.proto";
+import "koinos/common.proto";
+import "koinos/protocol/protocol.proto";
+import "koinos/rpc/rpc.proto";
+
+message account_history_entry {
+   uint64 seq_num = 1 [jstype = JS_STRING];
+   oneof record {
+      .koinos.account_history.transaction_record trx = 2;
+      .koinos.account_history.block_record block = 3;
+   }
+}
+
+message get_account_history_request {
+   bytes address = 1 [(btype) = ADDRESS];
+   optional uint64 seq_num = 2 [jstype = JS_STRING];
+   uint64 limit = 3 [jstype = JS_STRING];
+   bool ascending = 4;
+   bool irreversible = 5;
+}
+
+message get_account_history_response {
+   repeated account_history_entry values = 1;
+}
+
+message account_history_request {
+   oneof request {
+      rpc.reserved_rpc reserved = 1;
+      get_account_history_request get_account_history = 2;
+   }
+}
+
+message account_history_response {
+   oneof response {
+      rpc.reserved_rpc reserved = 1;
+      rpc.error_response error = 2;
+      get_account_history_response get_account_history = 3;
+   }
+}

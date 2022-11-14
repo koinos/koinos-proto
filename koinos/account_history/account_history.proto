@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package koinos.account_history;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/account_history";
+
+import "koinos/options.proto";
+import "koinos/protocol/protocol.proto";
+
+message account_metadata {
+   uint64 seq_num = 1;
+}
+
+message history_index {
+   bytes address = 1 [(btype) = ADDRESS];
+   uint64 seq_num = 2;
+}
+
+message transaction_record {
+   protocol.transaction transaction = 1;
+   protocol.transaction_receipt receipt = 2;
+}
+
+message block_record {
+   protocol.block_header header = 1;
+   protocol.block_receipt receipt = 2;
+}
+
+message history_record {
+   oneof record {
+      transaction_record trx = 1;
+      block_record block = 2;
+   }
+}
+
+

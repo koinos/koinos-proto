@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec /koinos-proto-build/EmbeddedProto/venv/bin/python /koinos-proto-build/EmbeddedProto/generator/protoc-gen-eams.py --protoc-plugin

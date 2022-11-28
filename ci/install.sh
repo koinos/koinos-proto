@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-set -x
 
 eval "$(gimme $GO_VERSION)"
 source ~/.gimme/envs/go$GO_VERSION.env

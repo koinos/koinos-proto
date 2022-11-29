@@ -94,7 +94,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git $TRAVIS_BRANCH
    fi
 
-      if ! [ -z "$TRAVIS_TAG" ]; then
+   if ! [ -z "$TRAVIS_TAG" ]; then
       git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
       npm version from-git -m "bump npm version to %s"
       git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git $TRAVIS_BRANCH

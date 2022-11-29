@@ -17,7 +17,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    pushd koinos-proto-cpp
 
    mkdir -p libraries/proto/generated
-   rsync -rvm --include "*.pb.h" --include "*.pb.cc" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
+   rsync -rvm --include "*.pb.h" --include "*.pb.cc" --include "*/" --exclude "*" --exclude ".*/" --delete $TRAVIS_BUILD_DIR/build/cpp/ ./libraries/proto/generated/
 
    git add .
 
@@ -46,7 +46,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    find $TRAVIS_BUILD_DIR/build/go/
 
    mkdir -p koinos
-   rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/go/github.com/koinos/koinos-proto-golang/ ./
+   rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" --exclude ".*/" --delete $TRAVIS_BUILD_DIR/build/go/github.com/koinos/koinos-proto-golang/ ./
 
    git add .
 
@@ -84,7 +84,10 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
-      bump patch
+      if [ "$TRAVIS_BRANCH" != "master" ]; then
+         git checkout -b $TRAVIS_BRANCH
+      fi
+
       git add .
 
       git commit -m "Update for koinos-proto commit $COMMIT_HASH"
@@ -93,7 +96,9 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    if ! [ -z "$TRAVIS_TAG" ]; then
       git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_TAG}
+      npm version from-git -m "bump npm version to %s"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git $TRAVIS_BRANCH
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_TAG}
    fi
 
    popd
@@ -106,13 +111,9 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    mkdir -p koinos
 
-   rsync -rvm --include "*_pb2.py" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/python/ ./
+   rsync -rvm --include "*_pb2.py" --include "*/" --exclude "*" --exclude ".*/" --delete $TRAVIS_BUILD_DIR/build/python/ ./
 
    git add .
-
-   if [ "$TRAVIS_BRANCH" == "master" ]; then
-      npm version patch -git-tag-version false
-   fi
 
    if ! git diff --cached --quiet --exit-code; then
       if [ "$TRAVIS_BRANCH" != "master" ]; then
@@ -141,8 +142,8 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    mkdir -p libraries/koinos/generated
    mkdir -p libraries/koinos/src
 
-   rsync -rvm --include "*.h" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/eams/ ./libraries/proto_embedded/generated/
-   rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/EmbeddedProto/src/ ./libraries/proto_embedded/src/
+   rsync -rvm --include "*.h" --include "*/" --exclude "*" --exclude ".*/" --delete $TRAVIS_BUILD_DIR/build/eams/ ./libraries/proto_embedded/generated/
+   rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" --exclude ".*/" --delete $TRAVIS_BUILD_DIR/EmbeddedProto/src/ ./libraries/proto_embedded/src/
 
    git add .
 
@@ -223,17 +224,13 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    pushd koinos-proto-as
 
    mkdir -p assembly/koinos
-   rsync -rvm --include "*.ts" --include "*/" --exclude "*" --delete $TRAVIS_BUILD_DIR/build/as/koinos/ ./assembly/koinos
+   rsync -rvm --include "*.ts" --include "*/" --exclude "*" --exclude ".*/" --delete $TRAVIS_BUILD_DIR/build/as/koinos/ ./assembly/koinos
 
    ./generate_index.sh
 
    git add .
 
    if ! git diff --cached --quiet --exit-code; then
-      # Bumps the npm patch version
-      bump patch
-      git add .
-
       if [ "$TRAVIS_BRANCH" != "master" ]; then
          git checkout -b $TRAVIS_BRANCH
       fi
@@ -244,6 +241,8 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
    if ! [ -z "$TRAVIS_TAG" ]; then
       git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      npm version from-git -m "bump npm version to %s"
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git $TRAVIS_BRANCH
       git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_TAG}
    fi
 

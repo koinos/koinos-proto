@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 eval "$(gimme $GO_VERSION)"
 source ~/.gimme/envs/go$GO_VERSION.env
 
@@ -24,7 +26,7 @@ pwd
 curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | sh
 source ~/.nvm/nvm.sh
 nvm install $NODE_VERSION
-nvm usm $NODE_VERSION
+nvm use $NODE_VERSION
 
 node --version
 

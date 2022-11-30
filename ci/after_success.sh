@@ -86,11 +86,10 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 
       git add .
 
-      
       git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_BRANCH}
    fi
-   
+
    if ! [ -z "${TRAVIS_TAG}" ]; then
       npm version ${TRAVIS_TAG} -m "Update version to %s"
       git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_BRANCH}
@@ -230,11 +229,11 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
       if [ "${TRAVIS_BRANCH}" != "master" ]; then
          git checkout -b ${TRAVIS_BRANCH}
       fi
-      
+
       git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_BRANCH}
    fi
-   
+
    if ! [ -z "${TRAVIS_TAG}" ]; then
       npm version ${TRAVIS_TAG} -m "Update version to %s"
       git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_BRANCH}

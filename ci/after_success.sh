@@ -92,7 +92,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 
    if ! [ -z "${TRAVIS_TAG}" ]; then
       npm version ${TRAVIS_TAG} -m "Update version to %s"
-      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_BRANCH}
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git master
       git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_TAG}
    fi
 
@@ -236,7 +236,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 
    if ! [ -z "${TRAVIS_TAG}" ]; then
       npm version ${TRAVIS_TAG} -m "Update version to %s"
-      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_BRANCH}
+      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git master
       git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_TAG}
    fi
 

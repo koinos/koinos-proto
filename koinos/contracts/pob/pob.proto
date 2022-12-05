@@ -62,8 +62,8 @@ message get_metadata_result {
 }
 
 message register_public_key_event {
-   bytes public_key = 1 [(btype) = BASE64];
-   bytes address = 2 [(btype) = ADDRESS];
+   bytes address = 1 [(btype) = ADDRESS];
+   bytes public_key = 2 [(btype) = BASE64];
 }
 
 message get_public_key_arguments {

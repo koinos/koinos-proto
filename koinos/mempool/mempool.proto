@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package koinos.mempool;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/mempool";
+
+import "koinos/options.proto";
+import "koinos/protocol/protocol.proto";
+
+message mempool_metadata {
+   uint64 seq_num = 1;
+}
+
+message transaction_index {
+   uint64 seq_num = 1;
+}
+
+message address_resource_record {
+   uint64 max_rc = 1;
+   uint64 current_rc = 2;
+}
+
+message pending_transaction_record {
+   protocol.transaction transaction = 1;
+   uint64 timestamp = 2;
+}

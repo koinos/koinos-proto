@@ -22,4 +22,7 @@ message address_resource_record {
 message pending_transaction_record {
    protocol.transaction transaction = 1;
    uint64 timestamp = 2;
+   uint64 disk_storage_used = 3;
+   uint64 network_bandwidth_used = 4;
+   uint64 compute_bandwidth_used = 5;
 }

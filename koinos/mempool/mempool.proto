@@ -7,11 +7,11 @@ import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 
 message mempool_metadata {
-   uint64 seq_num = 1;
+   fixed64 seq_num = 1;
 }
 
 message transaction_index {
-   uint64 seq_num = 1;
+   fixed64 seq_num = 1;
 }
 
 message address_resource_record {

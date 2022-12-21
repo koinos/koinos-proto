@@ -22,7 +22,7 @@ pushd EmbeddedProto
    --plugin=protoc-gen-eams \
    --eams_out=../build/eams \
    -I.. \
-   `find ../koinos -name '*.proto'`
+   `find ../koinos -type d -name rpc -prune -o -type f -name "*.proto" -print`
 
 popd
 

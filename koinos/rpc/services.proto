@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package koinos.services;
+
+import "google/api/annotations.proto";
+import "google/api/client.proto";
+import "openapiv3/annotations.proto";
+
+import "koinos/rpc/mempool/mempool_rpc.proto";
+
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/services";
+
+option (openapi.v3.document) = {
+   info: {
+     title: "Koinos API";
+     version: "v1.0.0";
+     description: "Provides the API to interact with a Koinos cluster";
+     contact: {
+       name: "Koinos Group, Inc.";
+       url: "https://github.com/koinos/koinos-proto";
+       email: "contact@koinos.group";
+     }
+     license: {
+       name: "MIT";
+       url: "https://github.com/koinos/koinos-proto/blob/master/LICENSE.md";
+     }
+   }
+   components: {
+     security_schemes: {
+       additional_properties: [
+         {
+           name: "BasicAuth";
+           value: {
+             security_scheme: {
+               type: "http";
+               scheme: "basic";
+             }
+           }
+         }
+       ]
+     }
+   }
+ };
+
+service mempool {
+   rpc get_pending_transactions(.koinos.rpc.mempool.get_pending_transactions_request) returns (.koinos.rpc.mempool.get_pending_transactions_response) {
+      option (google.api.http) = {
+         get: "/v1/pending_transactions"
+         body: "get_pending_transactions_request"
+       };
+       option (google.api.method_signature) = "get_pending_transactions_request";
+   }
+   rpc check_pending_account_resources(.koinos.rpc.mempool.check_pending_account_resources_request) returns (.koinos.rpc.mempool.check_pending_account_resources_response) {
+      option (google.api.http) = {
+         get: "/v1/pending_account_resources"
+         body: "check_pending_account_resources_request"
+       };
+       option (google.api.method_signature) = "check_pending_account_resources_request";
+   }
+}

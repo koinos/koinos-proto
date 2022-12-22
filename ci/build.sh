@@ -7,6 +7,8 @@ mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as
 
 protobuf/bin/protoc --experimental_allow_proto3_optional \
    --cpp_out=build/cpp/ \
+   --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` \
+   --grpc_out=build/cpp \
    --go_out=build/go/ \
    --python_out=build/python \
    --descriptor_set_out=build/koinos_descriptors.pb \

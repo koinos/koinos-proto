@@ -8,19 +8,7 @@ source ~/.gimme/envs/go$GO_VERSION.env
 wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
 unzip protoc-${PROTOBUF_VERSION}-linux-x86_64.zip -d protobuf
 
-# install grpc
-git clone --recursive -b v1.49.2 https://github.com/grpc/grpc
-cd grpc
-mkdir -p cmake/build
-pushd cmake/build
-cmake -DgRPC_INSTALL=ON \
-      -DgRPC_BUILD_TESTS=OFF \
-      ../..
-make -j
-make install
-popd
-
-which grpc_cpp_plugin
+apt install protobuf-compiler-grpc
 
 go install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
 

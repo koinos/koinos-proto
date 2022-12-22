@@ -8,7 +8,8 @@ source ~/.gimme/envs/go$GO_VERSION.env
 wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
 unzip protoc-${PROTOBUF_VERSION}-linux-x86_64.zip -d protobuf
 
-sudo apt install protobuf-compiler-grpc
+sudo apt-get update
+sudo apt-get install protobuf-compiler-grpc
 
 go install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
 

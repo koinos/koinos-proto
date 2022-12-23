@@ -14,7 +14,7 @@ protobuf/bin/protoc --experimental_allow_proto3_optional \
    --descriptor_set_out=build/koinos_descriptors.pb \
    --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen \
    --as_out=build/as \
-   `find koinos -name '*.proto'`
+   `find . -name '*.proto'`
 
 protobuf/bin/protoc --experimental_allow_proto3_optional --doc_out=build/docs --doc_opt=markdown,api.md `find koinos -name '*rpc*.proto'`
 
@@ -24,7 +24,7 @@ pushd EmbeddedProto
    --plugin=protoc-gen-eams \
    --eams_out=../build/eams \
    -I.. \
-   `find ../koinos -type d -name rpc -prune -o -type f -name "*.proto" -print`
+   `find .. -type d -name rpc -prune -o -type f -name "*.proto" -print`
 
 popd
 

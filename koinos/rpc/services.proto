@@ -7,6 +7,7 @@ import "google/api/client.proto";
 import "openapiv3/annotations.proto";
 
 import "koinos/rpc/mempool/mempool_rpc.proto";
+import "koinos/rpc/account_history/account_history_rpc.proto";
 
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/services";
 
@@ -43,18 +44,28 @@ option (openapi.v3.document) = {
  };
 
 service mempool {
-   rpc get_pending_transactions(.koinos.rpc.mempool.get_pending_transactions_request) returns (.koinos.rpc.mempool.get_pending_transactions_response) {
-      option (google.api.http) = {
-         get: "/v1/pending_transactions"
-         body: "get_pending_transactions_request"
-       };
-       option (google.api.method_signature) = "get_pending_transactions_request";
-   }
-   rpc check_pending_account_resources(.koinos.rpc.mempool.check_pending_account_resources_request) returns (.koinos.rpc.mempool.check_pending_account_resources_response) {
-      option (google.api.http) = {
-         get: "/v1/pending_account_resources"
-         body: "check_pending_account_resources_request"
-       };
-       option (google.api.method_signature) = "check_pending_account_resources_request";
-   }
+  rpc get_pending_transactions(.koinos.rpc.mempool.get_pending_transactions_request) returns (.koinos.rpc.mempool.get_pending_transactions_response) {
+    option (google.api.http) = {
+      get: "/v1/pending_transactions"
+      body: "get_pending_transactions_request"
+    };
+    option (google.api.method_signature) = "get_pending_transactions_request";
+  }
+  rpc check_pending_account_resources(.koinos.rpc.mempool.check_pending_account_resources_request) returns (.koinos.rpc.mempool.check_pending_account_resources_response) {
+    option (google.api.http) = {
+      get: "/v1/pending_account_resources"
+        body: "check_pending_account_resources_request"
+      };
+    option (google.api.method_signature) = "check_pending_account_resources_request";
+  }
+}
+
+service account_history {
+  rpc get_account_history(.koinos.rpc.account_history.get_account_history_request) returns (.koinos.rpc.mempool.get_account_history_response) {
+    option (google.api.http) = {
+      get: "/v1/get_account_history"
+      body: "get_account_history_request"
+    };
+    option (google.api.method_signature) = "get_account_history_request";
+  }
 }

@@ -61,7 +61,7 @@ service mempool {
 }
 
 service account_history {
-  rpc get_account_history(.koinos.rpc.account_history.get_account_history_request) returns (.koinos.rpc.mempool.get_account_history_response) {
+  rpc get_account_history(.koinos.rpc.account_history.get_account_history_request) returns (.koinos.rpc.account_history.get_account_history_response) {
     option (google.api.http) = {
       get: "/v1/get_account_history"
       body: "get_account_history_request"

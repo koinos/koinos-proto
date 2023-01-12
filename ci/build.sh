@@ -14,7 +14,7 @@ protobuf/bin/protoc --experimental_allow_proto3_optional \
    --descriptor_set_out=build/koinos_descriptors.pb \
    --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen \
    --as_out=build/as \
-   --plugin=protoc-gen-openapi=$HOME/go/bin/protoc-gen-openapi \
+   --plugin=protoc-gen-openapi=`go env GOPATH`/bin/protoc-gen-openapi \
    --openapi_out=build/openapi \
    `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
 

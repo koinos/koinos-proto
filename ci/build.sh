@@ -3,7 +3,7 @@
 set -e
 set -x
 
-mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as
+mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as build/openapi
 
 protobuf/bin/protoc --experimental_allow_proto3_optional \
    --cpp_out=build/cpp/ \

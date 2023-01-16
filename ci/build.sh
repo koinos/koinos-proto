@@ -10,6 +10,8 @@ protobuf/bin/protoc --experimental_allow_proto3_optional \
    --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` \
    --grpc_out=build/cpp \
    --go_out=build/go/ \
+   --plugin=protoc-gen-go-rpc=`go env GOPATH`/bin/protoc-gen-go-rpc \
+   --go-grpc_out=build/gp \
    --python_out=build/python \
    --descriptor_set_out=build/koinos_descriptors.pb \
    --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen \

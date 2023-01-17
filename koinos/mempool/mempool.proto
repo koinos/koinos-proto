@@ -3,7 +3,6 @@ syntax = "proto3";
 package koinos.mempool;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/mempool";
 
-import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 
 message mempool_metadata {

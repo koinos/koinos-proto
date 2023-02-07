@@ -22,3 +22,12 @@ jobs:
             fi
             popd
           done
+
+          git clone https//$KOINOS_CI_TOKEN@github.com/koinos/koinos-openapi.git
+
+          pushd koinos-openapi
+          exists_in_remote=$(git ls-remote --heads origin ${{ github.event.ref }})
+          if [[ ${exists_in_remote} ]];  then
+            git push https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-openapi.git --delete ${{ github.event.ref }}
+          fi
+          popd

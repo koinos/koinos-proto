@@ -242,28 +242,28 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 
    #openapi
 
-   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-openapi.git
-
-   pushd koinos-openapi
-
-   cp ${TRAVIS_BUILD_DIR}/build/openapi/* ./
-
-   git add .
-
-   if ! git diff --cached --quiet --exit-code; then
-      if [ "${TRAVIS_BRANCH}" != "master" ]; then
-         git checkout -b ${TRAVIS_BRANCH}
-      fi
-
-      git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-openapi.git ${TRAVIS_BRANCH}
-   fi
-
-   if ! [ -z "${TRAVIS_TAG}" ]; then
-      npm version ${TRAVIS_TAG} -m "Update version to %s"
-      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-openapi.git master
-      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-openapi.git ${TRAVIS_TAG}
-   fi
-
-   popd
+#   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-openapi.git
+#
+#   pushd koinos-openapi
+#
+#   cp ${TRAVIS_BUILD_DIR}/build/openapi/* ./
+#
+#   git add .
+#
+#   if ! git diff --cached --quiet --exit-code; then
+#      if [ "${TRAVIS_BRANCH}" != "master" ]; then
+#         git checkout -b ${TRAVIS_BRANCH}
+#      fi
+#
+#      git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
+#      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-openapi.git ${TRAVIS_BRANCH}
+#   fi
+#
+#   if ! [ -z "${TRAVIS_TAG}" ]; then
+#      npm version ${TRAVIS_TAG} -m "Update version to %s"
+#      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-openapi.git master
+#      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-openapi.git ${TRAVIS_TAG}
+#   fi
+#
+#   popd
 fi

@@ -81,6 +81,15 @@ message get_resource_limits_response {
    koinos.chain.resource_limit_data resource_limit_data = 1;
 }
 
+message invoke_system_call_request {
+   uint32 system_call_id = 1;
+   bytes args = 2;
+}
+
+message invoke_system_call_response {
+   bytes value = 1;
+}
+
 message chain_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;

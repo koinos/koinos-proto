@@ -81,6 +81,19 @@ message get_resource_limits_response {
    koinos.chain.resource_limit_data resource_limit_data = 1;
 }
 
+message invoke_system_call_request {
+   oneof system_call {
+      int64 id = 1;
+      string name = 2;
+   }
+
+   bytes args = 3;
+}
+
+message invoke_system_call_response {
+   bytes value = 1;
+}
+
 message chain_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
@@ -93,6 +106,7 @@ message chain_request {
       get_account_nonce_request get_account_nonce = 8;
       get_account_rc_request get_account_rc = 9;
       get_resource_limits_request get_resource_limits = 10;
+      invoke_system_call_request invoke_system_call = 11;
    }
 }
 
@@ -109,5 +123,6 @@ message chain_response {
       get_account_nonce_response get_account_nonce = 9;
       get_account_rc_response get_account_rc = 10;
       get_resource_limits_response get_resource_limits = 11;
+      invoke_system_call_response invoke_system_call = 12;
    }
 }

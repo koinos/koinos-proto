@@ -4,9 +4,10 @@ package koinos.state_db;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/state_db";
 
 import "koinos/chain/chain.proto";
+import "koinos/chain/value.proto";
 
 message state_delta_entry {
    chain.object_space object_space = 1;
    bytes key = 2;
-   bytes value = 3;
+   chain.value_type value = 3;
 }

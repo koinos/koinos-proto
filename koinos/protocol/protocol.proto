@@ -4,6 +4,7 @@ package koinos.protocol;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "koinos/options.proto";
+import "koinos/state_db/state_db.proto";
 
 message event_data {
    uint32 sequence = 1;
@@ -87,6 +88,7 @@ message transaction_receipt {
    bool reverted = 9;
    repeated event_data events = 10;
    repeated string logs = 11;
+   repeated state_db.state_delta_entry state_delta_entries = 12;
 }
 
 message block_header {
@@ -119,4 +121,5 @@ message block_receipt {
    uint64 disk_storage_charged = 10 [jstype = JS_STRING];
    uint64 network_bandwidth_charged = 11 [jstype = JS_STRING];
    uint64 compute_bandwidth_charged = 12 [jstype = JS_STRING];
+   repeated state_db.state_delta_entry state_delta_entries = 13;
 }

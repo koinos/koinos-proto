@@ -4,7 +4,12 @@ package koinos.protocol;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "koinos/options.proto";
-import "koinos/chain/chain.proto";
+
+message object_space {
+   bool system = 1;
+   bytes zone = 2;
+   uint32 id = 3;
+}
 
 message event_data {
    uint32 sequence = 1;
@@ -125,7 +130,7 @@ message block_receipt {
 }
 
 message state_delta_entry {
-   chain.object_space object_space = 1;
+   object_space object_space = 1;
    bytes key = 2;
    optional bytes value = 3;
 }

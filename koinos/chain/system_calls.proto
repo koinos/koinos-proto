@@ -208,7 +208,7 @@ message consume_block_resources_result {
 ///////////////////////////////////////////////////////////////////////////////
 
 message put_object_arguments {
-   object_space space = 1;
+   protocol.object_space space = 1;
    bytes key = 2;
    bytes obj = 3;
 }
@@ -216,14 +216,14 @@ message put_object_arguments {
 message put_object_result {}
 
 message remove_object_arguments {
-   object_space space = 1;
+   protocol.object_space space = 1;
    bytes key = 2;
 }
 
 message remove_object_result {}
 
 message get_object_arguments {
-   object_space space = 1;
+   protocol.object_space space = 1;
    bytes key = 2;
 }
 
@@ -238,7 +238,7 @@ message get_object_result {
 }
 
 message get_next_object_arguments {
-   object_space space = 1;
+   protocol.object_space space = 1;
    bytes key = 2;
 }
 
@@ -247,7 +247,7 @@ message get_next_object_result {
 }
 
 message get_prev_object_arguments {
-   object_space space = 1;
+   protocol.object_space space = 1;
    bytes key = 2;
 }
 

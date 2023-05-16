@@ -5,6 +5,12 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/protocol";
 
 import "koinos/options.proto";
 
+message object_space {
+   bool system = 1;
+   bytes zone = 2;
+   uint32 id = 3;
+}
+
 message event_data {
    uint32 sequence = 1;
    bytes source = 2 [(btype) = CONTRACT_ID];
@@ -87,6 +93,7 @@ message transaction_receipt {
    bool reverted = 9;
    repeated event_data events = 10;
    repeated string logs = 11;
+   repeated state_delta_entry state_delta_entries = 12;
 }
 
 message block_header {
@@ -119,4 +126,11 @@ message block_receipt {
    uint64 disk_storage_charged = 10 [jstype = JS_STRING];
    uint64 network_bandwidth_charged = 11 [jstype = JS_STRING];
    uint64 compute_bandwidth_charged = 12 [jstype = JS_STRING];
+   repeated state_delta_entry state_delta_entries = 13;
+}
+
+message state_delta_entry {
+   object_space object_space = 1;
+   bytes key = 2;
+   optional bytes value = 3;
 }

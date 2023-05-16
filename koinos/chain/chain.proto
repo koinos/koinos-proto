@@ -5,7 +5,6 @@ option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
 import "koinos/options.proto";
 import "koinos/common.proto";
-import "koinos/protocol/protocol.proto";
 
 message error_data {
    string message = 1;
@@ -18,8 +17,14 @@ message result {
    }
 }
 
+message object_space {
+   bool system = 1;
+   bytes zone = 2;
+   uint32 id = 3;
+}
+
 message database_key {
-   protocol.object_space space = 1;
+   object_space space = 1;
    bytes key = 2;
 }
 
@@ -75,7 +80,7 @@ message compute_bandwidth_registry {
 }
 
 message genesis_entry {
-   protocol.object_space space = 1;
+   object_space space = 1;
    bytes key = 2;
    bytes value = 3;
 }

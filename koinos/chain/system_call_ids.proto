@@ -32,6 +32,7 @@ enum system_call_id {
    set_account_nonce = 109;
    check_system_authority = 110;
    get_operation = 111;
+   get_contract_metadata = 112;
 
    // Resource Subsystem
    get_account_rc = 201;

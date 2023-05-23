@@ -171,7 +171,7 @@ message get_contract_metadata_arguments {
 }
 
 message get_contract_metadata_result {
-   koinos.chain.contract_metadata_object contract_metadata = 1;
+   contract_metadata_object contract_metadata = 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

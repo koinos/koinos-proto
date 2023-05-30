@@ -166,6 +166,14 @@ message get_operation_result {
    protocol.operation value = 1;
 }
 
+message get_contract_metadata_arguments {
+   bytes contract_id = 1 [(btype) = CONTRACT_ID];
+}
+
+message get_contract_metadata_result {
+   contract_metadata_object contract_metadata = 1;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Resource Subsystem                                                        //
 ///////////////////////////////////////////////////////////////////////////////

@@ -18,7 +18,7 @@ protobuf/bin/protoc --experimental_allow_proto3_optional \
    --as_out=build/as \
    `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
 
-protobuf/bin/protoc --experimental_allow_proto3_optional --doc_out=build/docs --doc_opt=markdown,api.md `find koinos -name '*rpc*.proto'`
+#protobuf/bin/protoc --experimental_allow_proto3_optional --doc_out=build/docs --doc_opt=markdown,api.md `find koinos -name '*rpc*.proto'`
 
 pushd EmbeddedProto
 

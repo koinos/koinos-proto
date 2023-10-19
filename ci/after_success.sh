@@ -55,8 +55,6 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
          git checkout -b ${TRAVIS_BRANCH}
       fi
 
-      go clean -cache
-      go clean -modcache
       go mod tidy
       git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git ${TRAVIS_BRANCH}

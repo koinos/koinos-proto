@@ -11,7 +11,7 @@ unzip protoc-${PROTOBUF_VERSION}-linux-x86_64.zip -d protobuf
 sudo apt-get update
 sudo apt-get install protobuf-compiler-grpc
 
-go get -u github.com/google/gnostic/cmd/protoc-gen-openapi@0.6.9
+go get -u github.com/google/gnostic/cmd/protoc-gen-openapi@v0.6.9
 go get -u google.golang.org/protobuf/cmd/protoc-gen-go@v1.30.0
 go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.3.0
 go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@v1.5.0

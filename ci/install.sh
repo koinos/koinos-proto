@@ -11,12 +11,10 @@ unzip protoc-${PROTOBUF_VERSION}-linux-x86_64.zip -d protobuf
 sudo apt-get update
 sudo apt-get install protobuf-compiler-grpc
 
-go install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
-
-go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-
-go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@v1.5.0
+#go get -u github.com/google/gnostic/cmd/protoc-gen-openapi@v0.6.9
+go get -u google.golang.org/protobuf/cmd/protoc-gen-go@v1.30.0
+go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.3.0
+#go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@v1.5.0
 
 git clone --recursive https://github.com/koinos/EmbeddedProto
 pushd EmbeddedProto

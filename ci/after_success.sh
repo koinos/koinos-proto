@@ -7,70 +7,6 @@ COMMIT_HASH=`git rev-parse --short HEAD`
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
    cd ~
 
-   git config --global user.email ${GITHUB_USER_EMAIL}
-   git config --global user.name  ${GITHUB_USER_NAME}
-
-
-   #C++
-   find ${TRAVIS_BUILD_DIR}/build/cpp/
-   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git
-
-   pushd koinos-proto-cpp
-
-   mkdir -p src
-   mkdir -p include
-   rsync -rvm --include "*.pb.cc" --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/cpp/ ./src/
-   rsync -rvm --include "*.pb.h" --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/cpp/ ./include/
-
-   git add ./src ./include
-
-   if ! git diff --cached --quiet --exit-code; then
-      if [ "${TRAVIS_BRANCH}" != "master" ]; then
-         git checkout -b ${TRAVIS_BRANCH}
-      fi
-
-      git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git ${TRAVIS_BRANCH}
-   fi
-
-   if ! [ -z "${TRAVIS_TAG}" ]; then
-      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git ${TRAVIS_TAG}
-   fi
-
-   popd
-
-
-   #golang
-   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git
-
-   pushd koinos-proto-golang
-
-   find ${TRAVIS_BUILD_DIR}/build/go/
-
-   mkdir -p koinos
-   rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/go/github.com/koinos/koinos-proto-golang/ ./
-
-   git add .
-
-   if ! git diff --cached --quiet --exit-code; then
-      if [ "${TRAVIS_BRANCH}" != "master" ]; then
-         git checkout -b ${TRAVIS_BRANCH}
-      fi
-
-      go mod tidy
-      git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git ${TRAVIS_BRANCH}
-   fi
-
-   if ! [ -z "${TRAVIS_TAG}" ]; then
-      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-golang.git ${TRAVIS_TAG}
-   fi
-
-   popd
-
-
    #js/ts
    git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git
 
@@ -128,36 +64,6 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
    fi
 
    #TODO: Publish
-
-   popd
-
-
-   #embedded-cpp
-   git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git
-
-   pushd koinos-proto-embedded-cpp
-
-   mkdir -p libraries/koinos/generated
-   mkdir -p libraries/koinos/src
-
-   rsync -rvm --include "*.h" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/eams/ ./libraries/proto_embedded/generated/
-   rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/EmbeddedProto/src/ ./libraries/proto_embedded/src/
-
-   git add .
-
-   if ! git diff --cached --quiet --exit-code; then
-      if [ "${TRAVIS_BRANCH}" != "master" ]; then
-         git checkout -b ${TRAVIS_BRANCH}
-      fi
-
-      git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git ${TRAVIS_BRANCH}
-   fi
-
-   if ! [ -z "${TRAVIS_TAG}" ]; then
-      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-      git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-embedded-cpp.git ${TRAVIS_TAG}
-   fi
 
    popd
 

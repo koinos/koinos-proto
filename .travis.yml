@@ -10,14 +10,20 @@ addons:
     packages:
       - protobuf-compiler
 
+stages:
+  - name: after_success
+    if: type != pull_request
+
 jobs:
   include:
     - name: "C++"
       env:
         - TARGET_REPO=koinos-proto-cpp
+      install:
+        - sudo apt install protobuf-compiler-grpc
       script:
         - mkdir build
-        - protoc --experimental_allow_proto3_optional --cpp_out=build `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
+        - protoc --experimental_allow_proto3_optional --cpp_out=build --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --grpc_out=build `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
       after_success:
         - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git
         - cd ${TRAVIS_BUILD_DIR}/
@@ -40,13 +46,73 @@ jobs:
           fi
 
     - name: "Embedded  C++"
-
-    - name: "Protobuf Descriptors"
       env:
-       - PB_EMBEDDED_CPP_VERSION="negative-enums"
+        - TARGET_REPO=koinos-proto-embedded-cpp
+        - PB_EMBEDDED_CPP_VERSION=negative-enums
+      install:
+        - git clone --recursive https://github.com/koinos/EmbeddedProto
+        - pushd EmbeddedProto
+        - git checkout $PB_EMBEDDED_CPP_VERSION
+        - ./setup.sh
+        - popd
+      script:
+        - mkdir build
+        - pushd EmbeddedProto
+        - protoc --experimental_allow_proto3_optional --plugin=protoc-gen-eams --eams_out=../build -I.. `find ../koinos -type d -name rpc -prune -o -type f -name "*.proto" -print`
+        - popd
+      after_success:
+        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git
+        - cd ${TRAVIS_BUILD_DIR}/
+        - mkdir -p libraries/koinos/generated libraries/koinos/src
+        - rsync -rvm --include "*.h" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/eams/ ./libraries/proto_embedded/generated/
+        - rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/EmbeddedProto/src/ ./libraries/proto_embedded/src/
+        - git add libraries/koinos
+        - |
+          if ! git diff --cached --quiet --exit-code; then
+            if [ "${TRAVIS_BRACH}" != "master" ]; then
+              git checkout -b ${TRAVIS_BRANCH}
+            fi
+            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
+            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git ${TRAVIS_BRANCH}
+          fi
+        - |
+          if ! [ -z "${TRAVIS_TAG}" ]; then
+            git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git ${TRAVIS_TAG}
+          fi
 
     - name: "Golang"
-  
+      env:
+        - PROTOC_GEN_GO_VERSION=1.30.0
+        - PROTOC_GEN_GO_GRPC_VERSION=1.3.0
+      install:
+        - go install google.golang.org/protobuf/cmd/protoc-gen-go@$PROTOC_GEN_GO_VERSION
+        - go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@$PROTOC_GEN_GO_GRPC_VERSION
+      script:
+        - mkdir build
+        - protoc --experimental_allow_proto3_optional --go_out=build/go/ --plugin=protoc-gen-go-rpc=`go env GOPATH`/bin/protoc-gen-go-rpc --go-grpc_out=build/go
+      after_success:
+        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git
+        - cd ${TRAVIS_BUILD_DIR}/
+        - mkdir koinos
+        - rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/github.com/koinos/koinos-proto-golang/ ./
+        - go mod tidy
+        - git add koinos
+        - |
+          if ! git diff --cached --quiet --exit-code; then
+            if [ "${TRAVIS_BRANCH}" != "master" ]; then
+              git checkout -b ${TRAVIS_BRANCH}
+            fi
+
+            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
+            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git ${TRAVIS_BRANCH}
+          fi
+        - |
+          if ! [ -z "${TRAVIS_TAG}" ]; then
+            git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git ${TRAVIS_TAG}
+          fi
+
     - name: "Assembly Script"
       env:
         - AS_PROTO_VERSION="1.0.1"
@@ -55,7 +121,13 @@ jobs:
 
     - name: "Python"
 
+    - name: "Protobuf Descriptors"
+
     - name: "Documentation"
+
+before_install:
+  - git config --global user.email ${GITHUB_USER_EMAIL}
+  - git config --global user.name  ${GITHUB_USER_NAME}
 
 notifications:
   slack:

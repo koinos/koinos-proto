@@ -11,12 +11,26 @@ addons:
       - protobuf-compiler
 
 stages:
-  - name: after_success
+  - name: deploy
     if: type != pull_request
 
 env:
   global:
     - PROTO_FILE=`find koinos -name '*.proto' && find google -name '*.proto' && find openapiv3 -name '*.proto'` 
+
+# This build matric mixes global and build specific build stages to abstract common tasks.
+# There are several conventions in place to facilitate this.
+#
+# 1. The destination repo (e.g. koinos-proto-cpp) is set in the env var DEST_REPO.
+# 2. The destination repo will be checked out with the correct branch at $TRAVIS_BUILD_DIR/$DEST_REPO prior to the script stage.
+# 3. After script, all changed files must be staged in the destination repo at the end of the script stage.
+# 4. At the beginning and end of each build stage the current directory must be $TRAVIS_BUILD_DIR
+#
+# The build stages are:
+# - install: (Local) Install any language specific dependencies
+# - before_script: (Global) Clone the destination repo and correct branch
+# - script: (Local) Generate files and stage them in destination directory
+# - after_success: (Global) Commit staged changes (if any)
 
 jobs:
   include:
@@ -27,27 +41,13 @@ jobs:
         - sudo apt install protobuf-compiler-grpc
       script:
         - mkdir build
-        - protoc --experimental_allow_proto3_optional --cpp_out=build --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --grpc_out=build $PROTO_FILES
-      after_success:
-        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
-        - cd ${TRAVIS_BUILD_DIR}/${DEST_REPO}
+        - protoc --experimental_allow_proto3_optional --cpp_out=build --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --grpc_out=build $PROTO_FILES  
+        - pushd ${DEST_REPO}
         - mkdir src include
         - rsync -rvm --include "*.pb.cc" --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/ ./src/
         - rsync -rvm --include "*.pb.h"  --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/ ./include/
         - git add src include
-        - |
-          if ! git diff --cached --quiet --exit-code; then
-            if [ "${TRAVIS_BRACH}" != "master" ]; then
-              git checkout -b ${TRAVIS_BRANCH}
-            fi
-            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_BRANCH}
-          fi
-        - |
-          if ! [ -z "${TRAVIS_TAG}" ]; then
-            git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_TAG}
-          fi
+        - popd
 
     - name: "Embedded  C++"
       env:
@@ -64,26 +64,12 @@ jobs:
         - pushd EmbeddedProto
         - protoc --experimental_allow_proto3_optional --plugin=protoc-gen-eams --eams_out=../build -I.. `find ../koinos -type d -name rpc -prune -o -type f -name "*.proto" -print`
         - popd
-      after_success:
-        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
-        - cd ${TRAVIS_BUILD_DIR}/${DEST_REPO}
+        - pushd ${DEST_REPO}
         - mkdir -p libraries/koinos/generated libraries/koinos/src
         - rsync -rvm --include "*.h" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/ ./libraries/proto_embedded/generated/
         - rsync -rvm --include "*.h" --include "*.cpp" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/EmbeddedProto/src/ ./libraries/proto_embedded/src/
         - git add libraries/koinos
-        - |
-          if ! git diff --cached --quiet --exit-code; then
-            if [ "${TRAVIS_BRACH}" != "master" ]; then
-              git checkout -b ${TRAVIS_BRANCH}
-            fi
-            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_BRANCH}
-          fi
-        - |
-          if ! [ -z "${TRAVIS_TAG}" ]; then
-            git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_TAG}
-          fi
+        - popd
 
     - name: "Golang"
       env:
@@ -96,27 +82,12 @@ jobs:
       script:
         - mkdir build
         - protoc --experimental_allow_proto3_optional --go_out=build/ --plugin=protoc-gen-go-rpc=`go env GOPATH`/bin/protoc-gen-go-rpc --go-grpc_out=build $PROTO_FILES
-      after_success:
-        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
-        - cd ${TRAVIS_BUILD_DIR}/${DEST_REPO}
+        - pushd ${DEST_REPO}
         - mkdir koinos
         - rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/github.com/koinos/koinos-proto-golang/ ./
         - go mod tidy
-        - git add koinos
-        - |
-          if ! git diff --cached --quiet --exit-code; then
-            if [ "${TRAVIS_BRANCH}" != "master" ]; then
-              git checkout -b ${TRAVIS_BRANCH}
-            fi
-
-            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_BRANCH}
-          fi
-        - |
-          if ! [ -z "${TRAVIS_TAG}" ]; then
-            git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_TAG}
-          fi
+        - git add .
+        - popd
 
     - name: "Assembly Script"
       env:
@@ -128,28 +99,16 @@ jobs:
       script:
         - mkdir build
         - protobuf/bin/protoc --experimental_allow_proto3_optional --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen --as_out=build $PROTO_FILES
-      after_success:
-        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
         - cd ${TRAVIS_BUILD_DIR}/${DEST_REPO}
         - mkdir -p assembly/koinos
         - rsync -rvm --include "*.ts" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/koinos/ ./assembly/koinos
         - ./generate_index.sh
-        - git add assembly/koinos
-        - |
-          if ! git diff --cached --quiet --exit-code; then
-            if [ "${TRAVIS_BRANCH}" != "master" ]; then
-              git checkout -b ${TRAVIS_BRANCH}
-            fi
-
-            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_BRANCH}
-          fi
-        - |
+        - | 
           if ! [ -z "${TRAVIS_TAG}" ]; then
-            npm version ${TRAVIS_TAG} -m "Update version to %s"
-            git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git master
-            git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-as.git ${TRAVIS_TAG}
+            npm version ${TRAVIS_TAG} --git-tag-version false
           fi
+        - git add .
+        - popd
 
     - name: "Java Script"
       env:
@@ -163,30 +122,16 @@ jobs:
         - yarn pbjs  --keep-case --target static-module -o build/index.js `find ./koinos -name '*.proto'` `find ./google -name '*.proto'`
         - yarn pbts -o build/index.d.ts build/index.js
         - yarn pbjs  --keep-case --target json -o build/index.json `find ./koinos -name '*.proto'` `find ./google -name '*.proto'`
-      after_success:
-        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
-        - cd ${TRAVIS_BUILD_DIR}/${DEST_REPO}
+        - pushd ${DEST_REPO}
         - cp ${TRAVIS_BUILD_DIR}/build/index.js index.js
         - cp ${TRAVIS_BUILD_DIR}/build/index.d.ts index.d.ts
         - cp ${TRAVIS_BUILD_DIR}/build/index.json index.json
         - git add index.js index.d.ts index.json
-        - |
-          if ! git diff --cached --quiet --exit-code; then
-            if [ "${TRAVIS_BRANCH}" != "master" ]; then
-              git checkout -b ${TRAVIS_BRANCH}
-            fi
-
-            git add .
-
-            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_BRANCH}
-          fi
-        - |
+        - | 
           if ! [ -z "${TRAVIS_TAG}" ]; then
-            npm version ${TRAVIS_TAG} -m "Update version to %s"
-            git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git master
-            git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-js.git ${TRAVIS_TAG}
+            npm version ${TRAVIS_TAG} --git-tag-version false
           fi
+        - popd
 
     - name: "Python"
       env:
@@ -194,25 +139,11 @@ jobs:
       script:
         - mkdir build
         - protobuf/bin/protoc --experimental_allow_proto3_optional --python_out=build $PROTO_FILES
-      after_success:
-        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
-        - cd ${TRAVIS_BUILD_DIR}/${DEST_REPO}
+        - pushd ${DEST_REPO}
         - mkdir koinos
         - rsync -rvm --include "*_pb2.py" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/ ./
         - git add .
-        - if ! git diff --cached --quiet --exit-code; then
-            if [ "${TRAVIS_BRANCH}" != "master" ]; then
-              git checkout -b ${TRAVIS_BRANCH}
-            fi
-
-            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_BRANCH}
-          fi
-        - |
-          if ! [ -z "${TRAVIS_TAG}" ]; then
-            git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-            git push https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_TAG}
-          fi
+        - popd
 
     - name: "Protobuf Descriptors"
       env:
@@ -220,31 +151,35 @@ jobs:
       script:
         - mkdir build
         - protobuf/bin/protoc --experimental_allow_proto3_optional --descriptor_set_out=build/koinos_descriptors.pb
-      after_success:
-        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
-        - cd ${TRAVIS_BUILD_DIR}/${DEST_REPO}
+        - pushd ${DEST_REPO}
         - cp ${TRAVIS_BUILD_DIR}/build/koinos_descriptors.pb ./koinos_descriptors.pb
         - git add koinos_descriptors.pb
-        - |
-          if ! git diff --cached --quiet --exit-code; then
-            if [ "${TRAVIS_BRANCH}" != "master" ]; then
-              git checkout -b ${TRAVIS_BRANCH}
-            fi
-
-            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
-            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git ${TRAVIS_BRANCH}
-          fi
-        - |
-          if ! [ -z "${TRAVIS_TAG}" ]; then
-            git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
-            git push https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-descriptors.git ${TRAVIS_TAG}
-          fi
+        - popd
 
     #- name: "Documentation"
 
 before_install:
   - git config --global user.email ${GITHUB_USER_EMAIL}
   - git config --global user.name  ${GITHUB_USER_NAME}
+  - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
+  - pushd $DEST_REPO
+  - |
+    if [ "${TRAVIS_BRANCH}" != "master" ]; then
+      git checkout -b ${TRAVIS_BRANCH}
+    fi
+  - popd
+
+after_success:
+  - |
+    if ! git diff --cached --quiet --exit-code; then
+      git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_BRANCH}
+    fi
+  - |
+    if ! [ -z "${TRAVIS_TAG}" ]; then
+      git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_TAG}
+    fi
 
 notifications:
   slack:

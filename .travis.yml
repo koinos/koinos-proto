@@ -18,14 +18,13 @@ jobs:
       script:
         - mkdir build
         - protoc --experimental_allow_proto3_optional --cpp_out=build `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
-      after_script:
+      after_success:
         - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git
         - cd ${TRAVIS_BUILD_DIR}/
         - mkdir src include
         - rsync -rvm --include "*.pb.cc" --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/cpp/ ./src/
         - rsync -rvm --include "*.pb.h"  --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/cpp/ ./include/
         - git add src include
-      after_success:
         - |
           if ! git diff --cached --quiet --exit-code; then
             if [ "${TRAVIS_BRACH}" != "master" ]; then

@@ -61,9 +61,7 @@ jobs:
         - popd
       script:
         - mkdir -p build
-        - pushd EmbeddedProto
-        - protoc --experimental_allow_proto3_optional --plugin=protoc-gen-eams --eams_out=../build $PROTO_FILES
-        - popd
+        - protoc --experimental_allow_proto3_optional --plugin=EmbeddedProto/protoc-gen-eams --eams_out=build $PROTO_FILES
         - pushd ${DEST_REPO}
         - mkdir -p libraries/koinos/generated libraries/koinos/src
         - rsync -rvm --include "*.h" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/ ./libraries/proto_embedded/generated/

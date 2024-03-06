@@ -54,6 +54,7 @@ jobs:
         - DEST_REPO=koinos-proto-embedded-cpp
         - PB_EMBEDDED_CPP_VERSION=negative-enums
       install:
+        - sudo apt install python3.10-venv
         - git clone --recursive https://github.com/koinos/EmbeddedProto
         - pushd EmbeddedProto
         - git checkout $PB_EMBEDDED_CPP_VERSION
@@ -62,8 +63,7 @@ jobs:
       script:
         - mkdir -p build
         - pushd EmbeddedProto
-        - PROTO_FILES=`find ../koinos -type d -name rpc -prune -o -type f -name "*.proto" -print && find ../google -name '*.proto'`
-        - echo $PROTO_FILES
+        - PROTO_FILES=`find ../koinos -type d -name rpc -prune -o -type f -name "*.proto" -print`
         - protoc --experimental_allow_proto3_optional --plugin=protoc-gen-eams --eams_out=../build -I.. $PROTO_FILES
         - popd
         - pushd ${DEST_REPO}

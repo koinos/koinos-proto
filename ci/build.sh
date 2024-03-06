@@ -3,13 +3,7 @@
 set -e
 set -x
 
-mkdir -p build/cpp build/go build/js build/python build/eams build/docs build/as build/openapi
-
-protobuf/bin/protoc --experimental_allow_proto3_optional \
-   --python_out=build/python \
-   --descriptor_set_out=build/koinos_descriptors.pb \
-   --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen \
-   --as_out=build/as \
+protobuf/bin/protoc --experimental_allow_proto3_optional --descriptor_set_out=build/koinos_descriptors.pb \
    `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
 
 #protobuf/bin/protoc --experimental_allow_proto3_optional --doc_out=build/docs --doc_opt=markdown,api.md `find koinos -name '*rpc*.proto'`

@@ -19,8 +19,8 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 
    mkdir -p src
    mkdir -p include
-   rsync -rvm --include "*.pb.h" --include "*./" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/cpp ./include/
-   rsync -rvm --include "*.pb.cc" --include "*./" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/cpp ./src/
+   rsync -rvm --include "*.pb.h" --include "*./" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/cpp/ ./include/
+   rsync -rvm --include "*.pb.cc" --include "*./" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/cpp/ ./src/
 
    git add ./src ./include
 

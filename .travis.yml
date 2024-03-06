@@ -58,7 +58,7 @@ jobs:
         - git clone --recursive https://github.com/koinos/EmbeddedProto
         - pushd EmbeddedProto
         - git checkout $PB_EMBEDDED_CPP_VERSION
-        - ./setup.sh
+        - ./setup.sh -e
         - popd
       script:
         - mkdir -p build

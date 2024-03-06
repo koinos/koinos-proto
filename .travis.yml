@@ -16,7 +16,7 @@ stages:
 
 env:
   global:
-    - PROTO_FILE=`find koinos -name '*.proto' && find google -name '*.proto' && find openapiv3 -name '*.proto'` 
+    - PROTO_FILES=`find koinos -name '*.proto' && find google -name '*.proto' && find openapiv3 -name '*.proto'` 
 
 # This build matric mixes global and build specific build stages to abstract common tasks.
 # There are several conventions in place to facilitate this.

@@ -1,5 +1,7 @@
 language: generic
 
+os: linux
+
 dist: jammy
 
 addons:
@@ -7,8 +9,6 @@ addons:
     update: true
     packages:
       - protobuf-compiler
-
-git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git
 
 jobs:
   include:

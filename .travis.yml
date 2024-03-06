@@ -62,7 +62,7 @@ jobs:
       script:
         - mkdir -p build
         - pushd EmbeddedProto
-        - protoc --experimental_allow_proto3_optional --plugin=protoc-gen-eams --eams_out=../build -I.. `find ../koinos -type d -name rpc -prune -o -type f -name "*.proto" -print`
+        - protoc --experimental_allow_proto3_optional --plugin=protoc-gen-eams --eams_out=../build $PROTO_FILES
         - popd
         - pushd ${DEST_REPO}
         - mkdir -p libraries/koinos/generated libraries/koinos/src
@@ -150,7 +150,7 @@ jobs:
         - DEST_REPO=koinos-proto-descriptors
       script:
         - mkdir -p build
-        - protoc --experimental_allow_proto3_optional --descriptor_set_out=build/koinos_descriptors.pb
+        - protoc --experimental_allow_proto3_optional --descriptor_set_out=build/koinos_descriptors.pb $PROTO_FILES
         - pushd ${DEST_REPO}
         - cp ${TRAVIS_BUILD_DIR}/build/koinos_descriptors.pb ./koinos_descriptors.pb
         - git add koinos_descriptors.pb

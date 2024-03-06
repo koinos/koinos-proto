@@ -12,6 +12,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 
 
    #C++
+   find ${TRAVIS_BUILD_DIR}/build/cpp/
    git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git
 
    pushd koinos-proto-cpp
@@ -21,7 +22,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
    rsync -rvm --include "*.pb.h" --include "*./" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/cpp ./include/
    rsync -rvm --include "*.pb.cc" --include "*./" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/cpp ./src/
 
-   git add .
+   git add ./src ./include
 
    if ! git diff --cached --quiet --exit-code; then
       if [ "${TRAVIS_BRANCH}" != "master" ]; then

@@ -98,7 +98,7 @@ jobs:
         - yarn global add @jsdevtools/version-bump-prompt
       script:
         - mkdir build
-        - protobuf/bin/protoc --experimental_allow_proto3_optional --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen --as_out=build $PROTO_FILES
+        - protoc --experimental_allow_proto3_optional --plugin=protoc-gen-as=./node_modules/.bin/as-proto-gen --as_out=build $PROTO_FILES
         - cd ${TRAVIS_BUILD_DIR}/${DEST_REPO}
         - mkdir -p assembly/koinos
         - rsync -rvm --include "*.ts" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/koinos/ ./assembly/koinos
@@ -138,7 +138,7 @@ jobs:
         - DEST_REPO=koinos-proto-python
       script:
         - mkdir build
-        - protobuf/bin/protoc --experimental_allow_proto3_optional --python_out=build $PROTO_FILES
+        - protoc --experimental_allow_proto3_optional --python_out=build $PROTO_FILES
         - pushd ${DEST_REPO}
         - mkdir koinos
         - rsync -rvm --include "*_pb2.py" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/ ./
@@ -150,7 +150,7 @@ jobs:
         - DEST_REPO=koinos-proto-descriptors
       script:
         - mkdir build
-        - protobuf/bin/protoc --experimental_allow_proto3_optional --descriptor_set_out=build/koinos_descriptors.pb
+        - protoc --experimental_allow_proto3_optional --descriptor_set_out=build/koinos_descriptors.pb
         - pushd ${DEST_REPO}
         - cp ${TRAVIS_BUILD_DIR}/build/koinos_descriptors.pb ./koinos_descriptors.pb
         - git add koinos_descriptors.pb

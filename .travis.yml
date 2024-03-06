@@ -17,7 +17,7 @@ jobs:
         - TARGET_REPO=koinos-proto-cpp
       script:
         - mkdir build
-        - protoc --experimental_allow_proto3_optional --cpp-out=build `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
+        - protoc --experimental_allow_proto3_optional --cpp_out=build `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
       after_script:
         - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git
         - cd ${TRAVIS_BUILD_DIR}/

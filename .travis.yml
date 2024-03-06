@@ -1,27 +1,62 @@
-language: python
+language: generic
 
-python:
-  - 3.8
+dist: jammy
+
+addons:
+  apt:
+    update: true
+    packages:
+      - protobuf-compiler
+
+git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/koinos-proto-cpp.git
 
 jobs:
   include:
-  - os: linux
-    dist: jammy
-    env:
-      - PROTOBUF_VERSION="3.17.3"
-      - GO_VERSION="1.18.3"
-      - PB_EMBEDDED_CPP_VERSION="negative-enums"
-      - NODE_VERSION="16.14.2"
-      - AS_PROTO_VERSION="1.0.1"
+    - name: "C++"
+      env:
+        - TARGET_REPO=koinos-proto-cpp
+      script:
+        - mkdir build
+        - protoc --experimental_allow_proto3_optional --cpp-out=build `find koinos -name '*.proto'` `find google -name '*.proto'` `find openapiv3 -name '*.proto'`
+      after_script:
+        - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git
+        - cd ${TRAVIS_BUILD_DIR}/
+        - mkdir src include
+        - rsync -rvm --include "*.pb.cc" --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/cpp/ ./src/
+        - rsync -rvm --include "*.pb.h"  --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/cpp/ ./include/
+        - git add src include
+      after_success:
+        - |
+          if ! git diff --cached --quiet --exit-code; then
+            if [ "${TRAVIS_BRACH}" != "master" ]; then
+              git checkout -b ${TRAVIS_BRANCH}
+            fi
+            git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
+            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git ${TRAVIS_BRANCH}
+          fi
+        - |
+          if ! [ -z "${TRAVIS_TAG}" ]; then
+            git tag -a ${TRAVIS_TAG} -m "proto tag ${TRAVIS_TAG}"
+            git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${TARGET_REPO}.git ${TRAVIS_TAG}
+          fi
 
-install:
-  - source ci/install.sh
+    - name: "Embedded  C++"
 
-script:
-  - ci/build.sh
+    - name: "Protobuf Descriptors"
+      env:
+       - PB_EMBEDDED_CPP_VERSION="negative-enums"
 
-after_success:
-  - ci/after_success.sh
+    - name: "Golang"
+  
+    - name: "Assembly Script"
+      env:
+        - AS_PROTO_VERSION="1.0.1"
+
+    - name: "Java Script"
+
+    - name: "Python"
+
+    - name: "Documentation"
 
 notifications:
   slack:

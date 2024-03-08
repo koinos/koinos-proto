@@ -49,7 +49,7 @@ jobs:
         - git add src include
         - popd
 
-    - name: "Embedded  C++"
+    - name: "Embedded C++"
       env:
         - DEST_REPO=koinos-proto-embedded-cpp
         - PB_EMBEDDED_CPP_VERSION=negative-enums
@@ -91,7 +91,7 @@ jobs:
         - git add .
         - popd
 
-    - name: "Assembly Script"
+    - name: "AssemblyScript"
       env:
         - DEST_REPO=koinos-proto-as
         - AS_PROTO_VERSION=1.0.1
@@ -112,7 +112,7 @@ jobs:
         - git add .
         - popd
 
-    - name: "Java Script"
+    - name: "JavaScript"
       env:
         - DEST_REPO=koinos-proto-js
         - PROTOBUFJS_VERSION=^6.11.3
@@ -157,8 +157,6 @@ jobs:
         - cp ${TRAVIS_BUILD_DIR}/build/koinos_descriptors.pb ./koinos_descriptors.pb
         - git add koinos_descriptors.pb
         - popd
-
-    #- name: "Documentation"
 
 before_install:
   - git config --global user.email ${GITHUB_USER_EMAIL}

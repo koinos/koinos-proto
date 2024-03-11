@@ -16,7 +16,7 @@ stages:
 
 env:
   global:
-    - PROTO_FILES=`find koinos -name '*.proto' && find google -name '*.proto' && find openapiv3 -name '*.proto'` 
+    - PROTO_FILES=`find koinos -name '*.proto' && find google -name '*.proto' && find openapiv3 -name '*.proto'`
 
 # This build matric mixes global and build specific build stages to abstract common tasks.
 # There are several conventions in place to facilitate this.
@@ -41,12 +41,13 @@ jobs:
         - sudo apt install protobuf-compiler-grpc
       script:
         - mkdir -p build
-        - protoc --experimental_allow_proto3_optional --cpp_out=build --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --grpc_out=build $PROTO_FILES  
+        - protoc --experimental_allow_proto3_optional --cpp_out=build --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --grpc_out=build $PROTO_FILES
         - pushd ${DEST_REPO}
         - mkdir -p src include
-        - rsync -rvm --include "*.pb.cc" --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/ ./src/
-        - rsync -rvm --include "*.pb.h"  --include "*./" --delete ${TRAVIS_BUILD_DIR}/build/ ./include/
+        - rsync -rvm --include "*.pb.cc" --include "*/" --exclude "*" --delete ${TRAVIS_BUILD_DIR}/build/ src/
+        - rsync -rvm --include "*.pb.h"  --include "*/" --exclude "*" --delete ${TRAVIS_BUILD_DIR}/build/ include/
         - git add src include
+        - git status
         - popd
 
     - name: "Embedded C++"
@@ -105,7 +106,7 @@ jobs:
         - mkdir -p assembly/koinos
         - rsync -rvm --include "*.ts" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/koinos/ ./assembly/koinos
         - ./generate_index.sh
-        - | 
+        - |
           if ! [ -z "${TRAVIS_TAG}" ]; then
             npm version ${TRAVIS_TAG} --git-tag-version false
           fi
@@ -129,7 +130,7 @@ jobs:
         - cp ${TRAVIS_BUILD_DIR}/build/index.d.ts index.d.ts
         - cp ${TRAVIS_BUILD_DIR}/build/index.json index.json
         - git add index.js index.d.ts index.json
-        - | 
+        - |
           if ! [ -z "${TRAVIS_TAG}" ]; then
             npm version ${TRAVIS_TAG} --git-tag-version false
           fi

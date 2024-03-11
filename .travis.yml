@@ -4,18 +4,13 @@ os: linux
 
 dist: jammy
 
-addons:
-  apt:
-    update: true
-    packages:
-      - protobuf-compiler
-
 stages:
   - name: after_success
     if: type != pull_request
 
 env:
   global:
+    - PROTOBUF_VERSION=3.17.3
     - PROTO_FILES=`find koinos -name '*.proto' && find google -name '*.proto' && find openapiv3 -name '*.proto'`
 
 # This build matric mixes global and build specific build stages to abstract common tasks.
@@ -159,6 +154,8 @@ jobs:
         - popd
 
 before_install:
+  - wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
+  - unzip protoc-${PROTOBUF_VERSION}-linux-x86_64.zip -d /usr/local/bin
   - git config --global user.email ${GITHUB_USER_EMAIL}
   - git config --global user.name  ${GITHUB_USER_NAME}
   - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git

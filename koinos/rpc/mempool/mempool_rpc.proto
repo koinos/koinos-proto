@@ -34,11 +34,22 @@ message get_pending_transactions_response {
    repeated pending_transaction pending_transactions = 1;
 }
 
+message check_account_nonce_request {
+   bytes payee = 1 [(btype) = ADDRESS];
+   bytes nonce = 2;
+   optional bytes block_id = 3 [(btype) = BLOCK_ID];
+}
+
+message check_account_nonce_response {
+   bool success = 1;
+}
+
 message mempool_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
       check_pending_account_resources_request check_pending_account_resources = 2;
       get_pending_transactions_request get_pending_transactions = 3;
+      check_account_nonce_request check_account_nonce = 4;
    }
 }
 
@@ -48,5 +59,6 @@ message mempool_response {
       rpc.error_response error = 2;
       check_pending_account_resources_response check_pending_account_resources = 3;
       get_pending_transactions_response get_pending_transactions = 4;
+      check_account_nonce_response check_account_nonce = 5;
    }
 }

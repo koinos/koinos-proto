@@ -160,7 +160,7 @@ jobs:
 before_install:
   - wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
   - sudo unzip protoc-${PROTOBUF_VERSION}-linux-x86_64.zip -d /usr/local
-  - sudo chmod +x /usr/local/protoc
+  - sudo chmod +x /usr/local/bin/protoc
   - git config --global user.email ${GITHUB_USER_EMAIL}
   - git config --global user.name  ${GITHUB_USER_NAME}
   - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git

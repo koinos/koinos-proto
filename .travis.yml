@@ -47,7 +47,6 @@ jobs:
         - rsync -rvm --include "*.pb.cc" --include "*/" --exclude "*" --delete ${TRAVIS_BUILD_DIR}/build/ src/
         - rsync -rvm --include "*.pb.h"  --include "*/" --exclude "*" --delete ${TRAVIS_BUILD_DIR}/build/ include/
         - git add src include
-        - git status
         - popd
 
     - name: "Embedded C++"
@@ -171,6 +170,7 @@ before_install:
   - popd
 
 after_success:
+  - pushd $DEST_REPO
   - |
     if ! git diff --cached --quiet --exit-code; then
       git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"

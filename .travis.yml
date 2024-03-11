@@ -4,6 +4,10 @@ os: linux
 
 dist: jammy
 
+addons:
+  apt:
+    update: true
+
 stages:
   - name: after_success
     if: type != pull_request

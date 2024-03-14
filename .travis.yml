@@ -166,7 +166,7 @@ before_install:
   - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
   - pushd $DEST_REPO
   - |
-    if [ "${TRAVIS_BRANCH}" != "master" && -z "${TRAVIS_TAG}" ]; then
+    if [ "${TRAVIS_BRANCH}" != "master" ] && [ -z "${TRAVIS_TAG}" ]; then
       git checkout -b ${TRAVIS_BRANCH}
     fi
   - popd

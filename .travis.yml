@@ -16,6 +16,7 @@ env:
   global:
     - PROTOBUF_VERSION=3.17.3
     - PROTO_FILES=`find koinos -name '*.proto' && find google -name '*.proto' && find openapiv3 -name '*.proto'`
+    - COMMIT_SHORT=`git rev-parse --short HEAD`
 
 # This build matric mixes global and build specific build stages to abstract common tasks.
 # There are several conventions in place to facilitate this.
@@ -175,7 +176,7 @@ after_success:
   - pushd $DEST_REPO
   - |
     if ! git diff --cached --quiet --exit-code; then
-      git commit -m "Update for koinos-proto commit ${COMMIT_HASH}"
+      git commit -m "Update for koinos-proto commit ${COMMIT_SHORT}"
       git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_BRANCH}
     fi
   - |

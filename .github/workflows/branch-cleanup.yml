@@ -10,24 +10,15 @@ jobs:
       KOINOS_CI_TOKEN: ${{ secrets.KOINOS_CI_TOKEN }}
     steps:
       - run: |
-          for lang in cpp golang js python embedded-cpp descriptors as documentation
+          for lang in cpp golang js python embedded-cpp descriptors as
           do
             repo=koinos-proto-$lang
-            git clone https://$KOINOS_CI_TOKEN@github.com/koinos/`echo $repo`.git
+            git clone https://$KOINOS_CI_TOKEN@github.com/koinos/${repo}.git
 
             pushd $repo
             exists_in_remote=$(git ls-remote --heads origin ${{ github.event.ref }})
             if [[ ${exists_in_remote} ]];  then
-              git push https://$KOINOS_CI_TOKEN@github.com/koinos/`echo $repo`.git --delete ${{ github.event.ref }}
+              git push https://$KOINOS_CI_TOKEN@github.com/koinos/${repo}.git --delete ${{ github.event.ref }}
             fi
             popd
           done
-
-          git clone https//$KOINOS_CI_TOKEN@github.com/koinos/koinos-openapi.git
-
-          pushd koinos-openapi
-          exists_in_remote=$(git ls-remote --heads origin ${{ github.event.ref }})
-          if [[ ${exists_in_remote} ]];  then
-            git push https://$KOINOS_CI_TOKEN@github.com/koinos/koinos-openapi.git --delete ${{ github.event.ref }}
-          fi
-          popd

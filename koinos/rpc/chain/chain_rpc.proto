@@ -114,7 +114,7 @@ message chain_request {
 message chain_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
-      rpc.error_response error = 2;
+      rpc.error_status error = 2;
       submit_block_response submit_block = 3;
       submit_transaction_response submit_transaction = 4;
       get_head_info_response get_head_info = 5;

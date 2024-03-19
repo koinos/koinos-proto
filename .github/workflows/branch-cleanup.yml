@@ -18,7 +18,7 @@ jobs:
             git clone $REPO_URL
             pushd $REPO
 
-            REMOTE_REF=$(git ls-remote origin --heads ${{ github.event.ref }})
+            REMOTE_REF=$(git ls-remote $REPO_URL --heads ${{ github.event.ref }})
             if [[ $REMOTE_REF ]];  then
               git push $REPO_URL --delete ${{ github.event.ref }}
             fi

@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package koinos.rpc.transaction_store;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/transaction_store";
+package koinostransaction_store;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/transaction_store";
 
 import "koinos/options.proto";
-import "koinos/rpc/rpc.proto";
+import "koinos/rpc.proto";
 import "koinos/transaction_store/transaction_store.proto";
 
 message get_transactions_by_id_request {
@@ -17,15 +17,15 @@ message get_transactions_by_id_response {
 
 message transaction_store_request {
    oneof request {
-      rpc.reserved_rpc reserved = 1;
+      reserved_rpc reserved = 1;
       get_transactions_by_id_request get_transactions_by_id = 2;
    }
 }
 
 message transaction_store_response {
    oneof response {
-      rpc.reserved_rpc reserved = 1;
-      rpc.error_response error = 2;
+      reserved_rpc reserved = 1;
+      error_status error = 2;
       get_transactions_by_id_response get_transactions_by_id = 3;
    }
 }

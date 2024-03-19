@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package koinos;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos";
+
+message reserved_rpc {}
+
+message error_status {
+   string message = 1;
+   string data = 2;
+   int32 code = 3;
+   repeated google.protobuf.Any details = 10;
+}

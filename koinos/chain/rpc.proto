@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package koinos.rpc.chain;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/chain";
+package koinos.chain;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/chain";
 
 import "koinos/common.proto";
 import "koinos/options.proto";
 import "koinos/chain/chain.proto";
 import "koinos/protocol/protocol.proto";
-import "koinos/rpc/rpc.proto";
+import "koinos/rpc.proto";
 
 message submit_block_request {
    protocol.block block = 1;
@@ -97,7 +97,7 @@ message invoke_system_call_response {
 
 message chain_request {
    oneof request {
-      rpc.reserved_rpc reserved = 1;
+      reserved_rpc reserved = 1;
       submit_block_request submit_block = 2;
       submit_transaction_request submit_transaction = 3;
       get_head_info_request get_head_info = 4;
@@ -113,8 +113,8 @@ message chain_request {
 
 message chain_response {
    oneof response {
-      rpc.reserved_rpc reserved = 1;
-      rpc.error_response error = 2;
+      reserved_rpc reserved = 1;
+      error_status error = 2;
       submit_block_response submit_block = 3;
       submit_transaction_response submit_transaction = 4;
       get_head_info_response get_head_info = 5;

@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package koinos.rpc.block_store;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/rpc/block_store";
+package koinos.block_store;
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/block_store";
 
 import "koinos/block_store/block_store.proto";
 import "koinos/options.proto";
 import "koinos/common.proto";
 import "koinos/protocol/protocol.proto";
-import "koinos/rpc/rpc.proto";
+import "koinos/rpc.proto";
 
 message get_blocks_by_id_request {
    repeated bytes block_ids = 1 [(btype) = BLOCK_ID];
@@ -46,7 +46,7 @@ message get_highest_block_response {
 
 message block_store_request {
    oneof request {
-      rpc.reserved_rpc reserved = 1;
+      reserved_rpc reserved = 1;
       get_blocks_by_id_request get_blocks_by_id = 2;
       get_blocks_by_height_request get_blocks_by_height = 3;
       add_block_request add_block = 4;
@@ -56,8 +56,8 @@ message block_store_request {
 
 message block_store_response {
    oneof response {
-      rpc.reserved_rpc reserved = 1;
-      rpc.error_response error = 2;
+      reserved_rpc reserved = 1;
+      error_status error = 2;
       get_blocks_by_id_response get_blocks_by_id = 3;
       get_blocks_by_height_response get_blocks_by_height = 4;
       add_block_response add_block = 5;

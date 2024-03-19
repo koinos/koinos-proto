@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package koinostransaction_store;
+package koinos.transaction_store;
 option go_package = "github.com/koinos/koinos-proto-golang/koinos/transaction_store";
 
 import "koinos/options.proto";

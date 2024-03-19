@@ -7,18 +7,15 @@ jobs:
     if: github.event.ref_type == 'branch'
     runs-on: ubuntu-latest
     env:
-      KOINOS_CI_TOKEN: ${{ secrets.KOINOS_CI_TOKEN }}
+      BRANCH_CLEANUP_TOKEN: ${{ secrets.BRANCH_CLEANUP_TOKEN }}
     steps:
       - run: |
           for lang in cpp golang js python embedded-cpp descriptors as
           do
-            repo=koinos-proto-$lang
-            git clone https://$KOINOS_CI_TOKEN@github.com/koinos/${repo}.git
+            REPO_URL="https://koinos-ci:$BRANCH_CLEANUP_TOKEN@github.com/koinos/koinos-proto-$lang.git"
 
-            pushd $repo
-            exists_in_remote=$(git ls-remote --heads origin ${{ github.event.ref }})
-            if [[ ${exists_in_remote} ]];  then
-              git push https://$KOINOS_CI_TOKEN@github.com/koinos/${repo}.git --delete ${{ github.event.ref }}
+            REMOTE_REF=$(git ls-remote --heads $REPO_URL ${{ github.event.ref }})
+            if [[ $REMOTE_REF ]];  then
+              git push $REPO_URL :${{ github.event.ref }}
             fi
-            popd
           done

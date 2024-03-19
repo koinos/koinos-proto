@@ -12,10 +12,16 @@ jobs:
       - run: |
           for lang in cpp golang js python embedded-cpp descriptors as
           do
-            REPO_URL="https://koinos-ci:$BRANCH_CLEANUP_TOKEN@github.com/koinos/koinos-proto-$lang.git"
+            REPO="koinos-proto-$lang"
+            REPO_URL="https://koinos-ci:$BRANCH_CLEANUP_TOKEN@github.com/koinos/$REPO.git"
 
-            REMOTE_REF=$(git ls-remote --heads $REPO_URL ${{ github.event.ref }})
+            git clone $REPO_URL
+            pushd $REPO
+
+            REMOTE_REF=$(git ls-remote --heads ${{ github.event.ref }})
             if [[ $REMOTE_REF ]];  then
-              git push $REPO_URL :${{ github.event.ref }}
+              git push $REPO_URL --delete ${{ github.event.ref }}
             fi
+
+            popd $REPO
           done

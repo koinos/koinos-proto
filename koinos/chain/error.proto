@@ -53,3 +53,7 @@ enum error_code {
     disk_storage_limit_exceeded      = -1014;
     pre_irreversibility_block        = -1015;
 }
+
+message chain_error_details {
+    int32 code = 1;
+}

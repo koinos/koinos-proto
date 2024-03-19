@@ -14,7 +14,7 @@ message get_gossip_status_response {
 
 message p2p_request {
    oneof request {
-      rpc.reserved_rpc reserved = 1;
+      reserved_rpc reserved = 1;
       get_gossip_status_request get_gossip_status = 2;
    }
 }

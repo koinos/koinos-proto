@@ -57,7 +57,7 @@ message block_store_request {
 message block_store_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
-      rpc.error_response error = 2;
+      rpc.error_status error = 2;
       get_blocks_by_id_response get_blocks_by_id = 3;
       get_blocks_by_height_response get_blocks_by_height = 4;
       add_block_response add_block = 5;

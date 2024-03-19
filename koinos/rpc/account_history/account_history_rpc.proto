@@ -37,7 +37,7 @@ message account_history_request {
 message account_history_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
-      rpc.error_response error = 2;
+      rpc.error_status error = 2;
       get_account_history_response get_account_history = 3;
    }
 }

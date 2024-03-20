@@ -95,6 +95,15 @@ message invoke_system_call_response {
    bytes value = 1;
 }
 
+message propose_block_request {
+   protocol.block block = 1;
+}
+
+message propose_block_response {
+   optional protocol.block_receipt receipt = 1;
+   repeated uint32 failed_transaction_indices = 2;
+ }
+
 message chain_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
@@ -108,6 +117,7 @@ message chain_request {
       get_account_rc_request get_account_rc = 9;
       get_resource_limits_request get_resource_limits = 10;
       invoke_system_call_request invoke_system_call = 11;
+      propose_block_request propose_block = 12;
    }
 }
 
@@ -125,5 +135,6 @@ message chain_response {
       get_account_rc_response get_account_rc = 10;
       get_resource_limits_response get_resource_limits = 11;
       invoke_system_call_response invoke_system_call = 12;
+      propose_block_response propose_block = 13;
    }
 }

@@ -23,5 +23,5 @@ jobs:
               git push $REPO_URL --delete ${{ github.event.ref }}
             fi
 
-            popd $REPO
+            popd
           done

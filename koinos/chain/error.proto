@@ -56,4 +56,5 @@ enum error_code {
 
 message error_details {
     int32 code = 1;
+    repeated string logs = 2;
 }

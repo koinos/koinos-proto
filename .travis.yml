@@ -47,6 +47,13 @@ jobs:
         - rsync -rvm --include "*.pb.cc" --include "*/" --exclude "*" --delete ${TRAVIS_BUILD_DIR}/build/ src/
         - rsync -rvm --include "*.pb.h"  --include "*/" --exclude "*" --delete ${TRAVIS_BUILD_DIR}/build/ include/
         - git add src include
+        - |
+          if ! [ -z "${TRAVIS_TAG}" ]; then
+            # Assumes vMAJOR.MINOR.PATCH style tag
+            VERSION=${TRAVIS_TAG:1}
+            sed -i -e "s|  VERSION .*|  VERSION $VERSION|g" CMakeLists.txt
+            git add CMakeLists.txt
+          fi
         - popd
 
     - name: "Embedded C++"

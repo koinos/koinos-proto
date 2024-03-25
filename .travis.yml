@@ -93,7 +93,7 @@ jobs:
         - protoc --experimental_allow_proto3_optional --go_out=build/ --plugin=protoc-gen-go-rpc=`go env GOPATH`/bin/protoc-gen-go-rpc --go-grpc_out=build $PROTO_FILES
         - pushd ${DEST_REPO}
         - mkdir -p koinos
-        - rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/github.com/koinos/koinos-proto-golang/ ./
+        - rsync -rvm --include "*.pb.go" --include "*/" --exclude "*" --exclude ".*/" --delete ${TRAVIS_BUILD_DIR}/build/github.com/koinos/koinos-proto-golang/v2 ./
         - go mod tidy
         - git add .
         - popd

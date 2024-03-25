@@ -4,7 +4,7 @@ import "koinos/options.proto";
 import "koinos/protocol/protocol.proto";
 
 package koinos.contracts.governance;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/contracts/governance";
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/contracts/governance";
 
 enum proposal_status {
    pending = 0;

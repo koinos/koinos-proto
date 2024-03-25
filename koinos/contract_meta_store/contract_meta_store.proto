@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package koinos.contract_meta_store;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/contract_meta_store";
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/contract_meta_store";
 
 message contract_meta_item {
    string abi = 1;

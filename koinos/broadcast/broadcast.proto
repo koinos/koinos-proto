@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package koinos.broadcast;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/broadcast";
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/broadcast";
 
 import "koinos/common.proto";
 import "koinos/options.proto";

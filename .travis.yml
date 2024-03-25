@@ -49,7 +49,6 @@ jobs:
         - git add src include
         - |
           if ! [ -z "${TRAVIS_TAG}" ]; then
-            # Assumes vMAJOR.MINOR.PATCH style tag
             VERSION=${TRAVIS_TAG:1}
             sed -i -e "s|  VERSION .*|  VERSION $VERSION|g" CMakeLists.txt
             git add CMakeLists.txt

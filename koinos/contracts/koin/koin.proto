@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package koinos.contracts.koin;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/v2/contracts/koin";
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/contracts/koin";
 
 message mana_balance_object {
    uint64 balance = 1 [jstype = JS_STRING];

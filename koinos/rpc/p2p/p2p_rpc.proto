@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package koinos.rpc.p2p;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/v2/rpc/p2p";
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/rpc/p2p";
 
 import "koinos/rpc/rpc.proto";
 

@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package koinos.protocol;
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/v2/protocol";
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/protocol";
 
 import "koinos/options.proto";
 

@@ -10,7 +10,7 @@ import "koinos/rpc/mempool/mempool_rpc.proto";
 import "koinos/rpc/p2p/p2p_rpc.proto";
 import "koinos/rpc/transaction_store/transaction_store_rpc.proto";
 
-option go_package = "github.com/koinos/koinos-proto-golang/koinos/services";
+option go_package = "github.com/koinos/koinos-proto-golang/koinos/v2/services";
 
 service koinos {
   // Account History

@@ -19,7 +19,7 @@ env:
     - COMMIT_SHORT=`git rev-parse --short HEAD`
     - BRANCH=`if ! [ -z ${TRAVIS_TAG} ]; then echo -n master; else echo -n ${TRAVIS_BRANCH}; fi`
 
-# This build matric mixes global and build specific build stages to abstract common tasks.
+# This build matrix mixes global and build specific build stages to abstract common tasks.
 # There are several conventions in place to facilitate this.
 #
 # 1. The destination repo (e.g. koinos-proto-cpp) is set in the env var DEST_REPO.

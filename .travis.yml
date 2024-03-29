@@ -135,11 +135,11 @@ jobs:
         - cp ${TRAVIS_BUILD_DIR}/build/index.js index.js
         - cp ${TRAVIS_BUILD_DIR}/build/index.d.ts index.d.ts
         - cp ${TRAVIS_BUILD_DIR}/build/index.json index.json
-        - git add index.js index.d.ts index.json
         - |
           if ! [ -z "${TRAVIS_TAG}" ]; then
             npm version ${TRAVIS_TAG} --git-tag-version false
           fi
+        - git add .
         - popd
 
     - name: "Python"

@@ -17,8 +17,9 @@ env:
     - PROTOBUF_VERSION=3.17.3
     - PROTO_FILES=`find koinos -name '*.proto' && find google -name '*.proto' && find openapiv3 -name '*.proto'`
     - COMMIT_SHORT=`git rev-parse --short HEAD`
+    - BRANCH=`if ! [ -z ${TRAVIS_TAG} ]; then echo -n master; else echo -n ${TRAVIS_BRANCH}; fi`
 
-# This build matric mixes global and build specific build stages to abstract common tasks.
+# This build matrix mixes global and build specific build stages to abstract common tasks.
 # There are several conventions in place to facilitate this.
 #
 # 1. The destination repo (e.g. koinos-proto-cpp) is set in the env var DEST_REPO.
@@ -173,8 +174,8 @@ before_install:
   - git clone https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git
   - pushd $DEST_REPO
   - |
-    if [ "${TRAVIS_BRANCH}" != "master" ] && [ -z "${TRAVIS_TAG}" ]; then
-      git checkout -b ${TRAVIS_BRANCH}
+    if [ "${BRANCH}" != "master" ]; then
+      git checkout -b ${BRANCH}
     fi
   - popd
 
@@ -183,7 +184,7 @@ after_success:
   - |
     if ! git diff --cached --quiet --exit-code; then
       git commit -m "Update for koinos-proto commit ${COMMIT_SHORT}"
-      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${TRAVIS_BRANCH}
+      git push --force https://${GITHUB_USER_TOKEN}@github.com/koinos/${DEST_REPO}.git ${BRANCH}
     fi
   - |
     if ! [ -z "${TRAVIS_TAG}" ]; then

@@ -44,12 +44,22 @@ message check_account_nonce_response {
    bool success = 1;
 }
 
+message get_pending_account_rc_request {
+   bytes account = 1 [(btype) = ADDRESS];
+   optional bytes block_id = 2 [(btype) = BLOCK_ID];
+}
+
+message get_pending_account_rc_response {
+   uint64 pending_rc = 1;
+}
+
 message mempool_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
       check_pending_account_resources_request check_pending_account_resources = 2;
       get_pending_transactions_request get_pending_transactions = 3;
       check_account_nonce_request check_account_nonce = 4;
+      get_pending_account_rc_request pending_account_rc = 5;
    }
 }
 
@@ -60,5 +70,6 @@ message mempool_response {
       check_pending_account_resources_response check_pending_account_resources = 3;
       get_pending_transactions_response get_pending_transactions = 4;
       check_account_nonce_response check_account_nonce = 5;
+      get_pending_account_rc_responsee pending_account_rc = 6;
    }
 }

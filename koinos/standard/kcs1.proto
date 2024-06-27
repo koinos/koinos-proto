@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package koinos.contracts.standards.kcs1;
-option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/contracts/standards/kcs1";
+package koinos.standard.kcs1;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/standard/kcs1";
 
 import "koinos/options.proto";
 

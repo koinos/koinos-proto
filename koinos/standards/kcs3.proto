@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package koinos.standards.kcs3;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/standards/kcs3";
+
+import "koinos/options.proto";
+
+message name_arguments {}
+
+message name_result {
+   string value = 1;
+}
+
+message symbol_arguments {}
+
+message symbol_result {
+   string value = 1;
+}
+
+message decimals_arguments {}
+
+message decimals_result {
+   uint32 value = 1;
+}
+
+message total_supply_arguments {}
+
+message total_supply_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message balance_of_arguments {
+   bytes owner = 1 [(btype) = ADDRESS];
+}
+
+message balance_of_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message transfer_arguments {
+   bytes from = 1 [(btype) = ADDRESS];
+   bytes to = 2 [(btype) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}
+
+message transfer_result {}
+
+message mint_arguments {
+   bytes to = 1 [(btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+message mint_result {}
+
+message burn_arguments {
+   bytes from = 1 [(btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+message burn_result {}
+
+message balance_object {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+enum direction {
+   ascending = 0;
+   descending = 1;
+}
+ 
+message spender_value {
+   bytes spender = 1 [(koinos.btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+ 
+message get_allowances_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   bytes start = 2 [(koinos.btype) = ADDRESS];
+   int32 limit = 3;
+   direction direction = 4;
+}
+
+message get_allowances_result {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   repeated spender_value allowances = 2;   
+}
+
+message approve_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   bytes spender = 2 [(koinos.btype) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}
+
+message approve_result {}
+
+message burn_event {
+    bytes from = 1 [(btype) = ADDRESS];
+    uint64 value = 2 [jstype = JS_STRING];
+ }
+ 
+ message mint_event {
+    bytes to = 1 [(btype) = ADDRESS];
+    uint64 value = 2 [jstype = JS_STRING];
+ }
+ 
+ message transfer_event {
+    bytes from = 1 [(btype) = ADDRESS];
+    bytes to = 2 [(btype) = ADDRESS];
+    uint64 value = 3 [jstype = JS_STRING];
+ }
+ 
+message approve_event {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   bytes spender = 2 [(koinos.btype) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}

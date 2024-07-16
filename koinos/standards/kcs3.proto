@@ -107,20 +107,20 @@ message approve_arguments {
 message approve_result {}
 
 message burn_event {
-    bytes from = 1 [(btype) = ADDRESS];
-    uint64 value = 2 [jstype = JS_STRING];
- }
+   bytes from = 1 [(btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
 
- message mint_event {
-    bytes to = 1 [(btype) = ADDRESS];
-    uint64 value = 2 [jstype = JS_STRING];
- }
+message mint_event {
+   bytes to = 1 [(btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
 
- message transfer_event {
-    bytes from = 1 [(btype) = ADDRESS];
-    bytes to = 2 [(btype) = ADDRESS];
-    uint64 value = 3 [jstype = JS_STRING];
- }
+message transfer_event {
+   bytes from = 1 [(btype) = ADDRESS];
+   bytes to = 2 [(btype) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}
 
 message approve_event {
    bytes owner = 1 [(koinos.btype) = ADDRESS];

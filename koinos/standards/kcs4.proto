@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package koinos.standards.kcs3;
-option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/standards/kcs3";
+package koinos.standards.kcs4;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/standards/kcs4";
 
 import "koinos/options.proto";
 
@@ -80,6 +80,7 @@ message transfer_arguments {
    bytes from = 1 [(btype) = ADDRESS];
    bytes to = 2 [(btype) = ADDRESS];
    uint64 value = 3 [jstype = JS_STRING];
+   string memo = 4;
 }
 
 message transfer_result {}
@@ -120,6 +121,7 @@ message transfer_event {
    bytes from = 1 [(btype) = ADDRESS];
    bytes to = 2 [(btype) = ADDRESS];
    uint64 value = 3 [jstype = JS_STRING];
+   string memo = 4;
 }
 
 message approve_event {

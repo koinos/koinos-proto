@@ -59,10 +59,6 @@ message burn_arguments {
 
 message burn_result {}
 
-message balance_object {
-   uint64 value = 1 [jstype = JS_STRING];
-}
-
 message burn_event {
    bytes from = 1 [(btype) = ADDRESS];
    uint64 value = 2 [jstype = JS_STRING];

@@ -10,7 +10,6 @@ message royalty {
   bytes address = 2 [ (koinos.btype) = ADDRESS ];
 }
 
-
 message name_arguments {}
 
 message name_result {
@@ -88,7 +87,7 @@ message transfer_ownership_result {}
 
 message set_royalties_argument {
   repeated royalty value = 1;
-  // Event
+}
 
 message approve_arguments {
   bytes approver_address = 1 [ (koinos.btype) = ADDRESS ];
@@ -118,6 +117,7 @@ message transfer_arguments {
   bytes to = 2 [ (koinos.btype) = ADDRESS ];
   bytes token_id = 3 [ (koinos.btype) = HEX ];
 }
+
 message transfer_result {}
 
 message burn_arguments {

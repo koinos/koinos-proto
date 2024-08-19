@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package koinos.lp_tracker;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/lp_tracker";
+
+import "koinos/options.proto";
+
+message liquidity_record {
+   bytes address = 1 [(btype) = ADDRESS];
+   uint64 coin_seconds = 2;
+   uint64 last_update = 3;
+}

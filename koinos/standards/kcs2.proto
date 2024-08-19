@@ -89,6 +89,8 @@ message set_royalties_argument {
   repeated royalty value = 1;
 }
 
+message set_royalties_result {}
+
 message approve_arguments {
   bytes approver_address = 1 [ (koinos.btype) = ADDRESS ];
   bytes to = 2 [ (koinos.btype) = ADDRESS ];

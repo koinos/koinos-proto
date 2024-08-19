@@ -15,7 +15,7 @@ message get_liquidity_request {
 }
 
 message get_liquidity_response {
-   repeated lp_tracker.liquidity_record values = 1;
+   repeated .koinos.lp_tracker.liquidity_record values = 1;
 }
 
 message lp_tracker_request {

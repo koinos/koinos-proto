@@ -7,6 +7,12 @@ import "koinos/lp_tracker/lp_tracker.proto";
 import "koinos/options.proto";
 import "koinos/rpc/rpc.proto";
 
+message account_liquidity {
+   bytes address = 1 [(btype) = ADDRESS];
+   uint64 coin_ms_hi = 2;
+   uint64 coin_ms_lo = 3;
+}
+
 message get_liquidity_request {
    bytes pool = 1 [(btype) = ADDRESS];
    bytes start = 2 [(btype) = ADDRESS];
@@ -16,7 +22,7 @@ message get_liquidity_request {
 }
 
 message get_liquidity_response {
-   repeated .koinos.lp_tracker.liquidity_record values = 1;
+   repeated account_liquidity values = 1;
 }
 
 message lp_tracker_request {

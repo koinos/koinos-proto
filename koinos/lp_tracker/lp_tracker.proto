@@ -8,6 +8,6 @@ import "koinos/options.proto";
 message liquidity_record {
    bytes address = 1 [(btype) = ADDRESS];
    uint64 balance = 2;
-   uint64 prev_coin_seconds_hi = 3 [jstype = JS_STRING];
-   uint64 prev_coin_seconds_lo = 4 [jstype = JS_STRING];
+   uint64 prev_coin_ms_hi = 3 [jstype = JS_STRING];
+   uint64 prev_coin_ms_lo = 4 [jstype = JS_STRING];
 }

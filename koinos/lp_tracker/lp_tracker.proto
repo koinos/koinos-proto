@@ -10,4 +10,5 @@ message liquidity_record {
    uint64 balance = 2;
    uint64 prev_coin_ms_hi = 3 [jstype = JS_STRING];
    uint64 prev_coin_ms_lo = 4 [jstype = JS_STRING];
+   uint64 last_update = 5;
 }

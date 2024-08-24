@@ -9,8 +9,9 @@ import "koinos/rpc/rpc.proto";
 
 message account_liquidity {
    bytes address = 1 [(btype) = ADDRESS];
-   uint64 coin_ms_hi = 2;
-   uint64 coin_ms_lo = 3;
+   uint64 balance = 2;
+   uint64 coin_ms_hi = 3;
+   uint64 coin_ms_lo = 4;
 }
 
 message get_liquidity_request {

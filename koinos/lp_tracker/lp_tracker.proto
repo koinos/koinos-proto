@@ -12,3 +12,13 @@ message liquidity_record {
    uint64 prev_coin_ms_lo = 4 [jstype = JS_STRING];
    uint64 last_update = 5;
 }
+
+message initialize_event {
+   string token_a = 1;
+   string token_b = 2;
+}
+
+message sync_event {
+   uint64 reserve_a = 1;
+   uint64 reserve_b = 2;
+}

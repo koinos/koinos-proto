@@ -13,6 +13,10 @@ message liquidity_record {
    uint64 last_update = 5;
 }
 
+message tvl_record {
+   uint64 value = 1;
+}
+
 message initialize_event {
    string token_a = 1;
    string token_b = 2;

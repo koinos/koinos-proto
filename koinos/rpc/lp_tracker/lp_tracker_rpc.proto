@@ -14,7 +14,7 @@ message pool_pair {
 }
 
 message get_pools_request {
-   string start = 1;
+   bytes start = 1 [(btype) = ADDRESS];
    uint64 limit = 2 [jstype = JS_STRING];
 }
 

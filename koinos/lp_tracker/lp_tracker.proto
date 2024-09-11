@@ -5,11 +5,6 @@ option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/lp_tracker"
 
 import "koinos/options.proto";
 
-message pool_pair_record {
-   string token_a = 1;
-   string token_b = 2;
-}
-
 message liquidity_record {
    bytes address = 1 [(btype) = ADDRESS];
    uint64 balance = 2;
@@ -23,8 +18,8 @@ message tvl_record {
 }
 
 message initialize_event {
-   bytes token_a = 1;
-   bytes token_b = 2;
+   string token_a = 1;
+   string token_b = 2;
 }
 
 message sync_event {

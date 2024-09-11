@@ -7,6 +7,21 @@ import "koinos/lp_tracker/lp_tracker.proto";
 import "koinos/options.proto";
 import "koinos/rpc/rpc.proto";
 
+message pool_pair {
+   bytes pool = 1 [(btype) = ADDRESS];
+   string token_a = 2;
+   string token_b = 3;
+}
+
+message get_pools_request {
+   string start = 1;
+   uint64 limit = 2 [jstype = JS_STRING];
+}
+
+message get_pools_response {
+   repeated pool_pair values = 1;
+}
+
 message account_liquidity {
    bytes address = 1 [(btype) = ADDRESS];
    uint64 balance = 2;
@@ -26,10 +41,28 @@ message get_liquidity_response {
    repeated account_liquidity values = 1;
 }
 
+message pool_tvl {
+   bytes pool = 1 [(bytes) = ADDRESS];
+   uint64 tvl = 2;
+}
+
+message get_tvl_request {
+   bytes pool = 1 [(btype) = ADDRESS];
+   bytes start = 2 [(btype) = ADDRESS];
+   uint64 limit = 3 [jstype = JS_STRING];
+   optional uint64 ms = 4;
+}
+
+message get_tvl_response {
+   repeated pool_tvl values = 1;
+}
+
 message lp_tracker_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
-      get_liquidity_request get_liquidity = 2;
+      get_pools_request get_pools = 2;
+      get_liquidity_request get_liquidity = 3;
+      get_tvl_request get_tvl = 4;
    }
 }
 
@@ -37,6 +70,8 @@ message lp_tracker_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
       rpc.error_status error = 2;
-      get_liquidity_response get_liquidity = 3;
+      get_pools_response get_pools = 3;
+      get_liquidity_response get_liquidity = 4;
+      get_tvl_response get_tvl = 5;
    }
 }

@@ -42,7 +42,7 @@ message get_liquidity_response {
 }
 
 message pool_tvl {
-   bytes pool = 1 [(bytes) = ADDRESS];
+   bytes pool = 1 [(btype) = ADDRESS];
    uint64 tvl = 2;
 }
 

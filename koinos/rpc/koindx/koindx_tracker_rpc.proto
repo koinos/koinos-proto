@@ -3,7 +3,7 @@ syntax = "proto3";
 package koinos.rpc.koindx;
 option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/rpc/koindx";
 
-import "koinos/koindx/koindx.proto";
+import "koinos/koindx/koindx_tracker.proto";
 import "koinos/options.proto";
 import "koinos/rpc/rpc.proto";
 

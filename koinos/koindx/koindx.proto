@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package koinos.lp_tracker;
-option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/lp_tracker";
+package koinos.koindx;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/koindx";
 
 import "koinos/options.proto";
 

@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package koinos.rpc.lp_tracker;
-option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/rpc/lp_tracker";
+package koinos.rpc.koindx;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/rpc/koindx";
 
-import "koinos/lp_tracker/lp_tracker.proto";
+import "koinos/koindx/koindx.proto";
 import "koinos/options.proto";
 import "koinos/rpc/rpc.proto";
 

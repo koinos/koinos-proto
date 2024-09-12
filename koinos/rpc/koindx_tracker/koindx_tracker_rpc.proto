@@ -56,7 +56,7 @@ message get_tvl_response {
    repeated pool_tvl values = 1;
 }
 
-message lp_tracker_request {
+message koindx_tracker_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
       get_pools_request get_pools = 2;
@@ -65,7 +65,7 @@ message lp_tracker_request {
    }
 }
 
-message lp_tracker_response {
+message koindx_tracker_response {
    oneof response {
       rpc.reserved_rpc reserved = 1;
       rpc.error_status error = 2;

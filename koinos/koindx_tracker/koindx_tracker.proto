@@ -7,14 +7,14 @@ import "koinos/options.proto";
 
 message liquidity_record {
    bytes address = 1 [(btype) = ADDRESS];
-   uint64 balance = 2;
+   uint64 balance = 2 [jstype = JS_STRING];
    uint64 prev_coin_ms_hi = 3 [jstype = JS_STRING];
    uint64 prev_coin_ms_lo = 4 [jstype = JS_STRING];
-   uint64 last_update = 5;
+   uint64 last_update = 5 [jstype = JS_STRING];
 }
 
 message tvl_record {
-   uint64 value = 1;
+   uint64 value = 1 [jstype = JS_STRING];
 }
 
 message initialize_event {
@@ -23,6 +23,6 @@ message initialize_event {
 }
 
 message sync_event {
-   uint64 reserve_a = 1;
-   uint64 reserve_b = 2;
+   uint64 reserve_a = 1 [jstype = JS_STRING];
+   uint64 reserve_b = 2 [jstype = JS_STRING];
 }

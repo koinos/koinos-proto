@@ -14,8 +14,11 @@ message pool_pair {
 }
 
 message get_pools_request {
-   bytes start = 1 [(btype) = ADDRESS];
-   uint64 limit = 2 [jstype = JS_STRING];
+   oneof target {
+      bytes start = 1 [(btype) = ADDRESS];
+      bytes pool = 2 [(btype) = ADDRESS];
+   }
+   uint64 limit = 3 [jstype = JS_STRING];
 }
 
 message get_pools_response {
@@ -24,17 +27,17 @@ message get_pools_response {
 
 message account_liquidity {
    bytes address = 1 [(btype) = ADDRESS];
-   uint64 balance = 2;
-   uint64 coin_ms_hi = 3;
-   uint64 coin_ms_lo = 4;
+   uint64 balance = 2 [jstype = JS_STRING];
+   uint64 coin_ms_hi = 3 [jstype = JS_STRING];
+   uint64 coin_ms_lo = 4 [jstype = JS_STRING];
 }
 
 message get_liquidity_request {
    bytes pool = 1 [(btype) = ADDRESS];
    bytes start = 2 [(btype) = ADDRESS];
    uint64 limit = 3 [jstype = JS_STRING];
-   optional uint64 start_ms = 4;
-   optional uint64 end_ms = 5;
+   optional uint64 start_ms = 4 [jstype = JS_STRING];
+   optional uint64 end_ms = 5 [jstype = JS_STRING];
 }
 
 message get_liquidity_response {
@@ -43,13 +46,17 @@ message get_liquidity_response {
 
 message pool_tvl {
    bytes pool = 1 [(btype) = ADDRESS];
-   uint64 tvl = 2;
+   uint64 tvl = 2 [jstype = JS_STRING];
 }
 
 message get_tvl_request {
-   bytes start = 1 [(btype) = ADDRESS];
-   uint64 limit = 2 [jstype = JS_STRING];
-   optional uint64 ms = 3;
+   oneof target {
+      bytes start = 1 [(btype) = ADDRESS];
+      bytes pool = 2 [(btype) = ADDRESS];
+   }
+
+   uint64 limit = 3 [jstype = JS_STRING];
+   optional uint64 ms = 4 [jstype = JS_STRING];
 }
 
 message get_tvl_response {

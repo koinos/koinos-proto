@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package koinos.koindx_tracker;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/koindx_tracker";
+
+import "koinos/options.proto";
+
+message liquidity_record {
+   bytes address = 1 [(btype) = ADDRESS];
+   uint64 balance = 2 [jstype = JS_STRING];
+   uint64 prev_coin_ms_hi = 3 [jstype = JS_STRING];
+   uint64 prev_coin_ms_lo = 4 [jstype = JS_STRING];
+   uint64 last_update = 5 [jstype = JS_STRING];
+}
+
+message tvl_record {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message initialize_event {
+   string token_a = 1;
+   string token_b = 2;
+}
+
+message sync_event {
+   uint64 reserve_a = 1 [jstype = JS_STRING];
+   uint64 reserve_b = 2 [jstype = JS_STRING];
+}

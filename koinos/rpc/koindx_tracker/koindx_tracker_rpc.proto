@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package koinos.rpc.koindx_tracker;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/rpc/koindx_tracker";
+
+import "koinos/koindx_tracker/koindx_tracker.proto";
+import "koinos/options.proto";
+import "koinos/rpc/rpc.proto";
+
+message pool_pair {
+   bytes pool = 1 [(btype) = ADDRESS];
+   string token_a = 2;
+   string token_b = 3;
+}
+
+message get_pools_request {
+   oneof target {
+      bytes start = 1 [(btype) = ADDRESS];
+      bytes pool = 2 [(btype) = ADDRESS];
+   }
+   uint64 limit = 3 [jstype = JS_STRING];
+}
+
+message get_pools_response {
+   repeated pool_pair values = 1;
+}
+
+message account_liquidity {
+   bytes address = 1 [(btype) = ADDRESS];
+   uint64 balance = 2 [jstype = JS_STRING];
+   uint64 coin_ms_hi = 3 [jstype = JS_STRING];
+   uint64 coin_ms_lo = 4 [jstype = JS_STRING];
+}
+
+message get_liquidity_request {
+   bytes pool = 1 [(btype) = ADDRESS];
+   bytes start = 2 [(btype) = ADDRESS];
+   uint64 limit = 3 [jstype = JS_STRING];
+   optional uint64 start_ms = 4 [jstype = JS_STRING];
+   optional uint64 end_ms = 5 [jstype = JS_STRING];
+}
+
+message get_liquidity_response {
+   repeated account_liquidity values = 1;
+}
+
+message pool_tvl {
+   bytes pool = 1 [(btype) = ADDRESS];
+   uint64 tvl = 2 [jstype = JS_STRING];
+}
+
+message get_tvl_request {
+   oneof target {
+      bytes start = 1 [(btype) = ADDRESS];
+      bytes pool = 2 [(btype) = ADDRESS];
+   }
+
+   uint64 limit = 3 [jstype = JS_STRING];
+   optional uint64 ms = 4 [jstype = JS_STRING];
+}
+
+message get_tvl_response {
+   repeated pool_tvl values = 1;
+}
+
+message koindx_tracker_request {
+   oneof request {
+      rpc.reserved_rpc reserved = 1;
+      get_pools_request get_pools = 2;
+      get_liquidity_request get_liquidity = 3;
+      get_tvl_request get_tvl = 4;
+   }
+}
+
+message koindx_tracker_response {
+   oneof response {
+      rpc.reserved_rpc reserved = 1;
+      rpc.error_status error = 2;
+      get_pools_response get_pools = 3;
+      get_liquidity_response get_liquidity = 4;
+      get_tvl_response get_tvl = 5;
+   }
+}

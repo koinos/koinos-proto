@@ -75,7 +75,7 @@ message transfer_arguments {
    bytes from = 1 [(btype) = ADDRESS];
    bytes to = 2 [(btype) = ADDRESS];
    uint64 value = 3 [jstype = JS_STRING];
-   string memo = 4;
+   optional string memo = 4;
 }
 
 message transfer_result {}
@@ -83,6 +83,7 @@ message transfer_result {}
 message mint_arguments {
    bytes to = 1 [(btype) = ADDRESS];
    uint64 value = 2 [jstype = JS_STRING];
+   optional string memo = 3;
 }
 
 message mint_result {}
@@ -90,6 +91,7 @@ message mint_result {}
 message burn_arguments {
    bytes from = 1 [(btype) = ADDRESS];
    uint64 value = 2 [jstype = JS_STRING];
+   optional string memo = 3;
 }
 
 message burn_result {}
@@ -98,6 +100,7 @@ message approve_arguments {
    bytes owner = 1 [(koinos.btype) = ADDRESS];
    bytes spender = 2 [(koinos.btype) = ADDRESS];
    uint64 value = 3 [jstype = JS_STRING];
+   optional string memo = 4;
 }
 
 message approve_result {}
@@ -105,22 +108,25 @@ message approve_result {}
 message burn_event {
    bytes from = 1 [(btype) = ADDRESS];
    uint64 value = 2 [jstype = JS_STRING];
+   optional string memo = 3;
 }
 
 message mint_event {
    bytes to = 1 [(btype) = ADDRESS];
    uint64 value = 2 [jstype = JS_STRING];
+   optional string memo = 3;
 }
 
 message transfer_event {
    bytes from = 1 [(btype) = ADDRESS];
    bytes to = 2 [(btype) = ADDRESS];
    uint64 value = 3 [jstype = JS_STRING];
-   string memo = 4;
+   optional string memo = 4;
 }
 
 message approve_event {
    bytes owner = 1 [(koinos.btype) = ADDRESS];
    bytes spender = 2 [(koinos.btype) = ADDRESS];
    uint64 value = 3 [jstype = JS_STRING];
+   optional string memo = 4;
 }

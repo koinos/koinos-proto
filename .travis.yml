@@ -116,7 +116,7 @@ jobs:
         - ./generate_index.sh
         - |
           if ! [ -z "${TRAVIS_TAG}" ]; then
-            npm version ${TRAVIS_TAG} --git-tag-version false
+            npm version ${TRAVIS_TAG} --allow-same-version --git-tag-version false
           fi
         - git add .
         - popd
@@ -139,7 +139,7 @@ jobs:
         - cp ${TRAVIS_BUILD_DIR}/build/index.json index.json
         - |
           if ! [ -z "${TRAVIS_TAG}" ]; then
-            npm version ${TRAVIS_TAG} --git-tag-version false
+            npm version ${TRAVIS_TAG} --allow-same-version --git-tag-version false
           fi
         - git add .
         - popd

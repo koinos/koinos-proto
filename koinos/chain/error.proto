@@ -4,54 +4,55 @@ package koinos.chain;
 option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/chain";
 
 enum error_code {
-    success                      =    0;
+    success                            =    0;
 
     // Reversions
-    reversion                    =    1;
+    reversion                          =    1;
 
-    internal_error               =  100;
-    system_authorization_failure =  101;
-    invalid_contract             =  102;
-    insufficient_privileges      =  103;
-    insufficient_rc              =  104;
-    insufficient_return_buffer   =  105;
-    unknown_thunk                =  106;
-    unknown_operation            =  107;
-    read_only_context            =  108;
+    internal_error                     =  100;
+    system_authorization_failure       =  101;
+    invalid_contract                   =  102;
+    insufficient_privileges            =  103;
+    insufficient_rc                    =  104;
+    insufficient_return_buffer         =  105;
+    unknown_thunk                      =  106;
+    unknown_operation                  =  107;
+    read_only_context                  =  108;
 
     // Failures
-    failure                      =   -1;
+    failure                            =   -1;
 
-    field_not_found              = -100;
-    unknown_hash_code            = -101;
-    unknown_dsa                  = -102;
-    unknown_system_call          = -103;
-    operation_not_found          = -104;
+    field_not_found                    = -100;
+    unknown_hash_code                  = -101;
+    unknown_dsa                        = -102;
+    unknown_system_call                = -103;
+    operation_not_found                = -104;
 
-    authorization_failure        = -200;
-    invalid_nonce                = -201;
-    invalid_signature            = -202;
-    malformed_block              = -203;
-    malformed_transaction        = -204;
-    block_resource_failure       = -205;
+    authorization_failure              = -200;
+    invalid_nonce                      = -201;
+    invalid_signature                  = -202;
+    malformed_block                    = -203;
+    malformed_transaction              = -204;
+    block_resource_failure             = -205;
+    pending_transaction_limit_exceeded = -206;
 
     // Framework failures
-    unknown_backend                  = -1000;
-    unexpected_state                 = -1001;
-    missing_required_arguments       = -1002;
-    unknown_previous_block           = -1003;
-    unexpected_height                = -1004;
-    block_state_error                = -1005;
-    state_merkle_mismatch            = -1006;
-    unexpected_receipt               = -1007;
-    rpc_failure                      = -1008;
-    pending_state_error              = -1009;
-    timestamp_out_of_bounds          = -1010;
-    indexer_failure                  = -1011;
-    network_bandwidth_limit_exceeded = -1012;
-    compute_bandwidth_limit_exceeded = -1013;
-    disk_storage_limit_exceeded      = -1014;
-    pre_irreversibility_block        = -1015;
+    unknown_backend                    = -1000;
+    unexpected_state                   = -1001;
+    missing_required_arguments         = -1002;
+    unknown_previous_block             = -1003;
+    unexpected_height                  = -1004;
+    block_state_error                  = -1005;
+    state_merkle_mismatch              = -1006;
+    unexpected_receipt                 = -1007;
+    rpc_failure                        = -1008;
+    pending_state_error                = -1009;
+    timestamp_out_of_bounds            = -1010;
+    indexer_failure                    = -1011;
+    network_bandwidth_limit_exceeded   = -1012;
+    compute_bandwidth_limit_exceeded   = -1013;
+    disk_storage_limit_exceeded        = -1014;
+    pre_irreversibility_block          = -1015;
 }
 
 message error_details {

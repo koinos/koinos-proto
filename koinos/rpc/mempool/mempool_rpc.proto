@@ -61,6 +61,15 @@ message get_pending_nonce_response {
    bytes nonce = 1;
 }
 
+message get_pending_transaction_count_request {
+   bytes payee = 1 [(btype) = ADDRESS];
+   optional bytes block_id = 2 [(btype) = BLOCK_ID];
+}
+
+message get_pending_transaction_count_response {
+   uint64 count = 1;
+}
+
 message mempool_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
@@ -69,6 +78,7 @@ message mempool_request {
       check_account_nonce_request check_account_nonce = 4;
       get_reserved_account_rc_request get_reserved_account_rc = 5;
       get_pending_nonce_request get_pending_nonce = 6;
+      get_pending_transaction_count_request get_pending_transaction_count = 7;
    }
 }
 
@@ -81,5 +91,6 @@ message mempool_response {
       check_account_nonce_response check_account_nonce = 5;
       get_reserved_account_rc_response get_reserved_account_rc = 6;
       get_pending_nonce_response get_pending_nonce = 7;
+      get_pending_transaction_count_response get_pending_transaction_count = 8;
    }
 }

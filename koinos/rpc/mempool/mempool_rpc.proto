@@ -4,6 +4,7 @@ package koinos.rpc.mempool;
 option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/rpc/mempool";
 
 import "koinos/options.proto";
+import "koinos/memppool/mempool.proto";
 import "koinos/protocol/protocol.proto";
 import "koinos/rpc/rpc.proto";
 

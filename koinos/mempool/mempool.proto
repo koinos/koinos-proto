@@ -25,6 +25,6 @@ message pending_transaction {
 }
 
 message pending_transaction_record {
-   protocol.transaction transaction = 1;
+   pending_transaction pending_transaction = 1;
    uint64 timestamp = 2;
 }

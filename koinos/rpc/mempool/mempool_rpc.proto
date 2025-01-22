@@ -25,7 +25,7 @@ message get_pending_transactions_request {
 }
 
 message get_pending_transactions_response {
-   repeated koinos.mempool.pending_transaction_record pending_transactions = 1;
+   repeated koinos.mempool.pending_transaction pending_transactions = 1;
 }
 
 message check_account_nonce_request {

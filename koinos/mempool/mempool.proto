@@ -14,13 +14,17 @@ message address_resource_record {
    uint64 current_rc = 2;
 }
 
+message pending_transaction {
+   protocol.transaction transaction = 1;
+   uint64 disk_storage_used = 2;
+   uint64 network_bandwidth_used = 3;
+   uint64 compute_bandwidth_used = 4;
+   uint64 system_disk_storage_used = 5;
+   uint64 system_network_bandwidth_used = 6;
+   uint64 system_compute_bandwidth_used = 7;
+}
+
 message pending_transaction_record {
    protocol.transaction transaction = 1;
    uint64 timestamp = 2;
-   uint64 disk_storage_used = 3;
-   uint64 network_bandwidth_used = 4;
-   uint64 compute_bandwidth_used = 5;
-   uint64 system_disk_storage_used = 6;
-   uint64 system_network_bandwidth_used = 7;
-   uint64 system_compute_bandwidth_used = 8;
 }

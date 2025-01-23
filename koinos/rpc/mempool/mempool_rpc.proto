@@ -64,6 +64,15 @@ message get_pending_transaction_count_response {
    uint64 count = 1;
 }
 
+message get_pending_transaction_request {
+   bytes transaction_id = 1 [(btype) = TRANSACTION_ID];
+   optional bytes block_id = 2 [(btype) = BLOCK_ID];
+}
+
+message get_pending_transaction_response {
+   koinos.mempool.pending_transaction pending_transaction = 1;
+}
+
 message mempool_request {
    oneof request {
       rpc.reserved_rpc reserved = 1;
@@ -73,6 +82,7 @@ message mempool_request {
       get_reserved_account_rc_request get_reserved_account_rc = 5;
       get_pending_nonce_request get_pending_nonce = 6;
       get_pending_transaction_count_request get_pending_transaction_count = 7;
+      get_pending_transaction_request get_pending_transaction = 8;
    }
 }
 
@@ -86,5 +96,6 @@ message mempool_response {
       get_reserved_account_rc_response get_reserved_account_rc = 6;
       get_pending_nonce_response get_pending_nonce = 7;
       get_pending_transaction_count_response get_pending_transaction_count = 8;
+      get_pending_transaction_response get_pending_transaction = 9;
    }
 }

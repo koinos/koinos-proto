@@ -23,9 +23,17 @@ message uri_result {
   string value = 1;
 }
 
+message token_uri_arguments {
+  bytes token_id = 1 [(koinos.btype) = ADDRESS];
+}
+
+message token_uri_result {
+  string value = 1;
+}
+
 message get_info_arguments {}
 
-message get_info_results {
+message get_info_result {
   string name = 1;
   string symbol = 2;
   uint32 uri = 3;
@@ -164,24 +172,26 @@ message set_metadata_event {
 }
 
 message approve_arguments {
-  bytes approver_address = 1 [(koinos.btype) = ADDRESS];
-  bytes to = 2 [(koinos.btype) = ADDRESS];
+  bytes owner = 1 [(koinos.btype) = ADDRESS, deprecated = true];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
   bytes token_id = 3 [(koinos.btype) = HEX];
   optional string memo = 4;
+  optional bool approve = 5;
 }
 
 message approve_result {}
 
 message token_approval_event {
-  bytes approver_address = 1 [(koinos.btype) = ADDRESS];
-  bytes to = 2 [(koinos.btype) = ADDRESS];
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
   bytes token_id = 3 [(koinos.btype) = HEX];
   optional string memo = 4;
+  optional bool approve = 5;
 }
 
 message set_approval_for_all_arguments {
-  bytes approver_address = 1 [(koinos.btype) = ADDRESS];
-  bytes operator_address = 2 [(koinos.btype) = ADDRESS];
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
   bool approved = 3;
   optional string memo = 4;
 }
@@ -189,8 +199,8 @@ message set_approval_for_all_arguments {
 message set_approval_for_all_result {}
 
 message operator_approval_event {
-  bytes approver_address = 1 [(koinos.btype) = ADDRESS];
-  bytes operator_address = 2 [(koinos.btype) = ADDRESS];
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
   bool approved = 3;
   optional string memo = 4;
 }
@@ -210,7 +220,7 @@ message mint_event {
 }
 
 message transfer_arguments {
-  bytes from = 1 [(koinos.btype) = ADDRESS];
+  bytes from = 1 [(koinos.btype) = ADDRESS, deprecated = true];
   bytes to = 2 [(koinos.btype) = ADDRESS];
   bytes token_id = 3 [(koinos.btype) = HEX];
   optional string memo = 4;

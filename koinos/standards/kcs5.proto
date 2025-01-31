@@ -24,7 +24,7 @@ message uri_result {
 }
 
 message token_uri_arguments {
-  bytes token_id = 1 [(koinos.btype) = ADDRESS];
+  bytes token_id = 1 [(koinos.btype) = HEX];
 }
 
 message token_uri_result {
@@ -139,7 +139,7 @@ message get_operator_approvals_result {
 }
 
 message transfer_ownership_arguments {
-  bytes value = 1 [(koinos.btype) = ADDRESS];
+  bytes to = 1 [(koinos.btype) = ADDRESS];
 }
 
 message transfer_ownership_result {}
@@ -149,7 +149,7 @@ message owner_event {
   bytes to = 2 [(koinos.btype) = ADDRESS];
 }
 
-message set_royalties_argument {
+message set_royalties_arguments {
   repeated royalty value = 1;
 }
 

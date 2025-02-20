@@ -1,0 +1,249 @@
+syntax = "proto3";
+
+package koinos.standards.kcs5;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/standards/kcs5";
+
+import "koinos/options.proto";
+
+message name_arguments {}
+
+message name_result {
+  string value = 1;
+}
+
+message symbol_arguments {}
+
+message symbol_result {
+  string value = 1;
+}
+
+message uri_arguments {}
+
+message uri_result {
+  string value = 1;
+}
+
+message token_uri_arguments {
+  bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+message token_uri_result {
+  string value = 1;
+}
+
+message get_info_arguments {}
+
+message get_info_result {
+  string name = 1;
+  string symbol = 2;
+  uint32 uri = 3;
+  string description = 4;
+}
+
+message owner_arguments {}
+
+message owner_result {
+  bytes value = 1 [(koinos.btype) = ADDRESS];
+}
+
+message total_supply_arguments {}
+
+message total_supply_result {
+  uint64 value = 1 [jstype = JS_STRING];
+}
+
+message royalty {
+  uint64 percentage = 1 [jstype = JS_STRING];
+  bytes address = 2 [(koinos.btype) = ADDRESS];
+}
+
+message royalties_arguments {}
+
+message royalties_result {
+  repeated royalty value = 1;
+}
+
+message balance_of_arguments {
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+}
+
+message balance_of_result {
+  uint64 value = 1 [jstype = JS_STRING];
+}
+
+message owner_of_arguments {
+  bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+message owner_of_result {
+  bytes value = 1 [(koinos.btype) = ADDRESS];
+}
+
+// Arguments
+message metadata_of_arguments {
+  bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+message metadata_of_result {
+  string value = 1;
+}
+
+message get_tokens_arguments {
+  bytes start = 1 [(koinos.btype) = HEX];
+  int32 limit = 2;
+  bool descending = 3;
+}
+
+message get_tokens_result {
+  repeated bytes values = 1 [(koinos.btype) = HEX];
+}
+
+message get_tokens_by_owner_arguments {
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes start = 2 [(koinos.btype) = HEX];
+  int32 limit = 3;
+  bool descending = 4;
+}
+
+message get_tokens_by_owner_result {
+  repeated bytes values = 1 [(koinos.btype) = HEX];
+}
+
+message get_approved_arguments {
+  bytes token_id = 1 [(koinos.btype) = HEX];
+}
+
+message get_approved_result {
+  bytes value = 1 [(koinos.btype) = ADDRESS];
+}
+
+message is_approved_for_all_arguments {
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
+}
+
+message is_approved_for_all_result {
+  bool value = 1;
+}
+
+message get_operator_approvals_arguments {
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes start = 2 [(koinos.btype) = ADDRESS];
+  int32 limit = 3;
+  bool descending = 4;
+}
+
+message get_operator_approvals_result {
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  repeated bytes operators = 2 [(koinos.btype) = ADDRESS];
+}
+
+message transfer_ownership_arguments {
+  bytes to = 1 [(koinos.btype) = ADDRESS];
+}
+
+message transfer_ownership_result {}
+
+message owner_event {
+  bytes from = 1 [(koinos.btype) = ADDRESS];
+  bytes to = 2 [(koinos.btype) = ADDRESS];
+}
+
+message set_royalties_arguments {
+  repeated royalty value = 1;
+}
+
+message set_royalties_result {}
+
+message royalties_event {
+  repeated royalty value = 1;
+}
+
+message set_metadata_arguments {
+  bytes token_id = 1 [(koinos.btype) = HEX];
+  string metadata = 2;
+}
+
+message set_metadata_result {}
+
+message set_metadata_event {
+  bytes token_id = 1 [(koinos.btype) = HEX];
+  string metadata = 2;
+}
+
+message approve_arguments {
+  bytes owner = 1 [(koinos.btype) = ADDRESS, deprecated = true];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
+  bytes token_id = 3 [(koinos.btype) = HEX];
+  optional string memo = 4;
+  optional bool approve = 5;
+}
+
+message approve_result {}
+
+message token_approval_event {
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
+  bytes token_id = 3 [(koinos.btype) = HEX];
+  optional string memo = 4;
+  optional bool approve = 5;
+}
+
+message set_approval_for_all_arguments {
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
+  bool approved = 3;
+  optional string memo = 4;
+}
+
+message set_approval_for_all_result {}
+
+message operator_approval_event {
+  bytes owner = 1 [(koinos.btype) = ADDRESS];
+  bytes operator = 2 [(koinos.btype) = ADDRESS];
+  bool approved = 3;
+  optional string memo = 4;
+}
+
+message mint_arguments {
+  bytes to = 1 [(koinos.btype) = ADDRESS];
+  bytes token_id = 2 [(koinos.btype) = HEX];
+  optional string memo = 3;
+}
+
+message mint_result {}
+
+message mint_event {
+  bytes to = 1 [(koinos.btype) = ADDRESS];
+  bytes token_id = 2 [(koinos.btype) = HEX];
+  optional string memo = 3;
+}
+
+message transfer_arguments {
+  bytes from = 1 [(koinos.btype) = ADDRESS, deprecated = true];
+  bytes to = 2 [(koinos.btype) = ADDRESS];
+  bytes token_id = 3 [(koinos.btype) = HEX];
+  optional string memo = 4;
+}
+
+message transfer_result {}
+
+message transfer_event {
+  bytes from = 1 [(koinos.btype) = ADDRESS];
+  bytes to = 2 [(koinos.btype) = ADDRESS];
+  bytes token_id = 3 [(koinos.btype) = HEX];
+  optional string memo = 4;
+}
+
+message burn_arguments {
+  bytes token_id = 1 [(koinos.btype) = HEX];
+  optional string memo = 2;
+}
+
+message burn_result {}
+
+message burn_event {
+  bytes from = 1 [(koinos.btype) = ADDRESS];
+  bytes token_id = 2 [(koinos.btype) = HEX];
+  optional string memo = 3;
+}

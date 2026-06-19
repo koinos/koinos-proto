@@ -133,4 +133,5 @@ message state_delta_entry {
    object_space object_space = 1;
    bytes key = 2;
    optional bytes value = 3;
+   optional bytes previous_value = 4;
 }

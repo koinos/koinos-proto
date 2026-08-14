@@ -1,0 +1,175 @@
+syntax = "proto3";
+
+package koinos.contracts.fund;
+option go_package = "github.com/koinos/koinos-proto-golang/v2/koinos/contracts/fund";
+
+import "koinos/options.proto";
+
+message global_vars {
+  // fee is calculated as: Fee = (K+1)^3 * T / fee_denominator
+  // where K is the total active and upcoming projects
+  // and T is the duration of the project (in milliseconds).
+  //
+  // This design is necessary because the function
+  // to pay projects has loops that makes updates in all active
+  // and upcoming projects, so this number cannot be large to avoid
+  // excessive computing times.
+  //
+  // As the number of active and upcoming projects increases
+  // new projects are penalized with higher fees.
+  // The duration of the project also impacts in the computation
+  // then the fee increases proportional to the duration.
+  //
+  // As an example, with fee_denominator = 10000, a new project
+  // with a duration of 1 year, will have to pay:
+  // fee = 6.8 KOIN if active + upcoming projects = 5
+  // fee = 292 KOIN if active + upcoming projects = 20
+  // fee = 4183 KOIN if active + upcoming projects = 50
+  // fee = 32491 KOIN if active + upcoming projects = 100
+  uint64 fee_denominator = 1 [jstype = JS_STRING];
+
+  uint32 total_projects = 2;
+  uint32 total_upcoming_projects = 3;
+  uint32 total_active_projects = 4;
+
+  // List of dates where the pay_projects functions is called.
+  // It happens at the end of each month. We also use this list as
+  // a time span for the expiration of the votes: Each project
+  // distributes the votes in 6 groups depending on the expiration
+  // time. And they are linked to the global variable "payment_times".
+  // In this way is easier to discount votes from the project
+  // when a group of votes expire.
+  repeated uint64 payment_times = 5 [jstype = JS_STRING];
+
+  // The remaining balance is the balance that was not executed
+  // in a month, and will be used for the next one.
+  // Normally, the budget of each month are the funds collected
+  // on that month. However, if there is a remaining balance from
+  // the last month, then the budget is 2 times the funds collected
+  // during the month.
+  uint64 remaining_balance = 6 [jstype = JS_STRING];
+}
+
+message set_global_vars_arguments {
+  uint64 fee_denominator = 1 [jstype = JS_STRING];
+}
+
+message submit_project_arguments {
+  bytes creator = 1 [(btype) = ADDRESS];
+  bytes beneficiary = 2 [(btype) = ADDRESS];
+  string title = 3;
+  string description = 4;
+  uint64 monthly_payment = 5 [jstype = JS_STRING];
+  uint64 start_date = 6 [jstype = JS_STRING];
+  uint64 end_date = 7 [jstype = JS_STRING];
+  uint64 fee = 8 [jstype = JS_STRING];
+}
+
+message submit_project_result {
+}
+
+enum project_status {
+  upcoming = 0;
+  active = 1;
+  past = 2;
+}
+
+message project {
+  uint32 id = 1;
+  bytes creator = 2 [(btype) = ADDRESS];
+  bytes beneficiary = 3 [(btype) = ADDRESS];
+  string title = 4;
+  string description = 5;
+  uint64 monthly_payment = 6 [jstype = JS_STRING];
+  uint64 start_date = 7 [jstype = JS_STRING];
+  uint64 end_date = 8 [jstype = JS_STRING];
+  project_status status = 9;
+
+  // Total votes received by the project and that have
+  // not yet expired
+  uint64 total_votes = 10 [jstype = JS_STRING];
+
+  // This list "votes" contains the total votes
+  // by expiration time. It contains 6 values: total votes
+  // expiring next month, in 2 months, 3 months, ... , 6 months.
+  // In this way its easier to remove a group of votes
+  // easily when they expire.
+  repeated uint64 votes = 11 [jstype = JS_STRING];
+}
+
+message existence {
+}
+
+message vote_info {
+  uint32 project_id = 1;
+
+  // Each user can allocate his votes to a maximum of 20
+  // projects. Voting is done in 5% increments, meaning users
+  // can assign their votes in proportions of 5% per project.
+  // The weight is a value from 1 to 20 representing these
+  // proportions of 5%, in order to go from 5% to 100%.
+  uint32 weight = 2;
+
+  // expiration time
+  uint64 expiration = 3 [jstype = JS_STRING];
+}
+
+message set_votes_koinos_fund_arguments {
+  bytes account = 1 [(btype) = ADDRESS];
+  bool votes_koinos_fund = 2;
+}
+
+message update_vote_arguments {
+  bytes voter = 1 [(btype) = ADDRESS];
+  uint32 project_id = 2;
+
+  // Each user can allocate his votes to a maximum of 20
+  // projects. Voting is done in 5% increments, meaning users
+  // can assign their votes in proportions of 5% per project.
+  // The weight is a value from 1 to 20 representing these
+  // proportions of 5%, in order to go from 5% to 100%.
+  uint32 weight = 3;
+}
+
+message update_vote_result {
+}
+
+message pay_projects_result {
+  uint64 next_payment_time = 1 [jstype = JS_STRING];
+}
+
+message update_votes_arguments {
+  bytes voter = 1 [(btype) = ADDRESS];
+  uint64 new_balance = 2 [jstype = JS_STRING];
+  uint64 old_balance = 3 [jstype = JS_STRING];
+}
+
+message get_project_arguments {
+  uint32 project_id = 1;
+}
+
+enum order_projects_by {
+  by_date = 0;
+  by_votes = 1;
+}
+
+message get_projects_arguments {
+  project_status status = 1;
+  order_projects_by order_by = 2;
+  string start = 3;
+  int32 limit = 4;
+  bool descending = 5;
+}
+
+message get_projects_result {
+  repeated project projects = 1;
+  string start_next_page = 2;
+}
+
+message get_user_votes_arguments {
+  bytes voter = 1 [(btype) = ADDRESS];
+}
+
+message get_user_votes_result {
+  repeated vote_info votes = 1;
+}

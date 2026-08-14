@@ -21,6 +21,7 @@ message metadata {
    bytes seed = 1 [(btype) = BASE64];
    bytes difficulty = 2 [(btype) = BASE64];
    uint64 last_block_time = 3 [jstype = JS_STRING];
+   uint64 next_koinos_fund_payment_time = 4 [jstype = JS_STRING];
 }
 
 message signature_data {
